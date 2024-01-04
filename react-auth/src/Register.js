@@ -28,9 +28,6 @@ export default function Register() {
       .catch((error) => {
         error = new Error();
       });
-    
-    // make a popup alert showing the "submitted" text
-    //alert("Submited");
   }
 
   return (

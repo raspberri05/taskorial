@@ -35,8 +35,6 @@ export default function Login() {
         error = new Error();
       });
 
-    // make a popup alert showing the "submitted" text
-    alert("Submited");
   }
 
   return (

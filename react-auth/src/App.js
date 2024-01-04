@@ -19,13 +19,13 @@ function App() {
 
       <Row>
         <Col className="text-center">
-          <h1>React Authentication Tutorial</h1>
+          <h1>To Do List</h1>
 
-          <section id="navigation">
+          {/* <section id="navigation">
             <a href="/">Home</a>
             <a href="/free">Free Component</a>
             <a href="/auth">Auth Component</a>
-          </section>
+          </section> */}
         </Col>
       </Row>
       
