@@ -10,8 +10,27 @@ export default function Register() {
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
+
+    //set configuration
+    const configuration = {
+      method: "post",
+      url: "http://localhost:8080/register",
+      data: {
+        email,
+        password,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        setRegister(true);
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+    
     // make a popup alert showing the "submitted" text
-    alert("Submited");
+    //alert("Submited");
   }
 
   return (
@@ -47,6 +66,14 @@ export default function Register() {
           onClick={(e) => handleSubmit(e)}>
           Submit
         </Button>
+
+        {/* display success message */}
+        {register ? (
+          <p className="text-success">You Are Registered Successfully</p>
+        ) : (
+          <p className="text-danger">You Are Not Registered</p>
+        )}
+        
     </Form>
     </>
   )
