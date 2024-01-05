@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Navbar, Container, Nav, Offcanvas, NavDropdown, Form } from "react-bootstrap";
+import { Button, Navbar, Container, Nav, Offcanvas } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "./index.css"
@@ -44,6 +44,33 @@ export default function AuthComponent() {
     window.location.href = "/";
   }
 
+  const makeTask = () => {
+    let name = "taskname"
+    let completed = false
+    let userId = "1234"
+    const configuration = {
+      method: "post",
+      url: "http://localhost:8080/tasks",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        name,
+        completed,
+        userId,
+      },
+      }
+
+      axios(configuration)
+        .then((result) => {
+          console.log("success");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+
+
   return (
       <>
       <Navbar bg="dark" data-bs-theme="dark" key={false} expand={false} className="bg-body-tertiary mb-3">
@@ -76,6 +103,7 @@ export default function AuthComponent() {
 
       <Container>
         <Home />
+        <Button onClick={() => makeTask()}>Make Task</Button>
       </Container>
       </>
   );

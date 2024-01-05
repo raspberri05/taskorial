@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
+const Task = require("./db/taskModel");
 const auth = require("./auth");
 
 
@@ -114,6 +115,28 @@ app.get("/free-endpoint", (request, response) => {
 // authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });
+});
+
+app.post("/tasks", auth, (request, response) => {
+  console.log("hi", request.body);
+  const task = new Task({
+    name: request.body.name,
+    completed: request.body.completed,
+    userId: request.body.userId,
+  });
+  task.save()
+    .then((result) => {
+      response.status(201).send({
+        message: "Task created successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task creation failed",
+        error,
+      });
+    });
 });
 
 module.exports = app;
