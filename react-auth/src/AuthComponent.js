@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Navbar, Container, Nav, Offcanvas, NavDropdown, Form } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import "./index.css"
+import Home from "./Home";
 const cookies = new Cookies();
 
 // get token generated on login
@@ -10,6 +12,7 @@ const token = cookies.get("TOKEN");
 export default function AuthComponent() {
   // set an initial state for the message we will receive after the API call
   const [message, setMessage] = useState("");
+  const [page, setPage] = useState("Home");
 
   // useEffect automatically executes once the page is fully loaded
   useEffect(() => {
@@ -42,16 +45,38 @@ export default function AuthComponent() {
   }
 
   return (
-    <div className="text-center">
-      <h1>Auth Component</h1>
+      <>
+      <Navbar bg="dark" data-bs-theme="dark" key={false} expand={false} className="bg-body-tertiary mb-3">
+        <Container fluid>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
+          <Navbar.Brand>{page}</Navbar.Brand>
+          <Navbar.Brand> </Navbar.Brand>
+          <Navbar.Offcanvas bg="dark" data-bs-theme="dark"
+            id={`offcanvasNavbar-expand-${false}`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
+            placement="start"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
+                To Do List
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link href="#">Home</Nav.Link>
+                <Nav.Link href="/" onClick={() => logout()}>Log Out</Nav.Link>
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
 
       {/* displaying our message from our API call */}
-      <h3 className="text-danger">{message}</h3>
+      {/* <h3 className="text-center">{message}</h3> */}
 
-      {/* logout */}
-      <Button type="submit" variant="danger" onClick={() => logout()}>
-        Logout
-      </Button>
-    </div>
+      <Container>
+        <Home />
+      </Container>
+      </>
   );
 }

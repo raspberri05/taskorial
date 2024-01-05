@@ -1,11 +1,15 @@
 import React, { useState } from "react"
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ButtonGroup } from "react-bootstrap";
 import axios from "axios";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 export default function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
+  const [login, setLogin] = useState(false);
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
@@ -24,6 +28,32 @@ export default function Register() {
     axios(configuration)
       .then((result) => {
         setRegister(true);
+        handleLogin(e)
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const configuration = {
+      method: "post",
+      url: "http://localhost:8080/login",
+      data: {
+        email,
+        password,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        cookies.set("TOKEN", result.data.token, {
+          path: "/",
+        });
+        window.location.href = "/auth";
+        setLogin(true);
       })
       .catch((error) => {
         error = new Error();
@@ -32,8 +62,8 @@ export default function Register() {
 
   return (
     <>
-    <h2>Register</h2>
-    <Form onSubmit={(e) => handleSubmit(e)}>
+    {/* <h2>Register</h2> */}
+    <Form>
         {/* email */}
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -57,19 +87,20 @@ export default function Register() {
         </Form.Group>
 
         {/* submit button */}
-        <Button 
-          variant="primary" 
-          type="submit"
-          onClick={(e) => handleSubmit(e)}>
-          Submit
-        </Button>
-
-        {/* display success message */}
-        {register ? (
-          <p className="text-success">You Are Registered Successfully</p>
-        ) : (
-          <p className="text-danger">You Are Not Registered</p>
-        )}
+        <ButtonGroup>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={(e) => handleSubmit(e)}>
+            Sign Up
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={(e) => handleLogin(e)}>
+            Log In
+          </Button>
+        </ButtonGroup>
         
     </Form>
     </>
