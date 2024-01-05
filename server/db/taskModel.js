@@ -16,7 +16,7 @@ const TaskSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: [true, "Please provide a user"],
-    unique: true,
+    unique: false,
   },
 });
 

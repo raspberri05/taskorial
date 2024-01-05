@@ -45,9 +45,10 @@ export default function AuthComponent() {
   }
 
   const makeTask = () => {
-    let name = "taskname"
+    let obj = JSON.parse(atob(token.split(".")[1]))
+    let name = "mytask2"
     let completed = false
-    let userId = "1234"
+    let userId = obj.userId
     const configuration = {
       method: "post",
       url: "http://localhost:8080/tasks",
