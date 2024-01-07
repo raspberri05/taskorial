@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Button, Navbar, Container, Nav, Offcanvas } from "react-bootstrap";
+import { Button, Navbar, Container, Nav, Offcanvas, Form } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "./index.css"
 import Home from "./Home";
-const cookies = new Cookies();
 
-// get token generated on login
+const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
 export default function AuthComponent() {
-  // set an initial state for the message we will receive after the API call
   const [message, setMessage] = useState("");
   const [page, setPage] = useState("Home");
+  const [task, setTask] = useState("");
 
-  // useEffect automatically executes once the page is fully loaded
   useEffect(() => {
-    // set configurations for the API call here
     const configuration = {
       method: "get",
       url: "http://localhost:8080/auth-endpoint",
@@ -25,10 +22,8 @@ export default function AuthComponent() {
       },
     };
 
-    // make the API call
     axios(configuration)
       .then((result) => {
-        // assign the message in our result to the message we initialized above
         setMessage(result.data.message);
       })
       .catch((error) => {
@@ -36,7 +31,6 @@ export default function AuthComponent() {
       });
   }, []);
 
-  // logout
   const logout = () => {
     // destroy the cookie
     cookies.remove("TOKEN", { path: "/" });
@@ -44,11 +38,14 @@ export default function AuthComponent() {
     window.location.href = "/";
   }
 
-  const makeTask = () => {
+  const makeTask = (e) => {
+    e.preventDefault();
+    
     let obj = JSON.parse(atob(token.split(".")[1]))
-    let name = "mytask2"
+    let name = task
     let completed = false
     let userId = obj.userId
+
     const configuration = {
       method: "post",
       url: "http://localhost:8080/tasks",
@@ -64,7 +61,7 @@ export default function AuthComponent() {
 
       axios(configuration)
         .then((result) => {
-          console.log("success");
+          console.log(result);
         })
         .catch((error) => {
           console.log(error);
@@ -73,13 +70,13 @@ export default function AuthComponent() {
 
 
   return (
-      <>
-      <Navbar bg="dark" data-bs-theme="dark" key={false} expand={false} className="bg-body-tertiary mb-3">
+    <>
+      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
         <Container fluid>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Brand>{page}</Navbar.Brand>
           <Navbar.Brand> </Navbar.Brand>
-          <Navbar.Offcanvas bg="dark" data-bs-theme="dark"
+          <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${false}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
             placement="start"
@@ -104,8 +101,18 @@ export default function AuthComponent() {
 
       <Container>
         <Home />
-        <Button onClick={() => makeTask()}>Make Task</Button>
+
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Task List</Form.Label>
+              <Form.Control onChange={(e) => setTask(e.target.value)}placeholder="Enter task name" />
+            </Form.Group>
+          <Button onClick={(e) => makeTask(e)}  variant="primary" type="submit">
+              Add task
+            </Button>
+          </Form>
+  
       </Container>
-      </>
+    </>
   );
 }

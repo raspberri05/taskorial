@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Form, Button, ButtonGroup } from "react-bootstrap";
+import { Form, Button, ButtonGroup, Container } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -61,11 +61,11 @@ export default function Register() {
   }
 
   return (
-    <>
+    <Container>
     {/* <h2>Register</h2> */}
     <Form>
         {/* email */}
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group className='mb-3' controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control 
             type="email" 
@@ -76,7 +76,7 @@ export default function Register() {
         </Form.Group>
 
         {/* password */}
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group className='mb-3' controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control 
             type="password" 
@@ -103,6 +103,6 @@ export default function Register() {
         </ButtonGroup>
         
     </Form>
-    </>
+    </Container>
   )
 }
