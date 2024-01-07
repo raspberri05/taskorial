@@ -10,7 +10,15 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Account />} />
         <Route exact path="/free" element={<FreeComponent />} />
-        <Route exact path="/auth" element={<ProtectedRoutes><AuthComponent/></ProtectedRoutes>} />
+        <Route
+          exact
+          path="/auth"
+          element={
+            <ProtectedRoutes>
+              <AuthComponent />
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </>
   );

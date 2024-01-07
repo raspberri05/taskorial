@@ -16,7 +16,6 @@ module.exports = async (request, response, next) => {
 
     // pass down functionality to the endpoint
     next();
-
   } catch (error) {
     response.status(401).json({
       error: new Error("Invalid request!"),

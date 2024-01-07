@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, Navbar, Container, Nav, Offcanvas, Form } from "react-bootstrap";
+import {
+  Button,
+  Navbar,
+  Container,
+  Nav,
+  Offcanvas,
+  Form,
+} from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import "./index.css"
+import "./index.css";
 import Home from "./Home";
 
 const cookies = new Cookies();
@@ -36,15 +43,15 @@ export default function AuthComponent() {
     cookies.remove("TOKEN", { path: "/" });
     // redirect user to the landing page
     window.location.href = "/";
-  }
+  };
 
   const makeTask = (e) => {
     e.preventDefault();
-    
-    let obj = JSON.parse(atob(token.split(".")[1]))
-    let name = task
-    let completed = false
-    let userId = obj.userId
+
+    let obj = JSON.parse(atob(token.split(".")[1]));
+    let name = task;
+    let completed = false;
+    let userId = obj.userId;
 
     const configuration = {
       method: "post",
@@ -57,17 +64,16 @@ export default function AuthComponent() {
         completed,
         userId,
       },
-      }
+    };
 
-      axios(configuration)
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-    }
-
+    axios(configuration)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -89,7 +95,9 @@ export default function AuthComponent() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="#">Home</Nav.Link>
-                <Nav.Link href="/" onClick={() => logout()}>Log Out</Nav.Link>
+                <Nav.Link href="/" onClick={() => logout()}>
+                  Log Out
+                </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -102,16 +110,18 @@ export default function AuthComponent() {
       <Container>
         <Home />
 
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Task List</Form.Label>
-              <Form.Control onChange={(e) => setTask(e.target.value)}placeholder="Enter task name" />
-            </Form.Group>
-          <Button onClick={(e) => makeTask(e)}  variant="primary" type="submit">
-              Add task
-            </Button>
-          </Form>
-  
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Task List</Form.Label>
+            <Form.Control
+              onChange={(e) => setTask(e.target.value)}
+              placeholder="Enter task name"
+            />
+          </Form.Group>
+          <Button onClick={(e) => makeTask(e)} variant="primary" type="submit">
+            Add task
+          </Button>
+        </Form>
       </Container>
     </>
   );
