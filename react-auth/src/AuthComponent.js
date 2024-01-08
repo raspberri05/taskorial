@@ -75,6 +75,24 @@ export default function AuthComponent() {
       });
   };
 
+  const getTasks = () => {
+    const configuration = {
+      method: "get",
+      url: "http://localhost:8080/tasks",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+
+      axios(configuration)
+        .then((result) => {
+          console.log(result.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
   return (
     <>
       <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
@@ -122,6 +140,9 @@ export default function AuthComponent() {
             Add task
           </Button>
         </Form>
+
+        <Button onClick={() => getTasks()} variant="danger">Get Tasks</Button>
+
       </Container>
     </>
   );

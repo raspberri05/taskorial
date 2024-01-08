@@ -118,7 +118,7 @@ app.get("/auth-endpoint", auth, (request, response) => {
 });
 
 app.post("/tasks", auth, (request, response) => {
-  console.log("hi", request.body);
+  //console.log("hi", request.body);
   const task = new Task({
     name: request.body.name,
     completed: request.body.completed,
@@ -138,6 +138,26 @@ app.post("/tasks", auth, (request, response) => {
         error,
       });
     });
+});
+
+app.get("/tasks", auth, (request, response) => {
+  token = request.headers.authorization.split(" ")[1]
+  let id = JSON.parse(atob(token.split(".")[1])).userId;
+  //console.log(id);
+  Task.find({ userId: id })
+    .then((result) => {
+      response.status(200).send({
+        message: "Task fetched successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task fetching failed",
+        error,
+      });
+    });
+
 });
 
 module.exports = app;
