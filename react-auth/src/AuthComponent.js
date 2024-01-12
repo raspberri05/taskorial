@@ -6,6 +6,10 @@ import {
   Nav,
   Offcanvas,
   Form,
+  Row,
+  Col,
+  Card,
+  ListGroup,
 } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -19,6 +23,7 @@ export default function AuthComponent() {
   const [message, setMessage] = useState("");
   const [page, setPage] = useState("Home");
   const [task, setTask] = useState("");
+  const [taskList, setTaskList] = useState([]);
 
   useEffect(() => {
     const configuration = {
@@ -36,12 +41,12 @@ export default function AuthComponent() {
       .catch((error) => {
         error = new Error();
       });
+
+    getTasks();
   }, []);
 
   const logout = () => {
-    // destroy the cookie
     cookies.remove("TOKEN", { path: "/" });
-    // redirect user to the landing page
     window.location.href = "/";
   };
 
@@ -66,9 +71,12 @@ export default function AuthComponent() {
       },
     };
 
+    setTask("");
+
     axios(configuration)
       .then((result) => {
-        console.log(result);
+        //console.log(result);
+        getTasks();
       })
       .catch((error) => {
         console.log(error);
@@ -82,16 +90,17 @@ export default function AuthComponent() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    };
 
-      axios(configuration)
-        .then((result) => {
-          console.log(result.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    axios(configuration)
+      .then((result) => {
+        let res = result.data.result;
+        setTaskList([...res].reverse());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -128,21 +137,43 @@ export default function AuthComponent() {
       <Container>
         <Home />
 
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Task List</Form.Label>
-            <Form.Control
-              onChange={(e) => setTask(e.target.value)}
-              placeholder="Enter task name"
-            />
-          </Form.Group>
-          <Button onClick={(e) => makeTask(e)} variant="primary" type="submit">
-            Add task
-          </Button>
-        </Form>
+        <Row>
+          <Col xs={12} sm={12} md={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Task List</Card.Title>
 
-        <Button onClick={() => getTasks()} variant="danger">Get Tasks</Button>
+                <Form onSubmit={makeTask}>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control
+                      onChange={(e) => setTask(e.target.value)}
+                      value={task}
+                      placeholder="Enter task name"
+                    />
+                  </Form.Group>
+                </Form>
 
+                <ListGroup>
+                  {taskList.map((t) => (
+                    <ListGroup.Item key={t._id}>{t.name}</ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+
+            <br />
+            <br />
+          </Col>
+
+          <Col xs={12} sm={12} md={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>Card Text</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
     </>
   );
