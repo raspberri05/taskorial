@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    environment:
+      name: netlify-deploy
+      url: https://to-do-list-05.netlify.app/
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v4.0.1
