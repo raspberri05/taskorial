@@ -168,8 +168,8 @@ export default function AuthComponent() {
           <Col xs={12} sm={12} md={6} lg={6}>
             <Card>
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>Card Text</Card.Text>
+                <Card.Title>Placeholder Title</Card.Title>
+                <Card.Text>Placeholder Content</Card.Text>
               </Card.Body>
             </Card>
           </Col>
