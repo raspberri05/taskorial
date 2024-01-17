@@ -74,7 +74,7 @@ app.post("/register", (request, response) => {
 });
 
 app.post("/login", (request, response) => {
-  User.findOne({ email: request.body.email })
+  User.findOne({ email: {$eq: request.body.email} })
     .then((user) => {
       bcrypt
         .compare(request.body.password, user.password)
