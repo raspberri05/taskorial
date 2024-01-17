@@ -27,7 +27,7 @@ export default function AuthComponent() {
   useEffect(() => {
     const configuration = {
       method: "get",
-      url: "http://localhost:8080/auth-endpoint",
+      url: "https://to-do-list-server-lqa9.onrender.com/auth-endpoint",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -59,7 +59,7 @@ export default function AuthComponent() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/tasks",
+      url: "https://to-do-list-server-lqa9.onrender.com/tasks",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -85,7 +85,7 @@ export default function AuthComponent() {
   const getTasks = () => {
     const configuration = {
       method: "get",
-      url: "http://localhost:8080/tasks",
+      url: "https://to-do-list-server-lqa9.onrender.com/tasks",
       headers: {
         Authorization: `Bearer ${token}`,
       },

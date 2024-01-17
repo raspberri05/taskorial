@@ -15,7 +15,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/register",
+      url: "https://to-do-list-server-lqa9.onrender.com/register",
       data: {
         email,
         password,
@@ -37,7 +37,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/login",
+      url: "https://to-do-list-server-lqa9.onrender.com/login",
       data: {
         email,
         password,
