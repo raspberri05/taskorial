@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: npm install and build
         run: |
-          cd react-auth
-          npm install --force
-          npm run build
+          npm install
       - uses: actions/checkout@v3
 
       # ( Build to ./dist or other directory... )
