@@ -9,6 +9,8 @@ const Task = require("./models/taskModel");
 const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
 
+require("dotenv").config();
+
 dbConnect();
 
 const limiter = rateLimit({
@@ -89,7 +91,7 @@ app.post("/login", (request, response) => {
               userId: user._id,
               userEmail: user.email,
             },
-            "RANDOM-TOKEN",
+            process.env.RANDOM_TOKEN,
             { expiresIn: "24h" },
           );
 
