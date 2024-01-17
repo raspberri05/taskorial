@@ -120,7 +120,7 @@ export default function AuthComponent() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#">Home</Nav.Link>
+                {/* <Nav.Link href="#">Home</Nav.Link> */}
                 <Nav.Link href="/" onClick={() => logout()}>
                   Log Out
                 </Nav.Link>
