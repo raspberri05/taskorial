@@ -164,14 +164,14 @@ export default function AuthComponent() {
             <br />
           </Col>
 
-          <Col xs={12} sm={12} md={6} lg={6}>
+          {/* <Col xs={12} sm={12} md={6} lg={6}>
             <Card>
               <Card.Body>
                 <Card.Title>Placeholder Title</Card.Title>
                 <Card.Text>Placeholder Content</Card.Text>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>
