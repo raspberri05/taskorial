@@ -10,6 +10,7 @@ import {
   Col,
   Card,
   ListGroup,
+  Table
 } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -101,6 +102,10 @@ export default function AuthComponent() {
       });
   };
 
+  const completeTasks = (taskName) => {
+    console.log(taskName)
+  }
+
   return (
     <>
       <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
@@ -140,7 +145,9 @@ export default function AuthComponent() {
           <Col xs={12} sm={12} md={6} lg={6}>
             <Card>
               <Card.Body>
-                <Card.Title>Task List</Card.Title>
+                <Card.Title className="text-center">My Tasks</Card.Title>
+
+                <br />
 
                 <Form onSubmit={makeTask}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -152,11 +159,15 @@ export default function AuthComponent() {
                   </Form.Group>
                 </Form>
 
-                <ListGroup>
-                  {taskList.map((t) => (
-                    <ListGroup.Item key={t._id}>{t.name}</ListGroup.Item>
-                  ))}
-                </ListGroup>
+                <Table hover>
+                  <tbody>
+                    {taskList.map((t) => (
+                      <tr key={t._id}>
+                        <td onClick={() => completeTasks(t.name)}>{t.name}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
               </Card.Body>
             </Card>
 
