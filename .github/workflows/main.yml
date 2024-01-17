@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: cd react-auth && npm install --force
-      - run: npm run build
+      - name: npm install and build
+        working-directory: ./react-auth
+        run: npm install --force
       - uses: actions/checkout@v3
 
       # ( Build to ./dist or other directory... )
