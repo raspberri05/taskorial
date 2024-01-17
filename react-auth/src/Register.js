@@ -11,10 +11,8 @@ export default function Register() {
   const [login, setLogin] = useState(false);
 
   const handleSubmit = (e) => {
-    // prevent the form from refreshing the whole page
     e.preventDefault();
 
-    //set configuration
     const configuration = {
       method: "post",
       url: "http://localhost:8080/register",
@@ -61,9 +59,7 @@ export default function Register() {
 
   return (
     <Container>
-      {/* <h2>Register</h2> */}
       <Form>
-        {/* email */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -75,7 +71,6 @@ export default function Register() {
           />
         </Form.Group>
 
-        {/* password */}
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -87,7 +82,6 @@ export default function Register() {
           />
         </Form.Group>
 
-        {/* submit button */}
         <ButtonGroup>
           <Button
             variant="primary"

@@ -13,7 +13,6 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import "./index.css";
 import Home from "./Home";
 
 const cookies = new Cookies();
