@@ -12,7 +12,7 @@ jobs:
       - run: |
           cd react-auth
           npm install --force
-          npm run build --if-present
+          npm run build
       # ( Build to ./dist or other directory... )
 
       - name: Deploy to Netlify
