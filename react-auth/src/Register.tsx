@@ -10,7 +10,7 @@ export default function Register() {
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     const configuration = {
@@ -32,7 +32,7 @@ export default function Register() {
       });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     const configuration = {
