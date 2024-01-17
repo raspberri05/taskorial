@@ -7,8 +7,15 @@ const dbConnect = require("./dbConnect");
 const User = require("./models/userModel");
 const Task = require("./models/taskModel");
 const auth = require("./auth");
+const rateLimit = require("express-rate-limit");
 
 dbConnect();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests",
+});
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(limiter)
 
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
