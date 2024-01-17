@@ -149,7 +149,7 @@ app.post("/tasks", auth, (request, response) => {
 app.get("/tasks", auth, (request, response) => {
   token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
-  Task.find({ userId: id })
+  Task.find({ userId: {$eq: id} })
     .then((result) => {
       response.status(200).send({
         message: "Task fetched successfully",
