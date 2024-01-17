@@ -15,7 +15,6 @@ jobs:
         run: |
           cd server
           npm install
-          npm start
 
       - name: Deploy
         # Only run this step if the branch is main
