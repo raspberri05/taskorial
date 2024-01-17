@@ -15,7 +15,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: "https://to-do-list-server-lqa9.onrender.com/register",
+      url: process.env.REACT_APP_API_URL + "register",
       data: {
         email,
         password,
@@ -37,7 +37,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: "https://to-do-list-server-lqa9.onrender.com/login",
+      url: process.env.REACT_APP_API_URL + "login",
       data: {
         email,
         password,
