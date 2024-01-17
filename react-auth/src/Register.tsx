@@ -10,12 +10,12 @@ export default function Register() {
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/register",
+      url: "https://to-do-list-server-lqa9.onrender.com/register",
       data: {
         email,
         password,
@@ -32,12 +32,12 @@ export default function Register() {
       });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/login",
+      url: "https://to-do-list-server-lqa9.onrender.com/login",
       data: {
         email,
         password,

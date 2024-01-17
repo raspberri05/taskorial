@@ -23,12 +23,12 @@ export default function AuthComponent() {
   const [message, setMessage] = useState("");
   const [page, setPage] = useState("Home");
   const [task, setTask] = useState("");
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState<Array<any>>([]);
 
   useEffect(() => {
     const configuration = {
       method: "get",
-      url: "http://localhost:8080/auth-endpoint",
+      url: "https://to-do-list-server-lqa9.onrender.com/auth-endpoint",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -50,7 +50,7 @@ export default function AuthComponent() {
     window.location.href = "/";
   };
 
-  const makeTask = (e) => {
+  const makeTask = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     let obj = JSON.parse(atob(token.split(".")[1]));
@@ -60,7 +60,7 @@ export default function AuthComponent() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:8080/tasks",
+      url: "https://to-do-list-server-lqa9.onrender.com/tasks",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -86,7 +86,7 @@ export default function AuthComponent() {
   const getTasks = () => {
     const configuration = {
       method: "get",
-      url: "http://localhost:8080/tasks",
+      url: "https://to-do-list-server-lqa9.onrender.com/tasks",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -102,13 +102,13 @@ export default function AuthComponent() {
       });
   };
 
-  const completeTasks = (taskName) => {
+  const completeTasks = (taskName: String) => {
     console.log(taskName)
   }
 
   return (
     <>
-      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
+      <Navbar expand={false} className="bg-body-tertiary mb-3">
         <Container fluid>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Brand>{page}</Navbar.Brand>

@@ -7,7 +7,7 @@ export default function FreeComponent() {
   useEffect(() => {
     const configuration = {
       method: "get",
-      url: "http://localhost:8080/free-endpoint",
+      url: "https://to-do-list-server-lqa9.onrender.com/free-endpoint",
     };
 
     axios(configuration)
