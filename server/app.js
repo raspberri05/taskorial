@@ -4,13 +4,12 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const dbConnect = require("./db/dbConnect");
-const User = require("./db/userModel");
-const Task = require("./db/taskModel");
+const User = require("./db/models/userModel");
+const Task = require("./db/models/taskModel");
 const auth = require("./auth");
 
 dbConnect();
 
-// Curb Cores Error by adding a header here
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -24,7 +23,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// body parser configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -112,13 +110,11 @@ app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
 });
 
-// authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });
 });
 
 app.post("/tasks", auth, (request, response) => {
-  //console.log("hi", request.body);
   const task = new Task({
     name: request.body.name,
     completed: request.body.completed,
@@ -143,7 +139,6 @@ app.post("/tasks", auth, (request, response) => {
 app.get("/tasks", auth, (request, response) => {
   token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
-  //console.log(id);
   Task.find({ userId: id })
     .then((result) => {
       response.status(200).send({

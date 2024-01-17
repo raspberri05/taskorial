@@ -12,6 +12,7 @@ const normalizePort = (val) => {
   }
   return false;
 };
+
 const port = normalizePort(process.env.PORT || "8080");
 app.set("port", port);
 
