@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const dbConnect = require("./db/dbConnect");
-const User = require("./db/models/userModel");
-const Task = require("./db/models/taskModel");
+const dbConnect = require("./dbConnect");
+const User = require("./models/userModel");
+const Task = require("./models/taskModel");
 const auth = require("./auth");
 
 dbConnect();
