@@ -1,1 +1,5 @@
 # todo-list
+
+# Setup
+
+# Contributing

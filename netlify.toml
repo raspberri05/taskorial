@@ -1,0 +1,4 @@
+[build.environment]
+  base = "react-auth"
+  publish = "react-auth/build"
+  command = "npm run build"
