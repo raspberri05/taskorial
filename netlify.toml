@@ -1,0 +1,3 @@
+[build.environment]
+  BASE = "react-auth"
+  PUBLISH = 'react-auth/build"
