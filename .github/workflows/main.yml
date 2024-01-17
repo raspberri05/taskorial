@@ -7,6 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
+      - run: npm install --force
+      - run: npm run build
       - uses: actions/checkout@v3
 
       # ( Build to ./dist or other directory... )
