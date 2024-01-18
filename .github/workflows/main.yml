@@ -2,37 +2,16 @@
 name: Build and Deploy to Netlify
 on:
   push:
+    branches: [main]
   pull_request:
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     environment:
       name: netlify-deploy
       url: https://to-do-list-05.netlify.app/
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4.0.1
-      - run: |
-          cd react-auth
-          npm install --force
-          npm run build
-      # ( Build to ./dist or other directory... )
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: './react-auth/build'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          netlify-config-path: './netlify.toml'
-          enable-github-deployment: true
-          github-deployment-environment: "Deploy App"
-          github-deployment-description: "Deploy Netlify App from Github Actions"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 3
+      - name: "deployed site"
+        run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
+      
