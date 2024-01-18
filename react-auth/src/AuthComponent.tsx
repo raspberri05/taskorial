@@ -103,7 +103,25 @@ export default function AuthComponent() {
   };
 
   const completeTasks = (taskName: String) => {
-    console.log(taskName)
+    let name = taskName
+    const configuration = {
+      method: "put",
+      url: process.env.REACT_APP_API_URL + "tasks",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        name,
+      }
+    };
+
+    axios(configuration)
+      .then((result) => {
+        getTasks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -159,15 +177,28 @@ export default function AuthComponent() {
                   </Form.Group>
                 </Form>
 
+                <p>Incomplete tasks</p>
                 <Table hover>
                   <tbody>
                     {taskList.map((t) => (
-                      <tr key={t._id}>
+                      !t.completed && <tr key={t._id}>
                         <td onClick={() => completeTasks(t.name)}>{t.name}</td>
                       </tr>
                     ))}
                   </tbody>
                 </Table>
+
+                <p>Completed tasks</p>
+                <Table hover>
+                  <tbody>
+                    {taskList.map((t) => (
+                      t.completed && <tr key={t._id}>
+                        <td onClick={() => completeTasks(t.name)}>{t.name}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+
               </Card.Body>
             </Card>
 

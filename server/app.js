@@ -164,4 +164,46 @@ app.get("/tasks", auth, (request, response) => {
     });
 });
 
+
+/*
+find task by name/userId
+  then use update to true/false depending on value
+    then send response
+    catch error
+  catch error
+*/
+
+app.put("/tasks", auth, (request, response) => {
+  token = request.headers.authorization.split(" ")[1];
+  let id = JSON.parse(atob(token.split(".")[1])).userId;
+  Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
+  .then((task) => {
+    let comp = false;
+    (task.completed ? comp = false : comp = true)
+
+    Task.updateOne({ name: { $eq: request.body.name }, userId: { $eq: id } }, { $set: { completed: comp } })
+      .then((result) => {
+        response.status(200).send({
+          message: "Task updated successfully",
+          result,
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: "Task updating failed",
+          error,
+        });
+      });
+
+  })
+  .catch((error) => {
+    response.status(500).send({
+      message: "Task fetching failed",
+      error,
+    });
+  })
+
+
+});
+
 module.exports = app;
