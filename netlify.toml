@@ -2,3 +2,4 @@
   base = "react-auth"
   publish = "react-auth/build"
   command = "npm run build"
+  REACT_APP_API_URL="https://to-do-list-server-lqa9.onrender.com/"
