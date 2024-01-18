@@ -19,6 +19,12 @@ const limiter = rateLimit({
   message: "Too many requests",
 });
 
+function decodeToken(t) {
+  let token = t.split(" ")[1];
+  let decoded = JSON.parse(atob(token.split(".")[1])).userId;
+  return decoded;
+}
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -164,15 +170,6 @@ app.get("/tasks", auth, (request, response) => {
     });
 });
 
-
-/*
-find task by name/userId
-  then use update to true/false depending on value
-    then send response
-    catch error
-  catch error
-*/
-
 app.put("/tasks", auth, (request, response) => {
   token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
@@ -203,7 +200,23 @@ app.put("/tasks", auth, (request, response) => {
     });
   })
 
-
 });
+
+app.delete("/tasks", auth, (request, response) => {
+  let id = decodeToken(request.headers.authorization)
+  Task.deleteOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
+    .then((result) => {
+      response.status(200).send({
+        message: "Task deleted successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task deletion failed",
+        error,
+      });
+    });
+})
 
 module.exports = app;

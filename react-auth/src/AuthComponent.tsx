@@ -124,6 +124,28 @@ export default function AuthComponent() {
       });
   }
 
+  const deleteTasks = (taskName: String) => {
+    let name = taskName
+    const configuration = {
+      method: "delete",
+      url: process.env.REACT_APP_API_URL + "tasks",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        name,
+      }
+    };
+
+    axios(configuration)
+      .then((result) => {
+        getTasks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <Navbar expand={false} className="bg-body-tertiary mb-3">
@@ -177,7 +199,7 @@ export default function AuthComponent() {
                   </Form.Group>
                 </Form>
 
-                <p>Incomplete tasks</p>
+                <p>Incomplete</p>
                 <Table hover>
                   <tbody>
                     {taskList.map((t) => (
@@ -188,12 +210,13 @@ export default function AuthComponent() {
                   </tbody>
                 </Table>
 
-                <p>Completed tasks</p>
+                <p>Completed</p>
                 <Table hover>
                   <tbody>
                     {taskList.map((t) => (
                       t.completed && <tr key={t._id}>
                         <td onClick={() => completeTasks(t.name)}>{t.name}</td>
+                        <td className="text-end" onClick={() => deleteTasks(t.name)}><Button variant="danger">X</Button></td>
                       </tr>
                     ))}
                   </tbody>
