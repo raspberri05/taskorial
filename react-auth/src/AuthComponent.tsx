@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
-  Navbar,
   Container,
-  Nav,
-  Offcanvas,
   Form,
   Row,
   Col,
   Card,
-  ListGroup,
   Table
 } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Home from "./Home";
+import {NavBar} from "./NavBar";
 
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
@@ -75,7 +72,6 @@ export default function AuthComponent() {
 
     axios(configuration)
       .then((result) => {
-        //console.log(result);
         getTasks();
       })
       .catch((error) => {
@@ -148,34 +144,8 @@ export default function AuthComponent() {
 
   return (
     <>
-      <Navbar expand={false} className="bg-body-tertiary mb-3">
-        <Container fluid>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
-          <Navbar.Brand>{page}</Navbar.Brand>
-          <Navbar.Brand> </Navbar.Brand>
-          <Navbar.Offcanvas
-            id={`offcanvasNavbar-expand-${false}`}
-            aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
-            placement="start"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
-                To Do List
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                {/* <Nav.Link href="#">Home</Nav.Link> */}
-                <Nav.Link href="/" onClick={() => logout()}>
-                  Log Out
-                </Nav.Link>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Navbar>
+      <NavBar currPage={page} logoutFC={logout}/>
 
-      {/* displaying our message from our API call */}
       {/* <h3 className="text-center">{message}</h3> */}
 
       <Container>
