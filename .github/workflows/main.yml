@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: netlify-deploy
-      url: https://to-do-list-05.netlify.app/
+      url: https://taskorial.netlify.app/
     steps:
       - uses: actions/checkout@v3
       - name: "deployed site"
