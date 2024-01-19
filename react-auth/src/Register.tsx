@@ -82,6 +82,10 @@ export default function Register() {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Text>By clicking on either of the below buttons, you are agreeing to our <a href="https://taskorial.netlify.app/assets/legal/terms_and_conditions.pdf">Terms and Conditions</a> and certifying that you are at least 13 years of age</Form.Text>
+        </Form.Group>
+
         <ButtonGroup>
           <Button
             variant="primary"
@@ -97,7 +101,8 @@ export default function Register() {
           >
             Log In
           </Button>
-        </ButtonGroup>
+        </ButtonGroup>          
+
       </Form>
     </Container>
   );
