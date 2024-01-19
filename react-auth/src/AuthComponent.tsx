@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import Home from "./Home";
-import {NavBar} from "./NavBar";
+import { NavBar } from "./NavBar";
 import { TaskCard } from "./TaskCard";
 
 const cookies = new Cookies();
@@ -17,8 +16,8 @@ export default function AuthComponent() {
       method: "get",
       url: process.env.REACT_APP_API_URL + "auth-endpoint",
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     };
 
     axios(configuration)
@@ -37,17 +36,14 @@ export default function AuthComponent() {
 
   return (
     <>
-      <NavBar currPage={page} logoutFC={logout}/>
+      <NavBar currPage={page} logoutFC={logout} />
 
       <Container>
-        <Home />
-
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
             <TaskCard token={token} />
           </Col>
         </Row>
-
       </Container>
     </>
   );

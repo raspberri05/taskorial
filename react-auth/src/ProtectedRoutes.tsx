@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import { FC } from "react";
 import { Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
