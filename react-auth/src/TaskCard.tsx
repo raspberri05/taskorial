@@ -90,7 +90,8 @@ export const TaskCard: FC<{token: String}> = (props) => {
       });
   };
 
-  const deleteTasks = (taskName: String) => {
+  const deleteTasks = (taskName: String, e:any) => {
+    e.stopPropagation()
     let name = taskName
     const configuration = {
       method: "delete",
@@ -145,7 +146,7 @@ export const TaskCard: FC<{token: String}> = (props) => {
             {taskList.map((t) => (
               t.completed && <tr key={t._id} onClick={() => completeTasks(t.name)}>
                 <td className="align-middle">{t.name}</td>
-                <td className="text-end align-middle"><Button onClick={() => deleteTasks(t.name)} className="delete" variant="danger">X</Button></td>
+                <td className="text-end align-middle"><Button onClick={(e) => deleteTasks(t.name, e)} className="delete" variant="danger">X</Button></td>
               </tr>
             ))}
           </tbody>
