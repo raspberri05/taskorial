@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(limiter)
+app.use(limiter);
 
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
@@ -80,7 +80,7 @@ app.post("/register", (request, response) => {
 });
 
 app.post("/login", (request, response) => {
-  User.findOne({ email: {$eq: request.body.email} })
+  User.findOne({ email: { $eq: request.body.email } })
     .then((user) => {
       bcrypt
         .compare(request.body.password, user.password)
@@ -155,7 +155,7 @@ app.post("/tasks", auth, (request, response) => {
 app.get("/tasks", auth, (request, response) => {
   token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
-  Task.find({ userId: {$eq: id} })
+  Task.find({ userId: { $eq: id } })
     .then((result) => {
       response.status(200).send({
         message: "Task fetched successfully",
@@ -174,36 +174,37 @@ app.put("/tasks", auth, (request, response) => {
   token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
-  .then((task) => {
-    let comp = false;
-    (task.completed ? comp = false : comp = true)
+    .then((task) => {
+      let comp = false;
+      task.completed ? (comp = false) : (comp = true);
 
-    Task.updateOne({ name: { $eq: request.body.name }, userId: { $eq: id } }, { $set: { completed: comp } })
-      .then((result) => {
-        response.status(200).send({
-          message: "Task updated successfully",
-          result,
+      Task.updateOne(
+        { name: { $eq: request.body.name }, userId: { $eq: id } },
+        { $set: { completed: comp } },
+      )
+        .then((result) => {
+          response.status(200).send({
+            message: "Task updated successfully",
+            result,
+          });
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Task updating failed",
+            error,
+          });
         });
-      })
-      .catch((error) => {
-        response.status(500).send({
-          message: "Task updating failed",
-          error,
-        });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task fetching failed",
+        error,
       });
-
-  })
-  .catch((error) => {
-    response.status(500).send({
-      message: "Task fetching failed",
-      error,
     });
-  })
-
 });
 
 app.delete("/tasks", auth, (request, response) => {
-  let id = decodeToken(request.headers.authorization)
+  let id = decodeToken(request.headers.authorization);
   Task.deleteOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((result) => {
       response.status(200).send({
@@ -217,6 +218,6 @@ app.delete("/tasks", auth, (request, response) => {
         error,
       });
     });
-})
+});
 
 module.exports = app;
