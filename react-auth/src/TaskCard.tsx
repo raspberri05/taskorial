@@ -7,6 +7,8 @@ import {
 } from 'react-bootstrap'
 import axios from 'axios'
 
+import './main.css'
+
 export const TaskCard: FC<{token: String}> = (props) => {
   const [task, setTask] = useState<String>("")
   const [taskList, setTaskList] = useState<Array<any>>([])
@@ -121,29 +123,29 @@ export const TaskCard: FC<{token: String}> = (props) => {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               onChange={(e) => setTask(e.target.value)}
-              placeholder="Enter task name"
+              placeholder={taskList.length > 0 ? "Enter Task Name" : "Add your first task"}
             />
           </Form.Group>
         </Form>
 
-        <p>Incomplete</p>
+        {taskList.length > 0 && <p>Incomplete</p>}
         <Table hover>
           <tbody>
             {taskList.map((t) => (
               !t.completed && <tr key={t._id}>
-                <td onClick={() => completeTasks(t.name)}>{t.name}</td>
+                <td className='align-middle' onClick={() => completeTasks(t.name)}>{t.name}</td>
               </tr>
             ))}
           </tbody>
         </Table>
 
-        <p>Completed</p>
+        {taskList.length > 0 && <p>Completed</p>}
         <Table hover>
           <tbody>
             {taskList.map((t) => (
-              t.completed && <tr key={t._id}>
-                <td onClick={() => completeTasks(t.name)}>{t.name}</td>
-                <td className="text-end" onClick={() => deleteTasks(t.name)}><Button variant="danger">X</Button></td>
+              t.completed && <tr key={t._id} onClick={() => completeTasks(t.name)}>
+                <td className="align-middle">{t.name}</td>
+                <td className="text-end align-middle"><Button onClick={() => deleteTasks(t.name)} className="delete" variant="danger">X</Button></td>
               </tr>
             ))}
           </tbody>

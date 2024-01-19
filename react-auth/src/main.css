@@ -1,0 +1,12 @@
+.hamburger {
+  background-color: #2B3035 !important;
+  border-color: #5a5a5a !important;
+}
+
+.hamburger:hover {
+  background-color: #272b2f !important;
+}
+
+.delete {
+  padding: 2px 10px 5px 10px !important;
+}
