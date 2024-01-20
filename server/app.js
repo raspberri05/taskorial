@@ -8,6 +8,7 @@ const User = require("./models/userModel");
 const Task = require("./models/taskModel");
 const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
+const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
@@ -18,6 +19,17 @@ const limiter = rateLimit({
   max: 1000,
   message: "Too many requests",
 });
+
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "vedant.singhania@gmail.com",
+    pass: "dzpw wvkh muhs wjac"
+  }
+})
 
 function decodeToken(t) {
   let token = t.split(" ")[1];
@@ -221,12 +233,30 @@ app.delete("/tasks", auth, (request, response) => {
 });
 
 app.post("/reset", (request, response) => {
+
+  const mailData = {
+    from: "vedant.singhania@gmail.com",
+    to: request.body.email,
+    subject: "Taskorial Password Reset Code",
+    text: "text field",
+    html: "<p>Here is the code to reset your password: </p>" + "<p>123456</p>"
+  }
+
   User.findOne({ email: { $eq: request.body.email } })
     .then((result) => {
       if (result) {
-        response.status(200).send({
-          message: "Email found",
-        });
+
+
+        transporter.sendMail(mailData, (error, info) => {
+          if (error) {
+            console.log(error)
+          }
+          response.status(200).send({
+            message: "Email sent successfully",
+          })
+        })
+
+
       } else {
         response.status(404).send({
           message: "Email not found",

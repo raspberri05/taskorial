@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
 
 export const ResetPassword: FC<{}> = (props) => {
@@ -11,7 +11,7 @@ export const ResetPassword: FC<{}> = (props) => {
       method: "post",
       url: process.env.REACT_APP_API_URL + "reset",
       data: {
-        email
+        email,
       },
     };
 
@@ -26,22 +26,26 @@ export const ResetPassword: FC<{}> = (props) => {
 
   return (
     <>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-          />
-        </Form.Group>
+      <Container>
+        <br />
+        <h1 className="text-center">Reset password</h1>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email"
+            />
+          </Form.Group>
 
-        <Button variant="primary" onClick={(e) => sendCode(e)}>
-          Send code
-        </Button>
-      </Form>
+          <Button variant="primary" onClick={(e) => sendCode(e)}>
+            Send code
+          </Button>
+        </Form>
+      </Container>
     </>
   );
 };
