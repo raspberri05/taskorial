@@ -220,4 +220,25 @@ app.delete("/tasks", auth, (request, response) => {
     });
 });
 
+app.post("/reset", (request, response) => {
+  User.findOne({ email: { $eq: request.body.email } })
+    .then((result) => {
+      if (result) {
+        response.status(200).send({
+          message: "Email found",
+        });
+      } else {
+        response.status(404).send({
+          message: "Email not found",
+        });
+      }
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Email search failed",
+        error,
+      });
+    });
+})
+
 module.exports = app;
