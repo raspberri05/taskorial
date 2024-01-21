@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -14,5 +14,8 @@
     "mongoose": "^8.1.0",
     "nodemailer": "^6.9.8",
     "prettier": "^3.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
