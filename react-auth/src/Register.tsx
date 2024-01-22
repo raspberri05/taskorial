@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Container, Modal } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { AlertCard } from "./AlertCard";
 
 const cookies = new Cookies();
 
@@ -12,6 +13,10 @@ export default function Register() {
   const [login, setLogin] = useState(false);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
+  const [error, setError] = useState({
+    show: false,
+    message: "",
+  });
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -31,7 +36,9 @@ export default function Register() {
         handleLogin(e);
       })
       .catch((error) => {
-        error = new Error();
+        console.log(error);
+        setError({ show: true, message: error.message });
+        setShow(false);
       });
   };
 
@@ -54,8 +61,8 @@ export default function Register() {
         window.location.href = "/auth";
         setLogin(true);
       })
-      .catch((error) => {
-        error = new Error();
+      .catch((er) => {
+        er = new Error();
       });
   };
 
@@ -65,6 +72,10 @@ export default function Register() {
 
   const handleClose2 = () => {
     setShow2(!show2);
+  };
+
+  const handleCallback = () => {
+    setError({ show: false, message: "" });
   };
 
   return (
@@ -168,6 +179,16 @@ export default function Register() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <br />
+
+      {error.show && (
+        <AlertCard
+          variant="danger"
+          message={error.message}
+          callback={handleCallback}
+        />
+      )}
     </Container>
   );
 }
