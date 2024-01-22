@@ -57,21 +57,15 @@ export const NavBar: FC<{ currPage: String; logoutFC: Function }> = (props) => {
               <hr></hr>
               <Nav.Link
                 target="_blank"
-                href="https://taskorial.netlify.app/assets/legal/privacy_policy.pdf"
+                href="/privacy"
               >
                 Privacy Policy
               </Nav.Link>
               <Nav.Link
                 target="_blank"
-                href="https://taskorial.netlify.app/assets/legal/terms_and_conditions.pdf"
+                href="/terms"
               >
                 Terms and Conditions
-              </Nav.Link>
-              <Nav.Link
-                target="_blank"
-                href="https://taskorial.netlify.app/assets/legal/eula.pdf"
-              >
-                EULA
               </Nav.Link>
               <Nav.Link href="#">Copyright 2024 Taskorial</Nav.Link>
             </Nav>

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://taskorial.netlify.app/sitemap.xml

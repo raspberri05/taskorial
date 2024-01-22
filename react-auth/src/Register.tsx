@@ -112,7 +112,7 @@ export default function Register() {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
                 By creating an account, you are agreeing to our{" "}
-                <a href="https://taskorial.netlify.app/assets/legal/terms_and_conditions.pdf">
+                <a href="/terms" target="_blank">
                   Terms and Conditions
                 </a>{" "}
                 and certifying that you are at least 13 years of age
