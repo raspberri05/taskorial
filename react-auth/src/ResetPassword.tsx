@@ -1,12 +1,14 @@
 import { FC, useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 
-export const ResetPassword: FC<{}> = (props) => {
+export const ResetPassword: FC<{}> = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [sentEmail, setSentEmail] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
+  const [resetSuccess, setResetSuccess] = useState(false);
 
   const sendCode = (e: any) => {
     e.preventDefault();
@@ -20,12 +22,10 @@ export const ResetPassword: FC<{}> = (props) => {
 
     axios(configuration)
       .then((result) => {
-        console.log(result);
         setSentEmail(result.data.email);
+        setEmailSent(true);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   const checkCode = (e: any) => {
@@ -42,11 +42,9 @@ export const ResetPassword: FC<{}> = (props) => {
 
     axios(config)
       .then((result) => {
-        console.log(result);
+        setResetSuccess(true);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -55,52 +53,64 @@ export const ResetPassword: FC<{}> = (props) => {
         <br />
         <h1 className="text-center">Reset password</h1>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email"
-            />
-          </Form.Group>
+          {emailSent === false && resetSuccess === false && (
+            <>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter email"
+                />
+              </Form.Group>
 
-          <Button variant="primary" onClick={(e) => sendCode(e)}>
-            Send code
-          </Button>
+              <Button variant="primary" onClick={(e) => sendCode(e)}>
+                Send code
+              </Button>
+            </>
+          )}
 
-          <br />
-          <br />
+          {emailSent === true && (
+            <>
+              <Form.Group className="mb-3" controlId="formBasicCode">
+                <Form.Label>Code</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="code"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  placeholder="Paste the code sent to your email address here"
+                />
+              </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicCode">
-            <Form.Label>Code</Form.Label>
-            <Form.Control
-              type="text"
-              name="code"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              placeholder="Enter code"
-            />
-          </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>New Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter new password"
+                />
+              </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>New Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter new password"
-            />
-          </Form.Group>
+              <Button variant="primary" onClick={(e) => checkCode(e)}>
+                Reset Password
+              </Button>
+            </>
+          )}
 
-          <Button variant="primary" onClick={(e) => checkCode(e)}>
-            Reset Password
-          </Button>
-
-          <br />
-          <br />
+          {resetSuccess === true && (
+            <>
+              <br />
+              <Alert variant="success">
+                Password reset successful. Please click <a href="/">here</a> to
+                login.
+              </Alert>
+            </>
+          )}
         </Form>
       </Container>
     </>

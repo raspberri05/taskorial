@@ -3,14 +3,17 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: [true, "Please provide an email address"],
-    unique: [true, "Email address already exists"],
+    match: /^\S+@\S+\.\S+$/,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true
   },
 
   password: {
     type: String,
-    required: [true, "Please provide a password"],
-    unique: false,
+    required: true,
+    minLength: 8
   },
   resetToken: {
     type: String,

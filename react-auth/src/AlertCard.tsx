@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Alert } from "react-bootstrap";
 
 export const AlertCard: FC<{
   variant: string;
   message: string;
+  header: string;
   callback: any;
 }> = (props) => {
   const hideAlert = () => {
@@ -13,6 +14,8 @@ export const AlertCard: FC<{
   return (
     <>
       <Alert variant={props.variant} onClose={() => hideAlert()} dismissible>
+        {props.header}
+        <hr />
         {props.message}
       </Alert>
     </>

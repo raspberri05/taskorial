@@ -61,36 +61,41 @@ app.get("/", (request, response, next) => {
 });
 
 app.post("/register", (request, response) => {
-  bcrypt
-    .hash(request.body.password, 10)
-    .then((hashedPassword) => {
-      const user = new User({
-        email: request.body.email,
-        password: hashedPassword,
-        resetToken: "empty"
-      });
-
-      user
-        .save()
-        .then((result) => {
-          response.status(201).send({
-            message: "User created successfully",
-            result,
-          });
-        })
-        .catch((error) => {
-          response.status(500).send({
-            message: "User creation failed",
-            error,
-          });
+  if (request.body.password.length >= 8) {
+    bcrypt.hash(request.body.password, 10)
+      .then((hashedPassword) => {
+        const user = new User({
+          email: request.body.email,
+          password: hashedPassword,
+          resetToken: "empty"
         });
-    })
-    .catch((e) => {
-      response.status(500).send({
-        message: "Password hashing failed",
-        e,
+
+        user
+          .save()
+          .then((result) => {
+            response.status(201).send({
+              message: "User creation successful",
+              result,
+            });
+          })
+          .catch((error) => {
+            response.status(500).send({
+              message: "User sign up failed",
+              error,
+            });
+          });
+      })
+      .catch((e) => {
+        response.status(500).send({
+          message: "Password encryption failed",
+          e,
+        });
       });
+  } else {
+    response.status(400).send({
+      message: "Password too short",
     });
+  }
 });
 
 app.post("/login", (request, response) => {
@@ -130,7 +135,7 @@ app.post("/login", (request, response) => {
     })
     .catch((e) => {
       response.status(404).send({
-        messagea: "Email not found",
+        message: "Email not found",
         e,
       });
     });

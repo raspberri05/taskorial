@@ -16,6 +16,12 @@ export default function Register() {
   const [error, setError] = useState({
     show: false,
     message: "",
+    header: "",
+  });
+  const [error2, setError2] = useState({
+    show: false,
+    message: "",
+    header: "",
   });
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -36,9 +42,11 @@ export default function Register() {
         handleLogin(e);
       })
       .catch((error) => {
-        console.log(error);
-        setError({ show: true, message: error.message });
-        setShow(false);
+        setError({
+          show: true,
+          message: error.message,
+          header: error.response.data.message,
+        });
       });
   };
 
@@ -61,8 +69,12 @@ export default function Register() {
         window.location.href = "/auth";
         setLogin(true);
       })
-      .catch((er) => {
-        er = new Error();
+      .catch((error) => {
+        setError2({
+          show: true,
+          message: error.message,
+          header: error.response.data.message,
+        });
       });
   };
 
@@ -75,7 +87,11 @@ export default function Register() {
   };
 
   const handleCallback = () => {
-    setError({ show: false, message: "" });
+    setError({ show: false, message: "", header: "" });
+  };
+
+  const handleCallback2 = () => {
+    setError2({ show: false, message: "", header: "" });
   };
 
   return (
@@ -130,6 +146,15 @@ export default function Register() {
               </Form.Text>
             </Form.Group>
           </Form>
+
+          {error.show && (
+            <AlertCard
+              variant="danger"
+              message={error.message}
+              callback={handleCallback}
+              header={error.header}
+            />
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={(e) => handleSubmit(e)}>
@@ -172,6 +197,15 @@ export default function Register() {
               </Form.Text>
             </Form.Group>
           </Form>
+
+          {error2.show && (
+            <AlertCard
+              variant="danger"
+              message={error2.message}
+              callback={handleCallback2}
+              header={error2.header}
+            />
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={(e) => handleLogin(e)}>
@@ -179,16 +213,6 @@ export default function Register() {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <br />
-
-      {error.show && (
-        <AlertCard
-          variant="danger"
-          message={error.message}
-          callback={handleCallback}
-        />
-      )}
     </Container>
   );
 }
