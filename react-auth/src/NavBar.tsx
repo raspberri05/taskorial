@@ -1,11 +1,18 @@
 import { FC, useState } from "react";
-
 import { Nav, Navbar, Offcanvas, Container, Button } from "react-bootstrap";
-
+import Cookies from "universal-cookie";
 import "./main.css";
 
-export const NavBar: FC<{ currPage: String; logoutFC: Function }> = (props) => {
+const cookies = new Cookies();
+const token = cookies.get("TOKEN");
+
+export const NavBar: FC<{ currPage: String }> = (props) => {
   const [show, setShow] = useState(false);
+
+  const logout = () => {
+    cookies.remove("TOKEN", { path: "/" });
+    window.location.href = "/";
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,7 +39,9 @@ export const NavBar: FC<{ currPage: String; logoutFC: Function }> = (props) => {
             />
           </svg>
         </Button>
-        <Navbar.Brand>{props.currPage}</Navbar.Brand>
+        <Navbar.Brand>
+          {props.currPage}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </Navbar.Brand>
         <Navbar.Brand> </Navbar.Brand>
         <Offcanvas show={show} onHide={handleClose}>
           <Offcanvas.Header closeButton>
@@ -42,10 +51,21 @@ export const NavBar: FC<{ currPage: String; logoutFC: Function }> = (props) => {
           </Offcanvas.Header>
           <Offcanvas.Body onClick={() => noShow()}>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/auth">Home</Nav.Link>
-              <Nav.Link href="/" onClick={() => props.logoutFC()}>
-                Log Out
-              </Nav.Link>
+              {token === undefined && (
+                <>
+                  <Nav.Link href="/">Login</Nav.Link>
+                  <Nav.Link href="/">Sign Up</Nav.Link>
+                </>
+              )}
+              {token !== undefined && (
+                <>
+                  <Nav.Link href="/auth">Home</Nav.Link>
+                  <Nav.Link href="/" onClick={() => logout()}>
+                    Log Out
+                  </Nav.Link>
+                  <Nav.Link href="/settings">Settings</Nav.Link>
+                </>
+              )}
               <hr></hr>
               <Nav.Link
                 target="_blank"
@@ -53,20 +73,10 @@ export const NavBar: FC<{ currPage: String; logoutFC: Function }> = (props) => {
               >
                 View on Github
               </Nav.Link>
-              <Nav.Link href="#">Website Feedback</Nav.Link>
+              <Nav.Link href="/feedback">Website Feedback</Nav.Link>
               <hr></hr>
-              <Nav.Link
-                target="_blank"
-                href="/privacy"
-              >
-                Privacy Policy
-              </Nav.Link>
-              <Nav.Link
-                target="_blank"
-                href="/terms"
-              >
-                Terms and Conditions
-              </Nav.Link>
+              <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
+              <Nav.Link href="/terms">Terms and Conditions</Nav.Link>
               <Nav.Link href="#">Copyright 2024 Taskorial</Nav.Link>
             </Nav>
           </Offcanvas.Body>

@@ -10,3 +10,8 @@
 .delete {
   padding: 2px 10px 5px 10px !important;
 }
+
+.button_link {
+  color: white !important;
+  text-decoration: none !important;
+}

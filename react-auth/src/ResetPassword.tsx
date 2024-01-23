@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
+import { NavBar } from "./NavBar";
 
 export const ResetPassword: FC<{}> = () => {
   const [email, setEmail] = useState("");
@@ -49,9 +50,8 @@ export const ResetPassword: FC<{}> = () => {
 
   return (
     <>
+      <NavBar currPage="Reset Password" />
       <Container>
-        <br />
-        <h1 className="text-center">Reset password</h1>
         <Form>
           {emailSent === false && resetSuccess === false && (
             <>

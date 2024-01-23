@@ -1,12 +1,15 @@
 import React from "react";
 import Register from "./Register";
+import { NavBar } from "./NavBar";
+import { Container } from "react-bootstrap";
 
 export default function Account() {
   return (
     <>
-      <br />
-      <h1 className="text-center">Taskorial</h1>
-      <Register />
+      <NavBar currPage="Welcome to Taskorial" />
+      <Container>
+        <Register />
+      </Container>
     </>
   );
 }

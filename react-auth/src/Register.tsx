@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Modal } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
@@ -95,8 +95,7 @@ export default function Register() {
   };
 
   return (
-    <Container>
-      <br />
+    <>
       <div className="text-center">
         <Button className="text-center" variant="primary" onClick={handleClose}>
           Create an account
@@ -213,6 +212,6 @@ export default function Register() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </>
   );
 }
