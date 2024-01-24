@@ -112,7 +112,7 @@ export const Privacy = () => {
             <p>
               <strong>Website</strong> refers to Taskorial, accessible from{" "}
               <a
-                href="https://taskorial.netlify.app/"
+                href="https://taskorial.com/"
                 rel="noreferrer"
                 target="_blank"
               >

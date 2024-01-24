@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://taskorial.netlify.app/sitemap.xml
+Sitemap: https://taskorial.com/sitemap.xml

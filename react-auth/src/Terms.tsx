@@ -9,7 +9,7 @@ export const Terms = () => {
         <p>
           These terms and conditions (&#8220;Agreement&#8221;) set forth the
           general terms and conditions of your use of the{" "}
-          <a href="https://taskorial.netlify.app">taskorial.netlify.app</a>{" "}
+          <a href="https://taskorial.com/">taskorial.com</a>{" "}
           website (&#8220;Website&#8221; or &#8220;Service&#8221;) and any of
           its related products and services (collectively,
           &#8220;Services&#8221;). This Agreement is legally binding between you
