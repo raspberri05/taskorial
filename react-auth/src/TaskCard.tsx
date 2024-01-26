@@ -11,6 +11,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
 
   useEffect(() => {
     getTasks();
+    // eslint-disable-next-line
   }, []);
 
   const makeTask = (e: any) => {
@@ -52,7 +53,6 @@ export const TaskCard: FC<{ token: String }> = (props) => {
         Authorization: `Bearer ${token}`,
       },
     };
-
 
     axios(configuration)
       .then((result) => {
@@ -127,33 +127,48 @@ export const TaskCard: FC<{ token: String }> = (props) => {
           </Form.Group>
         </Form>
 
-        {taskList.length > 0 && <p>Incomplete</p>}
         <Table hover>
           <tbody>
             {taskList.map(
               (t) =>
                 !t.completed && (
                   <tr key={t._id}>
-                    <td
-                      className="align-middle"
-                      onClick={() => completeTasks(t.name)}
-                    >
-                      {t.name}
+                    <td className="align-middle">
+                      <input
+                        type="checkbox"
+                        checked={false}
+                        readOnly
+                        className="form-check-input"
+                        onClick={() => completeTasks(t.name)}
+                      />
+                    </td>
+                    <td className="align-middle">{t.name}</td>
+                    <td className="text-end align-middle">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                   </tr>
                 ),
             )}
-          </tbody>
-        </Table>
 
-        {taskList.length > 0 && <p>Completed</p>}
-        <Table hover>
-          <tbody>
             {taskList.map(
               (t) =>
                 t.completed && (
-                  <tr key={t._id} onClick={() => completeTasks(t.name)}>
-                    <td className="align-middle">{t.name}</td>
+                  <tr key={t._id}>
+                    <td className="align-middle">
+                      <input
+                        type="checkbox"
+                        checked={true}
+                        readOnly
+                        className="form-check-input"
+                        onClick={() => completeTasks(t.name)}
+                      />
+                    </td>
+                    <td
+                      className="align-middle"
+                      style={{ textDecoration: "line-through" }}
+                    >
+                      {t.name}
+                    </td>
                     <td className="text-end align-middle">
                       <Button
                         onClick={(e) => deleteTasks(t.name, e)}

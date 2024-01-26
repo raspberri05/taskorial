@@ -9,25 +9,25 @@ export const Terms = () => {
         <p>
           These terms and conditions (&#8220;Agreement&#8221;) set forth the
           general terms and conditions of your use of the{" "}
-          <a href="https://taskorial.com/">taskorial.com</a>{" "}
-          website (&#8220;Website&#8221; or &#8220;Service&#8221;) and any of
-          its related products and services (collectively,
-          &#8220;Services&#8221;). This Agreement is legally binding between you
-          (&#8220;User&#8221;, &#8220;you&#8221; or &#8220;your&#8221;) and this
-          Website operator (&#8220;Operator&#8221;, &#8220;we&#8221;,
-          &#8220;us&#8221; or &#8220;our&#8221;). If you are entering into this
-          Agreement on behalf of a business or other legal entity, you represent
-          that you have the authority to bind such entity to this Agreement, in
-          which case the terms &#8220;User&#8221;, &#8220;you&#8221; or
-          &#8220;your&#8221; shall refer to such entity. If you do not have such
-          authority, or if you do not agree with the terms of this Agreement,
-          you must not accept this Agreement and may not access and use the
-          Website and Services. By accessing and using the Website and Services,
-          you acknowledge that you have read, understood, and agree to be bound
-          by the terms of this Agreement. You acknowledge that this Agreement is
-          a contract between you and the Operator, even though it is electronic
-          and is not physically signed by you, and it governs your use of the
-          Website and Services.
+          <a href="https://taskorial.com/">taskorial.com</a> website
+          (&#8220;Website&#8221; or &#8220;Service&#8221;) and any of its
+          related products and services (collectively, &#8220;Services&#8221;).
+          This Agreement is legally binding between you (&#8220;User&#8221;,
+          &#8220;you&#8221; or &#8220;your&#8221;) and this Website operator
+          (&#8220;Operator&#8221;, &#8220;we&#8221;, &#8220;us&#8221; or
+          &#8220;our&#8221;). If you are entering into this Agreement on behalf
+          of a business or other legal entity, you represent that you have the
+          authority to bind such entity to this Agreement, in which case the
+          terms &#8220;User&#8221;, &#8220;you&#8221; or &#8220;your&#8221;
+          shall refer to such entity. If you do not have such authority, or if
+          you do not agree with the terms of this Agreement, you must not accept
+          this Agreement and may not access and use the Website and Services. By
+          accessing and using the Website and Services, you acknowledge that you
+          have read, understood, and agree to be bound by the terms of this
+          Agreement. You acknowledge that this Agreement is a contract between
+          you and the Operator, even though it is electronic and is not
+          physically signed by you, and it governs your use of the Website and
+          Services.
         </p>
         <div className="wpembed-toc">
           <h3>Table of contents</h3>

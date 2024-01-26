@@ -7,13 +7,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
   },
 
   password: {
     type: String,
     required: true,
-    minLength: 8
+    minLength: 8,
   },
   resetToken: {
     type: String,

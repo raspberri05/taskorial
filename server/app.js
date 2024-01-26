@@ -29,8 +29,8 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: "vedant.singhania@gmail.com",
     pass: process.env.SMTP_APP_PASSWORD,
-  }
-})
+  },
+});
 
 function decodeToken(t) {
   let token = t.split(" ")[1];
@@ -62,12 +62,13 @@ app.get("/", (request, response, next) => {
 
 app.post("/register", (request, response) => {
   if (request.body.password.length >= 8) {
-    bcrypt.hash(request.body.password, 10)
+    bcrypt
+      .hash(request.body.password, 10)
       .then((hashedPassword) => {
         const user = new User({
           email: request.body.email,
           password: hashedPassword,
-          resetToken: "empty"
+          resetToken: "empty",
         });
 
         user
@@ -240,57 +241,59 @@ app.delete("/tasks", auth, (request, response) => {
 });
 
 app.post("/reset", (request, response) => {
-
-  const email = request.body.email
+  const email = request.body.email;
 
   User.findOne({ email: { $eq: request.body.email } })
     .then((result) => {
       if (result) {
-
         let newToken = crypto.randomBytes(32).toString("hex");
         bcrypt
           .hash(newToken, 10)
           .then((hashed) => {
-            User.updateOne({ email: { $eq: email } }, { $set: { resetToken: hashed } })
+            User.updateOne(
+              { email: { $eq: email } },
+              { $set: { resetToken: hashed } },
+            )
               .then((result) => {
                 response.status(200).send({
                   message: "Code successfully generated",
-                  email
-                })
+                  email,
+                });
               })
               .catch((error) => {
                 response.status(500).send({
                   message: "Code generation failed",
-                  error
-                })
-              })
+                  error,
+                });
+              });
           })
           .catch((error) => {
             response.status(500).send({
               message: "Code hashing failed",
-              error
-            })
-          })
+              error,
+            });
+          });
 
         const mailData = {
           from: "vedant.singhania@gmail.com",
           to: request.body.email,
           subject: "Taskorial Password Reset Code",
           text: "text field",
-          html: "<p>Here is the code to reset your password: </p>" + "<p>" + newToken + "</p>"
-        }
+          html:
+            "<p>Here is the code to reset your password: </p>" +
+            "<p>" +
+            newToken +
+            "</p>",
+        };
 
         transporter.sendMail(mailData, (error, info) => {
           if (error) {
-            console.log(error)
+            console.log(error);
           }
           response.status(200).send({
             message: "Email sent successfully",
-          })
-
-
-        })
-
+          });
+        });
       } else {
         response.status(404).send({
           message: "Email not found",
@@ -303,17 +306,14 @@ app.post("/reset", (request, response) => {
         error,
       });
     });
-})
+});
 
 app.post("/check", (request, response) => {
   User.findOne({ email: { $eq: request.body.sentEmail } })
     .then((result) => {
-
-
       if (result) {
         bcrypt
           .compare(request.body.code, result.resetToken)
-
 
           .then((passwordCheck) => {
             if (!passwordCheck) {
@@ -322,9 +322,13 @@ app.post("/check", (request, response) => {
                 error,
               });
             }
-            bcrypt.hash(request.body.password, 10)
+            bcrypt
+              .hash(request.body.password, 10)
               .then((hashedPass) => {
-                User.updateOne({ email: { $eq: request.body.sentEmail } }, { $set: { resetToken: "empty", password: hashedPass } })
+                User.updateOne(
+                  { email: { $eq: request.body.sentEmail } },
+                  { $set: { resetToken: "empty", password: hashedPass } },
+                )
                   .then((result) => {
                     response.status(200).send({
                       message: "Password updated successfully",
@@ -337,17 +341,14 @@ app.post("/check", (request, response) => {
                       error,
                     });
                   });
-
               })
               .catch((error) => {
                 response.status(500).send({
                   message: "Password hashing failed",
-                  error
-                })
-              })
-
+                  error,
+                });
+              });
           })
-
 
           .catch((error) => {
             response.status(400).send({
@@ -355,26 +356,19 @@ app.post("/check", (request, response) => {
               error,
             });
           });
-      }
-
-
-      else {
+      } else {
         response.status(404).send({
           message: "Email not found",
         });
       }
-
-
     })
     .catch((error) => {
       response.status(500).send({
         message: "Email search failed",
         error,
       });
-    })
-
-
-})
+    });
+});
 
 // add reset from logged in
 
