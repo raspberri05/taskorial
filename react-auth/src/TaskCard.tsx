@@ -157,7 +157,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
                     <td className="align-middle">
                       <input
                         type="checkbox"
-                        checked={true}
+                        checked
                         readOnly
                         className="form-check-input"
                         onClick={() => completeTasks(t.name)}
