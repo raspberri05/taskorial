@@ -12,7 +12,7 @@ export const Settings = () => {
             Reset Password
           </a>
         </Button>
-        <div className="text-center"></div>
+        <div className="text-center" />
       </Container>
     </>
   );

@@ -66,7 +66,7 @@ export const NavBar: FC<{ currPage: String }> = (props) => {
                   <Nav.Link href="/settings">Settings</Nav.Link>
                 </>
               )}
-              <hr></hr>
+              <hr />
               <Nav.Link
                 target="_blank"
                 href="https://github.com/raspberri05/todo-list"
@@ -74,7 +74,7 @@ export const NavBar: FC<{ currPage: String }> = (props) => {
                 View on Github
               </Nav.Link>
               <Nav.Link href="/feedback">Website Feedback</Nav.Link>
-              <hr></hr>
+              <hr />
               <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
               <Nav.Link href="/terms">Terms and Conditions</Nav.Link>
               <Nav.Link href="#">Copyright 2024 Taskorial</Nav.Link>
