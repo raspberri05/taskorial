@@ -7,7 +7,7 @@ export default function FreeComponent() {
   useEffect(() => {
     const configuration = {
       method: "get",
-      url: process.env.REACT_APP_API_URL + "free-endpoint",
+      url: `${process.env.REACT_APP_API_URL}free-endpoint`,
     };
 
     axios(configuration)

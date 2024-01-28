@@ -12,7 +12,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
   const getTasks = () => {
     const configuration = {
       method: "get",
-      url: process.env.REACT_APP_API_URL + "tasks",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -44,7 +44,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
 
     const configuration = {
       method: "post",
-      url: process.env.REACT_APP_API_URL + "tasks",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -72,7 +72,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
     setTaskList(tasks);
     const configuration = {
       method: "put",
-      url: process.env.REACT_APP_API_URL + "tasks",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -95,7 +95,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
     let name = taskName;
     const configuration = {
       method: "delete",
-      url: process.env.REACT_APP_API_URL + "tasks",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

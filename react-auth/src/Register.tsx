@@ -28,7 +28,7 @@ export default function Register() {
     e.preventDefault();
     const configuration = {
       method: "post",
-      url: process.env.REACT_APP_API_URL + "login",
+      url: `${process.env.REACT_APP_API_URL}login`,
       data: {
         email,
         password,
@@ -57,7 +57,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: process.env.REACT_APP_API_URL + "register",
+      url: `${process.env.REACT_APP_API_URL}register`,
       data: {
         email,
         password,

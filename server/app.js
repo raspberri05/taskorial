@@ -280,10 +280,7 @@ app.post("/reset", (request, response) => {
           subject: "Taskorial Password Reset Code",
           text: "text field",
           html:
-            "<p>Here is the code to reset your password: </p>" +
-            "<p>" +
-            newToken +
-            "</p>",
+            `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
         };
 
         transporter.sendMail(mailData, (error, info) => {

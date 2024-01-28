@@ -15,7 +15,7 @@ export const ResetPassword: FC<{}> = () => {
     e.preventDefault();
     const configuration = {
       method: "post",
-      url: process.env.REACT_APP_API_URL + "reset",
+      url: `${process.env.REACT_APP_API_URL}reset`,
       data: {
         email,
       },
@@ -35,7 +35,7 @@ export const ResetPassword: FC<{}> = () => {
     e.preventDefault();
     const config = {
       method: "post",
-      url: process.env.REACT_APP_API_URL + "check",
+      url: `${process.env.REACT_APP_API_URL}check`,
       data: {
         password,
         code,
