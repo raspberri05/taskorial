@@ -2,7 +2,7 @@
 
 ## About
 
-Coming soon
+Coming soon!
 
 ## Setting up your environment for local development
 
