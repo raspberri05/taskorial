@@ -9,6 +9,25 @@ export const TaskCard: FC<{ token: String }> = (props) => {
   const [taskList, setTaskList] = useState<Array<any>>([]);
   const token = props.token;
 
+  const getTasks = () => {
+    const configuration = {
+      method: "get",
+      url: process.env.REACT_APP_API_URL + "tasks",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        let res = result.data.result;
+        setTaskList([...res].reverse());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     getTasks();
     // eslint-disable-next-line
@@ -39,25 +58,6 @@ export const TaskCard: FC<{ token: String }> = (props) => {
     axios(configuration)
       .then((result) => {
         getTasks();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const getTasks = () => {
-    const configuration = {
-      method: "get",
-      url: process.env.REACT_APP_API_URL + "tasks",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    axios(configuration)
-      .then((result) => {
-        let res = result.data.result;
-        setTaskList([...res].reverse());
       })
       .catch((error) => {
         console.log(error);

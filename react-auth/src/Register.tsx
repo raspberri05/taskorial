@@ -24,32 +24,6 @@ export default function Register() {
     header: "",
   });
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-
-    const configuration = {
-      method: "post",
-      url: process.env.REACT_APP_API_URL + "register",
-      data: {
-        email,
-        password,
-      },
-    };
-
-    axios(configuration)
-      .then((result) => {
-        setRegister(true);
-        handleLogin(e);
-      })
-      .catch((error) => {
-        setError({
-          show: true,
-          message: error.message,
-          header: error.response.data.message,
-        });
-      });
-  };
-
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const configuration = {
@@ -71,6 +45,32 @@ export default function Register() {
       })
       .catch((error) => {
         setError2({
+          show: true,
+          message: error.message,
+          header: error.response.data.message,
+        });
+      });
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    const configuration = {
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "register",
+      data: {
+        email,
+        password,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        setRegister(true);
+        handleLogin(e);
+      })
+      .catch((error) => {
+        setError({
           show: true,
           message: error.message,
           header: error.response.data.message,
