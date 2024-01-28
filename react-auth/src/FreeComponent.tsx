@@ -14,8 +14,7 @@ export default function FreeComponent() {
       .then((result) => {
         setMessage(result.data.message);
       })
-      .catch(() => {
-      });
+      .catch(() => {});
   }, []);
 
   return (
