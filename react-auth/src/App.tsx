@@ -11,32 +11,30 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Account />} />
-        <Route path="/free" element={<FreeComponent />} />
-        <Route path="/reset" element={<ResetPassword />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoutes>
-              <Settings />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
-          path="/auth"
-          element={
-            <ProtectedRoutes>
-              <AuthComponent />
-            </ProtectedRoutes>
-          }
-        />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Account />} />
+      <Route path="/free" element={<FreeComponent />} />
+      <Route path="/reset" element={<ResetPassword />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/feedback" element={<Feedback />} />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoutes>
+            <Settings />
+          </ProtectedRoutes>
+        }
+      />
+      <Route
+        path="/auth"
+        element={
+          <ProtectedRoutes>
+            <AuthComponent />
+          </ProtectedRoutes>
+        }
+      />
+    </Routes>
   );
 }
 
