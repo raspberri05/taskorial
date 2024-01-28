@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { NavBar } from "./NavBar";
@@ -26,7 +26,7 @@ export const ResetPassword = () => {
         setSentEmail(result.data.email);
         setEmailSent(true);
       })
-      .catch((error) => {
+      .catch(() => {
         return;
       });
   };
@@ -44,10 +44,10 @@ export const ResetPassword = () => {
     };
 
     axios(config)
-      .then((result) => {
+      .then(() => {
         setResetSuccess(true);
       })
-      .catch((error) => {
+      .catch(() => {
         return;
       });
   };

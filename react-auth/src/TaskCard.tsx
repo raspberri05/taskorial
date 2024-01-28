@@ -56,7 +56,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then((result) => {
+      .then(() => {
         getTasks();
       })
       .catch((error) => {
@@ -82,7 +82,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then((result) => {
+      .then(() => {
         return;
       })
       .catch((error) => {
@@ -105,7 +105,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then((result) => {
+      .then(() => {
         getTasks();
       })
       .catch((error) => {

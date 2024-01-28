@@ -9,8 +9,6 @@ const cookies = new Cookies();
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [register, setRegister] = useState(false);
-  const [login, setLogin] = useState(false);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [error, setError] = useState({
@@ -41,7 +39,6 @@ export default function Register() {
           path: "/",
         });
         window.location.href = "/auth";
-        setLogin(true);
       })
       .catch((error) => {
         setError2({
@@ -65,8 +62,7 @@ export default function Register() {
     };
 
     axios(configuration)
-      .then((result) => {
-        setRegister(true);
+      .then(() => {
         handleLogin(e);
       })
       .catch((error) => {
