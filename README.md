@@ -1,11 +1,5 @@
 # Taskorial
 
-Server&nbsp;
-[![DeepSource](https://app.deepsource.com/gh/raspberri05/todo-list:server.svg/?label=active+issues&show_trend=true&token=iLvSWlqyZSt_JV-cVRC7osNL)](https://app.deepsource.com/gh/raspberri05/todo-list:server/)
-
-Client&nbsp;
-[![DeepSource](https://app.deepsource.com/gh/raspberri05/todo-list:react-auth.svg/?label=active+issues&show_trend=true&token=4yHAl5xiwHHnO6QOKjotkGSC)](https://app.deepsource.com/gh/raspberri05/todo-list:react-auth/)
-
 ## About
 
 Coming soon!
