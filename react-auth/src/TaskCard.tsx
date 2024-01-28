@@ -64,8 +64,12 @@ export const TaskCard: FC<{ token: String }> = (props) => {
       });
   };
 
-  const completeTasks = (taskName: String) => {
-    let name = taskName;
+  const completeTasks = (taskName: string) => {
+    let name: string = taskName;
+    let index: number = taskList.findIndex(x => x.name === name)
+    let tasks: any = [...taskList]
+    tasks[index]['completed'] = !tasks[index]["completed"];
+    setTaskList(tasks);
     const configuration = {
       method: "put",
       url: process.env.REACT_APP_API_URL + "tasks",
@@ -79,7 +83,6 @@ export const TaskCard: FC<{ token: String }> = (props) => {
 
     axios(configuration)
       .then((result) => {
-        getTasks();
       })
       .catch((error) => {
         console.log(error);
