@@ -108,7 +108,6 @@ app.post("/login", (request, response) => {
           if (!passwordCheck) {
             return response.status(400).send({
               message: "Password comparison failed",
-              error,
             });
           }
 
@@ -173,7 +172,7 @@ app.post("/tasks", auth, (request, response) => {
 });
 
 app.get("/tasks", auth, (request, response) => {
-  token = request.headers.authorization.split(" ")[1];
+  let token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
   Task.find({ userId: { $eq: id } })
     .then((result) => {
@@ -191,7 +190,7 @@ app.get("/tasks", auth, (request, response) => {
 });
 
 app.put("/tasks", auth, (request, response) => {
-  token = request.headers.authorization.split(" ")[1];
+  let token = request.headers.authorization.split(" ")[1];
   let id = JSON.parse(atob(token.split(".")[1])).userId;
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((task) => {
@@ -316,7 +315,6 @@ app.post("/check", (request, response) => {
             if (!passwordCheck) {
               return response.status(400).send({
                 message: "Code comparison failed",
-                error,
               });
             }
             bcrypt
