@@ -12,10 +12,10 @@ export const AlertCard: FC<{
   };
 
   return (
-      <Alert variant={props.variant} onClose={() => hideAlert()} dismissible>
-        {props.header}
-        <hr />
-        {props.message}
-      </Alert>
+    <Alert variant={props.variant} onClose={() => hideAlert()} dismissible>
+      {props.header}
+      <hr />
+      {props.message}
+    </Alert>
   );
 };
