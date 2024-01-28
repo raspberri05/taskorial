@@ -1,6 +1,7 @@
 # Taskorial
 
 ## About
+
 Coming soon
 
 ## Setting up your environment for local development
@@ -14,10 +15,11 @@ Coming soon
 7. Add one last variable to this file titled `SMTP_APP_PASSWORD`. In order to get the value for this variable, you will need to generate an app password for a Google account that you have access to.
 
 ## Starting your local development environment
+
 1. In the `react-auth` directory, run `npm start`.
 2. In the `server` directory, run `npm start`.
 3. The React app will start at `http://localhost:3000/`
 
 ## Contributing
+
 We welcome and encourage any types of contributions to this project. Please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md) prior to making any contributions.
-   

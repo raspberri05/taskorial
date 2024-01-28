@@ -22,16 +22,13 @@
   text-decoration: none !important;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   border: 1px solid #5a5a5a !important;
   background-color: transparent !important;
-  height:25px;
-  width:25px;
+  height: 25px;
+  width: 25px;
 }
 
-input[type='checkbox']:hover {
+input[type="checkbox"]:hover {
   background-color: dimgray !important;
 }
-
-
-
