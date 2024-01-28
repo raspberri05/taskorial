@@ -3,7 +3,7 @@ import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { NavBar } from "./NavBar";
 
-export const ResetPassword: FC<{}> = () => {
+export const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");

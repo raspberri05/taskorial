@@ -6,7 +6,7 @@ import "./main.css";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
-export const NavBar: FC<{ currPage: String }> = (props) => {
+export const NavBar: FC<{ currPage: string }> = (props) => {
   const [show, setShow] = useState(false);
 
   const logout = () => {

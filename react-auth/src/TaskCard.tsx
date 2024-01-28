@@ -4,8 +4,8 @@ import axios from "axios";
 
 import "./main.css";
 
-export const TaskCard: FC<{ token: String }> = (props) => {
-  const [task, setTask] = useState<String>("");
+export const TaskCard: FC<{ token: string }> = (props) => {
+  const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Array<any>>([]);
   const token = props.token;
 
@@ -90,7 +90,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
       });
   };
 
-  const deleteTasks = (taskName: String, e: any) => {
+  const deleteTasks = (taskName: string, e: any) => {
     e.stopPropagation();
     let name = taskName;
     const configuration = {
