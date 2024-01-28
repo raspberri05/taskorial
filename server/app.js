@@ -121,7 +121,7 @@ app.post("/login", (request, response) => {
             { expiresIn: "24h" },
           );
 
-          response.status(200).send({
+          return response.status(200).send({
             message: "Login successful",
             email: user.email,
             token,
@@ -330,20 +330,20 @@ app.post("/check", (request, response) => {
                   { $set: { resetToken: "empty", password: hashedPass } },
                 )
                   .then((result) => {
-                    response.status(200).send({
+                    return response.status(200).send({
                       message: "Password updated successfully",
                       result,
                     });
                   })
                   .catch((error) => {
-                    response.status(500).send({
+                    return response.status(500).send({
                       message: "Password update failed",
                       error,
                     });
                   });
               })
               .catch((error) => {
-                response.status(500).send({
+                return response.status(500).send({
                   message: "Password hashing failed",
                   error,
                 });
