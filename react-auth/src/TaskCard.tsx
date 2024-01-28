@@ -66,9 +66,9 @@ export const TaskCard: FC<{ token: String }> = (props) => {
 
   const completeTasks = (taskName: string) => {
     let name: string = taskName;
-    let index: number = taskList.findIndex(x => x.name === name)
-    let tasks: any = [...taskList]
-    tasks[index]['completed'] = !tasks[index]["completed"];
+    let index: number = taskList.findIndex((x) => x.name === name);
+    let tasks: any = [...taskList];
+    tasks[index]["completed"] = !tasks[index]["completed"];
     setTaskList(tasks);
     const configuration = {
       method: "put",
@@ -82,8 +82,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
     };
 
     axios(configuration)
-      .then((result) => {
-      })
+      .then((result) => {})
       .catch((error) => {
         console.log(error);
       });
