@@ -254,7 +254,7 @@ app.post("/reset", (request, response) => {
               { email: { $eq: email } },
               { $set: { resetToken: hashed } },
             )
-              .then((result) => {
+              .then(() => {
                 response.status(200).send({
                   message: "Code successfully generated",
                   email,
@@ -283,7 +283,7 @@ app.post("/reset", (request, response) => {
             `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
         };
 
-        transporter.sendMail(mailData, (error, info) => {
+        transporter.sendMail(mailData, (error, ) => {
           if (error) {
             console.log(error);
           }
