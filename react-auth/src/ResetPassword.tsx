@@ -26,7 +26,9 @@ export const ResetPassword: FC<{}> = () => {
         setSentEmail(result.data.email);
         setEmailSent(true);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        return;
+      });
   };
 
   const checkCode = (e: any) => {
@@ -45,7 +47,9 @@ export const ResetPassword: FC<{}> = () => {
       .then((result) => {
         setResetSuccess(true);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        return;
+      });
   };
 
   return (

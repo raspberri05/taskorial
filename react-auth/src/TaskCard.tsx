@@ -83,6 +83,7 @@ export const TaskCard: FC<{ token: String }> = (props) => {
 
     axios(configuration)
       .then((result) => {
+        return
       })
       .catch((error) => {
         console.log(error);
