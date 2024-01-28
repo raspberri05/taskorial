@@ -278,11 +278,10 @@ app.post("/reset", (request, response) => {
           to: request.body.email,
           subject: "Taskorial Password Reset Code",
           text: "text field",
-          html:
-            `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
+          html: `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
         };
 
-        transporter.sendMail(mailData, (error, ) => {
+        transporter.sendMail(mailData, (error) => {
           if (error) {
             console.log(error);
           }
