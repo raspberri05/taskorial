@@ -1,5 +1,4 @@
 import Account from "./Account";
-import FreeComponent from "./FreeComponent";
 import AuthComponent from "./AuthComponent";
 import { ResetPassword } from "./ResetPassword";
 import { Feedback } from "./Feedback";
@@ -13,7 +12,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Account />} />
-      <Route path="/free" element={<FreeComponent />} />
       <Route path="/reset" element={<ResetPassword />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />

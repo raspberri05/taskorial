@@ -13,11 +13,11 @@
     "express-rate-limit": "^7.1.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
-    "nodemailer": "^6.9.8",
-    "prettier": "^3.2.4"
+    "nodemailer": "^6.9.8"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "prettier": "3.2.4"
   }
 }

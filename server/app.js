@@ -34,8 +34,7 @@ const transporter = nodemailer.createTransport({
 
 function decodeToken(t) {
   let token = t.split(" ")[1];
-  let decoded = JSON.parse(atob(token.split(".")[1])).userId;
-  return decoded;
+  return JSON.parse(atob(token.split(".")[1])).userId;
 }
 
 app.use((req, res, next) => {
@@ -60,7 +59,6 @@ app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
   next();
 });
-
 
 // register
 app.post("/register", (request, response) => {
@@ -145,16 +143,6 @@ app.post("/login", (request, response) => {
     });
 });
 
-// deprecated
-app.get("/free-endpoint", (request, response) => {
-  response.json({ message: "You are free to access me anytime" });
-});
-
-// deprecated
-app.get("/auth-endpoint", auth, (request, response) => {
-  response.json({ message: "You are authorized to access me" });
-});
-
 // make task
 app.post("/tasks", auth, (request, response) => {
   const task = new Task({
@@ -201,7 +189,7 @@ app.put("/tasks", auth, (request, response) => {
   let id = decodeToken(request.headers.authorization);
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((task) => {
-      let comp = false;
+      let comp;
       task.completed ? (comp = false) : (comp = true);
 
       Task.updateOne(
@@ -333,10 +321,10 @@ app.post("/check", (request, response) => {
                   { email: { $eq: request.body.sentEmail } },
                   { $set: { resetToken: "empty", password: hashedPass } },
                 )
-                  .then((result) => {
+                  .then((r) => {
                     return response.status(200).send({
                       message: "Password updated successfully",
-                      result,
+                      r,
                     });
                   })
                   .catch((error) => {
