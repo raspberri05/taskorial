@@ -92,7 +92,11 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
   const deleteTasks = (taskName: string, e: any) => {
     e.stopPropagation();
-    let name = taskName;
+    let name: string = taskName;
+    let index: number = taskList.findIndex((x) => x.name === name)
+    let tasks: any = [...taskList]
+    tasks.splice(index, 1)
+    setTaskList(tasks)
     const configuration = {
       method: "delete",
       url: `${process.env.REACT_APP_API_URL}tasks`,
@@ -106,7 +110,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
     axios(configuration)
       .then(() => {
-        getTasks();
+        return;
       })
       .catch((error) => {
         console.log(error);
