@@ -74,6 +74,13 @@ export const NavBar: FC<{ currPage: string }> = (props) => {
                 View on Github
               </Nav.Link>
               <Nav.Link href="/feedback">Website Feedback</Nav.Link>
+              <Nav.Link href="https://www.producthunt.com/posts/taskorial?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-taskorial"
+                        target="_blank">
+                  <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=438142&theme=dark"
+                  alt="Taskorial - A&#0032;web&#0032;application&#0032;to&#0032;keep&#0032;track&#0032;of&#0032;your&#0032;tasks | Product Hunt"
+                  style={{width: "167px", height: "36px"}} />
+              </Nav.Link>
               <hr />
               <Nav.Link href="/privacy">Privacy Policy</Nav.Link>
               <Nav.Link href="/terms">Terms and Conditions</Nav.Link>

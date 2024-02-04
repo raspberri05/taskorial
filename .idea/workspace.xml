@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana" />
+    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-auth/src/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-auth/src/NavBar.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,31 +48,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Node.js.app.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/vedan/code/todo-list",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.qodana",
-    "ts.external.directory.path": "C:\\Users\\vedan\\code\\todo-list\\react-auth\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vedan/code/todo-list&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\vedan\\code\\todo-list\\react-auth\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="QodanaCIConfigService">
     <option name="ciType" value="GITHUB" />
     <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" />
   </component>
   <component name="QodanaCloudProjectLink">
-    <option name="lastReportId" value="PNvRy" />
+    <option name="lastReportId" value="ndqg9" />
     <option name="linkedProjectId" value="p5DaM" />
     <option name="linkedProjectName" value="taskorial" />
     <option name="organizationId" value="3rZNm" />
@@ -79,7 +82,7 @@
     <option name="cloudReportPersistedInfo">
       <CloudReportPersistedInfo>
         <option name="projectId" value="p5DaM" />
-        <option name="reportId" value="PNvRy" />
+        <option name="reportId" value="ndqg9" />
       </CloudReportPersistedInfo>
     </option>
   </component>
@@ -126,7 +129,8 @@
       <workItem from="1706396156668" duration="13726000" />
       <workItem from="1706482205329" duration="327000" />
       <workItem from="1706589537883" duration="17000" />
-      <workItem from="1707004492428" duration="6438000" />
+      <workItem from="1707004492428" duration="7340000" />
+      <workItem from="1707023324959" duration="553000" />
     </task>
     <task id="LOCAL-00001" summary="changed name">
       <option name="closed" value="true" />
@@ -368,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707020412533</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add qodana">
+      <option name="closed" value="true" />
+      <created>1707020662523</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1707020662523</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
