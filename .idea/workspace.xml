@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="api call code readability + prettier" />
+    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,11 +64,24 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="QodanaCIConfigService">
+    <option name="ciType" value="GITHUB" />
+    <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" />
+  </component>
   <component name="QodanaCloudProjectLink">
+    <option name="lastReportId" value="PNvRy" />
     <option name="linkedProjectId" value="p5DaM" />
     <option name="linkedProjectName" value="taskorial" />
     <option name="organizationId" value="3rZNm" />
     <option name="userId" value="AvYxG" />
+  </component>
+  <component name="QodanaHighlightedReportService">
+    <option name="cloudReportPersistedInfo">
+      <CloudReportPersistedInfo>
+        <option name="projectId" value="p5DaM" />
+        <option name="reportId" value="PNvRy" />
+      </CloudReportPersistedInfo>
+    </option>
   </component>
   <component name="QodanaIsSelectedPersistenceService">
     <option name="selectedOrLoading" value="true" />
@@ -108,7 +121,7 @@
       <workItem from="1706396156668" duration="13726000" />
       <workItem from="1706482205329" duration="327000" />
       <workItem from="1706589537883" duration="17000" />
-      <workItem from="1707004492428" duration="5693000" />
+      <workItem from="1707004492428" duration="6100000" />
     </task>
     <task id="LOCAL-00001" summary="changed name">
       <option name="closed" value="true" />
@@ -334,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707019197331</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add qodana">
+      <option name="closed" value="true" />
+      <created>1707019871195</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1707019871195</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +373,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add redirect" />
     <MESSAGE value="add redirect attempt 2" />
     <MESSAGE value="attempt 4" />
     <MESSAGE value="cancel attempt" />
@@ -377,6 +397,7 @@
     <MESSAGE value="closes #69" />
     <MESSAGE value="api call code readability" />
     <MESSAGE value="api call code readability + prettier" />
-    <option name="LAST_COMMIT_MESSAGE" value="api call code readability + prettier" />
+    <MESSAGE value="add qodana" />
+    <option name="LAST_COMMIT_MESSAGE" value="add qodana" />
   </component>
 </project>
