@@ -55,11 +55,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
 
+// free endpoint
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
   next();
 });
 
+
+// register
 app.post("/register", (request, response) => {
   if (request.body.password.length >= 8) {
     bcrypt
@@ -99,6 +102,7 @@ app.post("/register", (request, response) => {
   }
 });
 
+// login
 app.post("/login", (request, response) => {
   User.findOne({ email: { $eq: request.body.email } })
     .then((user) => {
@@ -141,14 +145,17 @@ app.post("/login", (request, response) => {
     });
 });
 
+// deprecated
 app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
 });
 
+// deprecated
 app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "You are authorized to access me" });
 });
 
+// make task
 app.post("/tasks", auth, (request, response) => {
   const task = new Task({
     name: request.body.name,
@@ -171,9 +178,9 @@ app.post("/tasks", auth, (request, response) => {
     });
 });
 
+// get tasks
 app.get("/tasks", auth, (request, response) => {
-  let token = request.headers.authorization.split(" ")[1];
-  let id = JSON.parse(atob(token.split(".")[1])).userId;
+  let id = decodeToken(request.headers.authorization);
   Task.find({ userId: { $eq: id } })
     .then((result) => {
       response.status(200).send({
@@ -189,9 +196,9 @@ app.get("/tasks", auth, (request, response) => {
     });
 });
 
+// complete task
 app.put("/tasks", auth, (request, response) => {
-  let token = request.headers.authorization.split(" ")[1];
-  let id = JSON.parse(atob(token.split(".")[1])).userId;
+  let id = decodeToken(request.headers.authorization);
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((task) => {
       let comp = false;
@@ -222,6 +229,7 @@ app.put("/tasks", auth, (request, response) => {
     });
 });
 
+// delete task
 app.delete("/tasks", auth, (request, response) => {
   let id = decodeToken(request.headers.authorization);
   Task.deleteOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
@@ -239,6 +247,7 @@ app.delete("/tasks", auth, (request, response) => {
     });
 });
 
+// send email
 app.post("/reset", (request, response) => {
   const email = request.body.email;
 
@@ -303,6 +312,7 @@ app.post("/reset", (request, response) => {
     });
 });
 
+// perform reset
 app.post("/check", (request, response) => {
   User.findOne({ email: { $eq: request.body.sentEmail } })
     .then((result) => {
@@ -363,7 +373,5 @@ app.post("/check", (request, response) => {
       });
     });
 });
-
-// add reset from logged in
 
 module.exports = app;
