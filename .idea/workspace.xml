@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-auth/src/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-auth/src/NavBar.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,6 +128,7 @@
       <workItem from="1706589537883" duration="17000" />
       <workItem from="1707004492428" duration="7340000" />
       <workItem from="1707023324959" duration="553000" />
+      <workItem from="1707024126440" duration="64000" />
     </task>
     <task id="LOCAL-00001" summary="changed name">
       <option name="closed" value="true" />
