@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="switch to zoho mail" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +130,7 @@
       <workItem from="1707023324959" duration="553000" />
       <workItem from="1707024126440" duration="64000" />
       <workItem from="1707024337126" duration="47000" />
-      <workItem from="1707093674461" duration="1414000" />
+      <workItem from="1707093674461" duration="1457000" />
     </task>
     <task id="LOCAL-00001" summary="changed name">
       <option name="closed" value="true" />
@@ -389,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707020662523</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="switch to zoho mail">
+      <option name="closed" value="true" />
+      <created>1707095116859</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1707095116859</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +406,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add redirect attempt 2" />
     <MESSAGE value="attempt 4" />
     <MESSAGE value="cancel attempt" />
     <MESSAGE value="new redirects" />
@@ -432,6 +430,7 @@
     <MESSAGE value="api call code readability" />
     <MESSAGE value="api call code readability + prettier" />
     <MESSAGE value="add qodana" />
-    <option name="LAST_COMMIT_MESSAGE" value="add qodana" />
+    <MESSAGE value="switch to zoho mail" />
+    <option name="LAST_COMMIT_MESSAGE" value="switch to zoho mail" />
   </component>
 </project>
