@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana" />
+    <list default="true" id="ee8150af-4ce5-4997-82d7-cb292bd5f73c" name="Changes" comment="add qodana">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +78,7 @@
     <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" />
   </component>
   <component name="QodanaCloudProjectLink">
-    <option name="lastReportId" value="ndqg9" />
+    <option name="lastReportId" value="l5Jn1" />
     <option name="linkedProjectId" value="p5DaM" />
     <option name="linkedProjectName" value="taskorial" />
     <option name="organizationId" value="3rZNm" />
@@ -129,6 +138,8 @@
       <workItem from="1707004492428" duration="7340000" />
       <workItem from="1707023324959" duration="553000" />
       <workItem from="1707024126440" duration="64000" />
+      <workItem from="1707024337126" duration="47000" />
+      <workItem from="1707093674461" duration="1414000" />
     </task>
     <task id="LOCAL-00001" summary="changed name">
       <option name="closed" value="true" />

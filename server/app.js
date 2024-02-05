@@ -22,12 +22,11 @@ const limiter = rateLimit({
 });
 
 const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  host: "smtp.gmail.com",
+  host: "smtp.zoho.com",
   port: 465,
   secure: true,
   auth: {
-    user: "vedant.singhania@gmail.com",
+    user: "support@taskorial.com",
     pass: process.env.SMTP_APP_PASSWORD,
   },
 });
@@ -271,7 +270,7 @@ app.post("/reset", (request, response) => {
           });
 
         const mailData = {
-          from: "vedant.singhania@gmail.com",
+          from: "support@taskorial.com",
           to: request.body.email,
           subject: "Taskorial Password Reset Code",
           text: "text field",
