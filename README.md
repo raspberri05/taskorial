@@ -20,7 +20,7 @@ Taskorial is an open source task management web application that was created usi
 1. In the `react-auth` directory, run `npm start`.
 2. In the `server` directory, run `npm run dev`.
 3. The React app will start at `http://localhost:3000/`. This is where the frontend will be served. 
-4. The server will start at `http://localhost:8080`. The API calls are made to this url in development
+4. The server will start at `http://localhost:8080`. The API calls are made to this url in development. 
 
 ## Contributing
 
