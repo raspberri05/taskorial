@@ -26,3 +26,11 @@ Taskorial is an open source task management web application that was created usi
 ## Contributing
 
 We welcome and encourage any types of contributions to this project. Please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md) prior to making any contributions.
+
+## License
+
+This projecte is licensed under the GNU General Public License v3.0. You can view more info about this license [here](https://github.com/raspberri05/taskorial/blob/main/LICENSE.md).
+
+## Documentation
+
+We are in the process of creating documentation for Taskorial on our [wiki](https://github.com/raspberri05/taskorial/wiki)
