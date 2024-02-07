@@ -9,8 +9,6 @@ const token = cookies.get("TOKEN");
 export default function AuthComponent() {
   return (
     <>
-      <NavBar currPage="Home" />
-
       <Container>
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>

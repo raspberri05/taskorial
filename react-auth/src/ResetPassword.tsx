@@ -53,8 +53,6 @@ export const ResetPassword = () => {
   };
 
   return (
-    <>
-      <NavBar currPage="Reset Password" />
       <Container>
         <Form>
           {emailSent === false && resetSuccess === false && (
@@ -117,6 +115,5 @@ export const ResetPassword = () => {
           )}
         </Form>
       </Container>
-    </>
   );
 };

@@ -3,8 +3,6 @@ import { NavBar } from "./NavBar";
 
 export const Terms = () => {
   return (
-    <>
-      <NavBar currPage="Terms and Conditions" />
       <Container>
         <p>
           These terms and conditions (&#8220;Agreement&#8221;) set forth the
@@ -250,6 +248,5 @@ export const Terms = () => {
         </p>
         <p>This document was last updated on January 22, 2024</p>
       </Container>
-    </>
   );
 };

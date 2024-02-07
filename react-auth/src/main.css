@@ -32,3 +32,31 @@ input[type="checkbox"] {
 input[type="checkbox"]:hover {
   background-color: dimgray !important;
 }
+
+.footer-link a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.footer-link a:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-toggler:hover {
+  background-color: #272b2f !important;
+}
+
+.footer {
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 2.5rem !important;
+}

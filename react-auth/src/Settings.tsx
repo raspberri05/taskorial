@@ -4,8 +4,6 @@ import "./main.css";
 
 export const Settings = () => {
   return (
-    <>
-      <NavBar currPage="Settings" />
       <Container className="text-center">
         <Button>
           <a className="button_link" href="/reset">
@@ -14,6 +12,5 @@ export const Settings = () => {
         </Button>
         <div className="text-center" />
       </Container>
-    </>
   );
 };

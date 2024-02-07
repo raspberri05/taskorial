@@ -3,8 +3,6 @@ import { NavBar } from "./NavBar";
 
 export const Privacy = () => {
   return (
-    <>
-      <NavBar currPage="Privacy Policy" />
       <Container>
         <p>Last updated: January 22, 2024</p>
         <p>
@@ -512,6 +510,5 @@ export const Privacy = () => {
           <li>By email: vedant.singhania@gmail.com</li>
         </ul>
       </Container>
-    </>
   );
 };
