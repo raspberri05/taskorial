@@ -1,4 +1,3 @@
-import Account from "./Account";
 import AuthComponent from "./AuthComponent";
 import { ResetPassword } from "./ResetPassword";
 import { Feedback } from "./Feedback";
@@ -8,14 +7,18 @@ import { Settings } from "./Settings";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./Footer";
-import {NavBar} from "./NavBar";
+import { NavBar } from "./NavBar";
+import { LandingPage } from "./LandingPage";
+import { Register } from "./Register";
 
 function App() {
   return (
     <>
-      <NavBar currPage="Home" />
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Account />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Register type="login" />} />
+        <Route path="/register" element={<Register type="register" />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
@@ -29,7 +32,7 @@ function App() {
           }
         />
         <Route
-          path="/auth"
+          path="/home"
           element={
             <ProtectedRoutes>
               <AuthComponent />
@@ -39,7 +42,6 @@ function App() {
       </Routes>
       <Footer />
     </>
-
   );
 }
 

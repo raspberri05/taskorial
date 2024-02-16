@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import React, { FC, useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
 
 const cookies = new Cookies();
 
-export default function Register() {
+export const Register: FC<{ type: string }> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [show, setShow] = useState(false);
-  const [show2, setShow2] = useState(false);
   const [error, setError] = useState({
     show: false,
     message: "",
@@ -38,7 +36,7 @@ export default function Register() {
         cookies.set("TOKEN", result.data.token, {
           path: "/",
         });
-        window.location.href = "/auth";
+        window.location.href = "/home";
       })
       .catch((error) => {
         setError2({
@@ -74,14 +72,6 @@ export default function Register() {
       });
   };
 
-  const handleClose = () => {
-    setShow(!show);
-  };
-
-  const handleClose2 = () => {
-    setShow2(!show2);
-  };
-
   const handleCallback = () => {
     setError({ show: false, message: "", header: "" });
   };
@@ -91,23 +81,9 @@ export default function Register() {
   };
 
   return (
-    <>
-      <div className="text-center">
-        <Button className="text-center" variant="primary" onClick={handleClose}>
-          Create an account
-        </Button>
-        <br />
-        <br />
-        <Button variant="primary" onClick={handleClose2}>
-          Sign in
-        </Button>
-      </div>
-
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Create a new account</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+    <Container>
+      {props.type === "register" && (
+        <>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -141,7 +117,6 @@ export default function Register() {
               </Form.Text>
             </Form.Group>
           </Form>
-
           {error.show && (
             <AlertCard
               variant="danger"
@@ -150,19 +125,14 @@ export default function Register() {
               header={error.header}
             />
           )}
-        </Modal.Body>
-        <Modal.Footer>
           <Button variant="primary" onClick={(e) => handleSubmit(e)}>
             Sign Up
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          </Button>{" "}
+        </>
+      )}
 
-      <Modal show={show2} onHide={handleClose2} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign in to your account</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      {props.type === "login" && (
+        <>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -191,6 +161,11 @@ export default function Register() {
                 <a href="/reset">Forgot password?</a>
               </Form.Text>
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Text>
+                Don't have an account? <a href="/register">Create one now</a>
+              </Form.Text>
+            </Form.Group>
           </Form>
 
           {error2.show && (
@@ -201,13 +176,11 @@ export default function Register() {
               header={error2.header}
             />
           )}
-        </Modal.Body>
-        <Modal.Footer>
           <Button variant="primary" onClick={(e) => handleLogin(e)}>
             Log in
           </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        </>
+      )}
+    </Container>
   );
-}
+};

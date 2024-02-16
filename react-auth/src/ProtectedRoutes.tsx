@@ -7,5 +7,5 @@ const cookies = new Cookies();
 export const ProtectedRoutes: FC<any> = ({ children }) => {
   const token = cookies.get("TOKEN");
   if (token) return children;
-  else return <Navigate to="/" />;
+  else return <Navigate to="/login" />;
 };
