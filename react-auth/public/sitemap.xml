@@ -9,37 +9,47 @@
 
 <url>
   <loc>https://taskorial.com/</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 <url>
-  <loc>https://taskorial.com/auth</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <loc>https://taskorial.com/login</loc>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://taskorial.com/register</loc>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 <url>
   <loc>https://taskorial.com/reset</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
-</url>
-
-<url>
-  <loc>https://taskorial.com/settings</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 <url>
   <loc>https://taskorial.com/feedback</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 <url>
   <loc>https://taskorial.com/privacy</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 <url>
   <loc>https://taskorial.com/terms</loc>
-  <lastmod>2024-01-23T22:01:21+00:00</lastmod>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://taskorial.com/home</loc>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://taskorial.com/settings</loc>
+  <lastmod>2024-02-16T22:12:09+00:00</lastmod>
 </url>
 
 
