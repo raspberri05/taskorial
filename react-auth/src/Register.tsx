@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
@@ -9,6 +9,7 @@ const cookies = new Cookies();
 export const Register: FC<{ type: string }> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     show: false,
     message: "",
@@ -22,6 +23,7 @@ export const Register: FC<{ type: string }> = (props) => {
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    setIsLoading(true);
     const configuration = {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}login`,
@@ -44,11 +46,15 @@ export const Register: FC<{ type: string }> = (props) => {
           message: error.message,
           header: error.response.data.message,
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const configuration = {
       method: "post",
@@ -69,6 +75,9 @@ export const Register: FC<{ type: string }> = (props) => {
           message: error.message,
           header: error.response.data.message,
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -125,8 +134,18 @@ export const Register: FC<{ type: string }> = (props) => {
               header={error.header}
             />
           )}
-          <Button variant="primary" onClick={(e) => handleSubmit(e)}>
-            Sign Up
+          <Button
+            variant="primary"
+            onClick={(e) => handleSubmit(e)}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Spinner animation="border" role="status" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            ) : (
+              <>Sign Up</>
+            )}
           </Button>{" "}
         </>
       )}
@@ -176,8 +195,18 @@ export const Register: FC<{ type: string }> = (props) => {
               header={error2.header}
             />
           )}
-          <Button variant="primary" onClick={(e) => handleLogin(e)}>
-            Log in
+          <Button
+            variant="primary"
+            onClick={(e) => handleLogin(e)}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Spinner animation="border" role="status" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            ) : (
+              <>Login</>
+            )}
           </Button>
         </>
       )}
