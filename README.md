@@ -6,15 +6,27 @@ Taskorial is an open source task management web application that was created usi
 
 ## Setting up your environment for local development
 
-1. Before you start, ensure that you have node v20.11.0 installed. Other versions of node may work for this project, but they have not been tested.
-2. Create a fork of this repository.
-3. Clone your fork of this repository onto your development machine.
-4. Within `react-auth` and `server` directories, run `npm install`.
-5. In the `react-auth` directory, create a `.env` file and add an environment variable titled `REACT_APP_API_URL` with the value `http://localhost:8080/`.
-6. In the `server ` directory, create a `.env` file and add an environment variable titled `DB_URL`.In order to get the value for this variable, you will need to create a shared cluster in MongoDB Atlas (See [Shared Cluster Setup Instructions](https://www.mongodb.com/basics/clusters/mongodb-cluster-setup) for help). Once you setup your cluster, you will have access to your connection string, which you should set as the value of `DB_URL`.
-7. Add another variable to this file titled `RANDOM_TOKEN`. The value for this can be any string containing only English characters; 10 characters should be sufficient.
-8. Please note that you currently will not be able to work on any functionality related to nodemailer at the moment, as it requires advanced setup that could pose security vulnerabilities. We are working on resolving this.
-9. If there is an problem with these instructions, please open an issue that explains the problem or open a pull request with a fix. 
+This project is testing on Node v20.11.1. Most other recent versions of Node should fully, but we cannot guarantee full functionality for other versions
+
+### Dependency Installation
+
+1. Within `react-auth` and `server` directories, run `npm install`.
+
+### Environment Variables
+
+1. In the `react-auth` directory, create a `.env` file and add an environment variable titled `REACT_APP_API_URL` with the value `http://localhost:8080/`.
+2. In the `server ` directory, create a `.env` file and add an environment variable titled `DB_URL`.In order to get the value for this variable, you will need to create a shared cluster in MongoDB Atlas (See [Shared Cluster Setup Instructions](https://www.mongodb.com/basics/clusters/mongodb-cluster-setup) for help). Once you setup your cluster, you will have access to your connection string, which you should set as the value of `DB_URL`.
+3. Add another variable to this file titled `RANDOM_TOKEN`. The value for this can be any string containing only English characters; 10 characters should be sufficient.
+
+### Google Gemini Functionality
+
+Coming Soon
+
+### Mailing Functionality
+
+1. Please note that you currently will not be able to work on any functionality related to nodemailer at the moment, as it requires advanced setup that could pose security vulnerabilities. We are working on resolving this.
+   
+**If there is an problem with these instructions, please open an issue that explains the problem or open a pull request with a fix. 
 
 ## Starting your local development environment
 
