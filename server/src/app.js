@@ -9,7 +9,7 @@ const Task = require("./models/taskModel");
 const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
 const crypto = require("crypto");
-const run = require("./gemini");
+const { test, predictTime } = require("./gemini");
 const { resetMail } = require("./mail");
 
 require("dotenv").config();
@@ -135,24 +135,32 @@ app.post("/login", (request, response) => {
 
 // make task
 app.post("/tasks", auth, (request, response) => {
-  const task = new Task({
-    name: request.body.name,
-    completed: request.body.completed,
-    userId: request.body.userId,
-  });
-  task
-    .save()
-    .then((result) => {
-      response.status(201).send({
-        message: "Task created successfully",
-        result,
+  predictTime(request.body.name)
+    .then((value) => {
+      console.log(value.response.candidates[0].content.parts[0].text);
+      const task = new Task({
+        name: request.body.name,
+        completed: request.body.completed,
+        userId: request.body.userId,
+        time: value.response.candidates[0].content.parts[0].text,
       });
+      task
+        .save()
+        .then((result) => {
+          response.status(201).send({
+            message: "Task created successfully",
+            result,
+          });
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Task creation failed",
+            error,
+          });
+        });
     })
-    .catch((error) => {
-      response.status(500).send({
-        message: "Task creation failed",
-        error,
-      });
+    .catch(() => {
+      console.log("error");
     });
 });
 
@@ -348,7 +356,7 @@ app.post("/check", (request, response) => {
 });
 
 app.get("/ai", auth, (request, response) => {
-  run()
+  test()
     .then((result) => {
       response.status(200).send({
         message: "Task fetched successfully",

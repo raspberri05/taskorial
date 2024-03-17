@@ -73,7 +73,8 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then(() => {
+      .then((result) => {
+        console.log(result);
         getTasks();
       })
       .catch((error) => {
@@ -175,9 +176,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                       />
                     </td>
                     <td className="align-middle">{t.name}</td>
-                    <td className="text-end align-middle">
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </td>
+                    <td className="align-middle">{t.time}</td>
                   </tr>
                 ),
             )}
