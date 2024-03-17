@@ -6,7 +6,7 @@ Taskorial is an open source task management web application that was created usi
 
 ## Setting up your environment for local development
 
-This project is testing on Node v20.11.1. Most other recent versions of Node should fully, but we cannot guarantee full functionality for other versions
+This project is testing on Node v20.11.1. Most other recent versions of Node should fully work, but we cannot guarantee full functionality for other versions
 
 ### Dependency Installation
 
