@@ -31,6 +31,55 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
+
+const MODEL_NAME = "gemini-1.0-pro";
+const API_KEY = "AIzaSyAVAJVJR92NiWL0-D0Urw_SyRXKqOGDq8Q";
+
+async function runChat() {
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+
+  const generationConfig = {
+    temperature: 0.9,
+    topK: 1,
+    topP: 1,
+    maxOutputTokens: 2048,
+  };
+
+  const safetySettings = [
+    {
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+  ];
+
+  const chat = model.startChat({
+    generationConfig,
+    safetySettings,
+    history: [
+    ],
+  });
+
+  return await chat.sendMessage("who are you");
+}
+
 function decodeToken(t) {
   let token = t.split(" ")[1];
   return JSON.parse(atob(token.split(".")[1])).userId;
@@ -356,6 +405,22 @@ app.post("/check", (request, response) => {
     .catch((error) => {
       response.status(500).send({
         message: "Email search failed",
+        error,
+      });
+    });
+});
+
+app.get("/ai", auth, (request, response) => {
+  runChat()
+    .then((result) => {
+      response.status(200).send({
+        message: "Task fetched successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task fetching failed",
         error,
       });
     });
