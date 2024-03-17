@@ -8,8 +8,9 @@ const User = require("./models/userModel");
 const Task = require("./models/taskModel");
 const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
-const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const run = require("./gemini");
+const { resetMail } = require("./mail");
 
 require("dotenv").config();
 
@@ -20,65 +21,6 @@ const limiter = rateLimit({
   max: 1000,
   message: "Too many requests",
 });
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: "support@taskorial.com",
-    pass: process.env.SMTP_APP_PASSWORD,
-  },
-});
-
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
-
-const MODEL_NAME = "gemini-1.0-pro";
-const API_KEY = "PUT KEY HERE AND HIDE IT";
-
-async function runChat() {
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: MODEL_NAME });
-
-  const generationConfig = {
-    temperature: 0.9,
-    topK: 1,
-    topP: 1,
-    maxOutputTokens: 2048,
-  };
-
-  const safetySettings = [
-    {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-  ];
-
-  const chat = model.startChat({
-    generationConfig,
-    safetySettings,
-    history: [
-    ],
-  });
-
-  return await chat.sendMessage("who are you");
-}
 
 function decodeToken(t) {
   let token = t.split(" ")[1];
@@ -318,22 +260,17 @@ app.post("/reset", (request, response) => {
             });
           });
 
-        const mailData = {
-          from: "support@taskorial.com",
-          to: request.body.email,
-          subject: "Taskorial Password Reset Code",
-          text: "text field",
-          html: `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
-        };
+        //const mailInfo = mailData(request.body.email, newToken)
 
-        transporter.sendMail(mailData, (error) => {
+        /* TRANSPORTER.sendMail(mailInfo, (error) => {
           if (error) {
             console.log(error);
           }
           response.status(200).send({
             message: "Email sent successfully",
           });
-        });
+        });*/
+        resetMail(request.body.email, newToken);
       } else {
         response.status(404).send({
           message: "Email not found",
@@ -411,7 +348,7 @@ app.post("/check", (request, response) => {
 });
 
 app.get("/ai", auth, (request, response) => {
-  runChat()
+  run()
     .then((result) => {
       response.status(200).send({
         message: "Task fetched successfully",
