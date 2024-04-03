@@ -18,4 +18,6 @@ This project is licensed under the GNU General Public License v3.0. You can view
 
 ## Documentation
 
-You can find this project's complete documentation on our [wiki](https://github.com/raspberri05/taskorial/wiki). This wiki is new and in development, and some information may not be there yet.
+You can find this project's complete documentation on our [wiki](https://github.com/raspberri05/taskorial/wiki). This wiki is new and in development, and some information may not be there yet. 
+
+If you would like to make any changes to the wiki that you feel may be helpful to this project, please feel free to open a issue with suggested changes (as to my knowledge there is currently not a way to create a pull request for a wiki)
