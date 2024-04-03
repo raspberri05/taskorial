@@ -18,6 +18,12 @@ const TaskSchema = new mongoose.Schema({
     required: [true, "Please provide a user"],
     unique: false,
   },
+
+  time: {
+    type: Number,
+    required: [true, "Please provide a time"],
+    unique: false,
+  },
 });
 
 module.exports = mongoose.model.Tasks || mongoose.model("Tasks", TaskSchema);

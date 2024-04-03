@@ -8,8 +8,9 @@ const User = require("./models/userModel");
 const Task = require("./models/taskModel");
 const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
-const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const { test, predictTime } = require("./gemini");
+const { resetMail } = require("./mail");
 
 require("dotenv").config();
 
@@ -19,16 +20,6 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 1000,
   message: "Too many requests",
-});
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: "support@taskorial.com",
-    pass: process.env.SMTP_APP_PASSWORD,
-  },
 });
 
 function decodeToken(t) {
@@ -144,24 +135,32 @@ app.post("/login", (request, response) => {
 
 // make task
 app.post("/tasks", auth, (request, response) => {
-  const task = new Task({
-    name: request.body.name,
-    completed: request.body.completed,
-    userId: request.body.userId,
-  });
-  task
-    .save()
-    .then((result) => {
-      response.status(201).send({
-        message: "Task created successfully",
-        result,
+  predictTime(request.body.name)
+    .then((value) => {
+      console.log(value.response.candidates[0].content.parts[0].text);
+      const task = new Task({
+        name: request.body.name,
+        completed: request.body.completed,
+        userId: request.body.userId,
+        time: value.response.candidates[0].content.parts[0].text,
       });
+      task
+        .save()
+        .then((result) => {
+          response.status(201).send({
+            message: "Task created successfully",
+            result,
+          });
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Task creation failed",
+            error,
+          });
+        });
     })
-    .catch((error) => {
-      response.status(500).send({
-        message: "Task creation failed",
-        error,
-      });
+    .catch(() => {
+      console.log("error");
     });
 });
 
@@ -269,22 +268,17 @@ app.post("/reset", (request, response) => {
             });
           });
 
-        const mailData = {
-          from: "support@taskorial.com",
-          to: request.body.email,
-          subject: "Taskorial Password Reset Code",
-          text: "text field",
-          html: `<p>Here is the code to reset your password: </p><p>${newToken}</p>`,
-        };
+        //const mailInfo = mailData(request.body.email, newToken)
 
-        transporter.sendMail(mailData, (error) => {
+        /* TRANSPORTER.sendMail(mailInfo, (error) => {
           if (error) {
             console.log(error);
           }
           response.status(200).send({
             message: "Email sent successfully",
           });
-        });
+        });*/
+        resetMail(request.body.email, newToken);
       } else {
         response.status(404).send({
           message: "Email not found",
@@ -356,6 +350,22 @@ app.post("/check", (request, response) => {
     .catch((error) => {
       response.status(500).send({
         message: "Email search failed",
+        error,
+      });
+    });
+});
+
+app.get("/ai", auth, (request, response) => {
+  test()
+    .then((result) => {
+      response.status(200).send({
+        message: "Task fetched successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Task fetching failed",
         error,
       });
     });

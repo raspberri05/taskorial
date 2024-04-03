@@ -9,6 +9,23 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [taskList, setTaskList] = useState<Array<any>>([]);
   const token = props.token;
 
+  const getAi = () => {
+    const configuration = {
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}ai`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        console.log(result.data.result.response.candidates[0].content.parts[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const getTasks = () => {
     const configuration = {
       method: "get",
@@ -56,7 +73,8 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then(() => {
+      .then((result) => {
+        console.log(result);
         getTasks();
       })
       .catch((error) => {
@@ -124,6 +142,13 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
         <br />
 
+        <Button onClick={getAi}>
+          Gemini Test (check console devtools for output)
+        </Button>
+
+        <br />
+        <br />
+
         <Form onSubmit={makeTask}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
@@ -151,9 +176,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                       />
                     </td>
                     <td className="align-middle">{t.name}</td>
-                    <td className="text-end align-middle">
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </td>
+                    <td className="align-middle">{t.time}</td>
                   </tr>
                 ),
             )}
