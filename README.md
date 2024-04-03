@@ -14,7 +14,7 @@ We welcome and encourage any types of contributions to this project. Please cons
 
 ## License
 
-This projecte is licensed under the GNU General Public License v3.0. You can view more info about this license [here](https://github.com/raspberri05/taskorial/blob/main/LICENSE.md).
+This project is licensed under the GNU General Public License v3.0. You can view more info about this license [here](https://github.com/raspberri05/taskorial/blob/main/LICENSE.md).
 
 ## Documentation
 
