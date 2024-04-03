@@ -1,20 +1,13 @@
 on:
-  fork:
-  push:
-    branches: [main]
   issues:
     types: [opened]
-  pull_request_target:
-    types: [opened]
-
 
 jobs:
-  welcome:
+  comment_on_new_issue:
     runs-on: ubuntu-latest
+    name: Job for commenting on new issue
     steps:
-      - uses: EddieHubCommunity/gh-action-community/src/welcome@main
+      - name: Comment
+        uses: jd-0001/gh-action-comment-on-new-issue@v2.0.3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: "Thanks for opening an issue! A member of the team will review it shortly"
-          pr-message: "Thanks for opening a pull request! A member of the team will review it shortly"
-          footer: ""
+          message: 'Welcome to the repo :)'
