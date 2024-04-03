@@ -10,4 +10,4 @@ jobs:
       - name: Comment
         uses: jd-0001/gh-action-comment-on-new-issue@v2.0.3
         with:
-          message: 'Welcome to the repo :)'
+          message: "Thanks for opening an issue! A team member will review it shortly."
