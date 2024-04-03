@@ -187,7 +187,7 @@ app.put("/tasks", auth, (request, response) => {
   let id = decodeToken(request.headers.authorization);
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((task) => {
-      let comp;
+      let comp = false;
       task.completed ? (comp = false) : (comp = true);
 
       Task.updateOne(
@@ -333,6 +333,7 @@ app.post("/check", (request, response) => {
                   error,
                 });
               });
+            return;
           })
 
           .catch((error) => {
