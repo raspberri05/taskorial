@@ -13,7 +13,7 @@
     "express-rate-limit": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
-    "nodemailer": "^6.9.12"
+    "nodemailer": "^6.9.13"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
