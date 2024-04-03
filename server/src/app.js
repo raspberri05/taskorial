@@ -23,7 +23,7 @@ const limiter = rateLimit({
 });
 
 function decodeToken(t) {
-  let token = t.split(" ")[1];
+  const token = t.split(" ")[1];
   return JSON.parse(atob(token.split(".")[1])).userId;
 }
 
@@ -166,7 +166,7 @@ app.post("/tasks", auth, (request, response) => {
 
 // get tasks
 app.get("/tasks", auth, (request, response) => {
-  let id = decodeToken(request.headers.authorization);
+  const id = decodeToken(request.headers.authorization);
   Task.find({ userId: { $eq: id } })
     .then((result) => {
       response.status(200).send({
@@ -184,7 +184,7 @@ app.get("/tasks", auth, (request, response) => {
 
 // complete task
 app.put("/tasks", auth, (request, response) => {
-  let id = decodeToken(request.headers.authorization);
+  const id = decodeToken(request.headers.authorization);
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((task) => {
       let comp = false;
@@ -217,7 +217,7 @@ app.put("/tasks", auth, (request, response) => {
 
 // delete task
 app.delete("/tasks", auth, (request, response) => {
-  let id = decodeToken(request.headers.authorization);
+  const id = decodeToken(request.headers.authorization);
   Task.deleteOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
     .then((result) => {
       response.status(200).send({
@@ -240,7 +240,7 @@ app.post("/reset", (request, response) => {
   User.findOne({ email: { $eq: request.body.email } })
     .then((result) => {
       if (result) {
-        let newToken = crypto.randomBytes(32).toString("hex");
+        const newToken = crypto.randomBytes(32).toString("hex");
         bcrypt
           .hash(newToken, 10)
           .then((hashed) => {
