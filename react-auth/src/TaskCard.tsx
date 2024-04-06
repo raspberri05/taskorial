@@ -182,9 +182,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                         onClick={() => completeTasks(t.name)}
                       />
                     </td>
-                    <td className="align-middle">{t.name}</td>
-                        {t.completed == false && <td className="align-middle">{t.time}</td>}
-                        {t.completed == true && <td><Button
+                    <td className="align-middle">{t.completed ? <s>{t.name}</s> : t.name}</td>
+                        {t.completed === false && <td className="align-middle">{t.time}</td>}
+                        {t.completed === true && <td><Button
                             onClick={(e) => deleteTasks(t.name, e)}
                             className="delete"
                             variant="danger"
