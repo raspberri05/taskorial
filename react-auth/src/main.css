@@ -60,3 +60,7 @@ input[type="checkbox"]:hover {
   width: 100% !important;
   height: 2.5rem !important;
 }
+
+.toggle {
+  padding-left: 45px !important;;
+}
