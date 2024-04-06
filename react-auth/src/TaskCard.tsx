@@ -140,69 +140,73 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     <Card>
       <Card.Body>
         <Card.Title className="text-center">My Tasks</Card.Title>
-
         <br />
-
         <Button onClick={getAi}>
           Gemini Test (check console devtools for output)
         </Button>
-
         <br />
         <br />
-
         <Form onSubmit={makeTask}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
-                onChange={(e) => setTask(e.target.value)}
-                placeholder={
-                  taskList.length > 0 ? "Enter Task Name" : "Add your first task"
-                }
+              onChange={(e) => setTask(e.target.value)}
+              placeholder={
+                taskList.length > 0 ? "Enter Task Name" : "Add your first task"
+              }
             />
           </Form.Group>
-          <Form.Switch className="align-middle toggle" // prettier-ignore
-              type="switch"
-              id="custom-switch"
-              label={ai ? "Disable AI Mode" : "Enable AI Mode"}
-                       checked={ai}
-              onChange={() => setAi(!ai)}
+          <Form.Switch
+            className="align-middle toggle" // prettier-ignore
+            type="switch"
+            id="custom-switch"
+            label={ai ? "Disable AI Mode" : "Enable AI Mode"}
+            checked={ai}
+            onChange={() => setAi(!ai)}
           />
         </Form>
         &nbsp;
         <Table>
           <tbody>
-          {taskList.map(
-              (t) =>
-                      <tr key={t._id}>
-                        <td className="align-middle">
-                          <input
-                              type="checkbox"
-                        checked={t.completed}
-                        readOnly
-                        className="form-check-input"
-                        onClick={() => completeTasks(t.name)}
-                      />
-                    </td>
-                    <td className="align-middle">{t.completed ? <s>{t.name}</s> : t.name}</td>
-                        {t.completed === false && <td className="align-middle">{t.time}</td>}
-                        {t.completed === true && <td><Button
-                            onClick={(e) => deleteTasks(t.name, e)}
-                            className="delete"
-                            variant="danger"
-                        >
-                          <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="18"
-                              height="18"
-                              fill="currentColor"
-                              className="bi bi-trash"
-                              viewBox="0 0 16 16"
-                          >
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                          </svg>
-                        </Button></td>}
-                  </tr>
-            )}
+            {taskList.map((t) => (
+              <tr key={t._id}>
+                <td className="align-middle">
+                  <input
+                    type="checkbox"
+                    checked={t.completed}
+                    readOnly
+                    className="form-check-input"
+                    onClick={() => completeTasks(t.name)}
+                  />
+                </td>
+                <td className="align-middle">
+                  {t.completed ? <s>{t.name}</s> : t.name}
+                </td>
+                {t.completed === false && (
+                  <td className="align-middle">{t.time}</td>
+                )}
+                {t.completed === true && (
+                  <td>
+                    <Button
+                      onClick={(e) => deleteTasks(t.name, e)}
+                      className="delete"
+                      variant="danger"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        fill="currentColor"
+                        className="bi bi-trash"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                      </svg>
+                    </Button>
+                  </td>
+                )}
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Card.Body>
