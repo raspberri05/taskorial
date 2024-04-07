@@ -88,7 +88,10 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     let index: number = taskList.findIndex((x) => x.name === name);
     let tasks: any = [...taskList];
     tasks[index].completed = !tasks[index].completed;
-    setTaskList(tasks);
+
+    const sortedTasks = sortTasks(index, tasks[index].completed);
+
+    setTaskList(sortedTasks);
     const configuration = {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}tasks`,
@@ -135,6 +138,15 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         console.log(error);
       });
   };
+
+  const sortTasks = (index: number, completed: boolean) => {
+    const sortTasks = [...taskList];
+    const [task] = sortTasks.splice(index, 1);
+
+    completed ? sortTasks.push(task) : sortTasks.unshift(task)
+    
+    return sortTasks;
+  }
 
   return (
     <Card>
