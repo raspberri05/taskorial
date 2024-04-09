@@ -15,6 +15,7 @@ const normalizePort = (val) => {
 
 const port = normalizePort(process.env.PORT || "8080");
 app.set("port", port);
+const server = http.createServer(app);
 
 const errorHandler = (error) => {
   if (error.syscall !== "listen") {
@@ -33,8 +34,6 @@ const errorHandler = (error) => {
       throw error;
   }
 };
-
-const server = http.createServer(app);
 
 server.on("error", errorHandler);
 server.on("listening", () => {
