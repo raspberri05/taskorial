@@ -182,7 +182,8 @@ export const Register: FC<{ type: string }> = (props) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
-                Don't have an account? <a href="/register">Create one now</a>
+                Don&apos;t have an account?{" "}
+                <a href="/register">Create one now</a>
               </Form.Text>
             </Form.Group>
           </Form>
