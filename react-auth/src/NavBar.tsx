@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Nav, Navbar, Container, NavbarToggle } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import "./main.css";
@@ -6,7 +6,7 @@ import "./main.css";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
-export const NavBar: FC<{}> = (props) => {
+export const NavBar: FC<object> = () => {
   const logout = () => {
     cookies.remove("TOKEN", { path: "/" });
     window.location.href = "/";
