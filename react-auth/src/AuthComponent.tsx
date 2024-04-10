@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Cookies from "universal-cookie";
-import { NavBar } from "./NavBar";
 import { TaskCard } from "./TaskCard";
 
 const cookies = new Cookies();
