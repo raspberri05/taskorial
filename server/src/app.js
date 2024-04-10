@@ -22,6 +22,11 @@ const limiter = rateLimit({
   message: "Too many requests",
 });
 
+/**
+ * Decode a JSON Web Token (JWT) and extract the user ID.
+ * @param {string} t - The JWT string.
+ * @returns {string} The user ID extracted from the JWT.
+ */
 function decodeToken(t) {
   const token = t.split(" ")[1];
   return JSON.parse(atob(token.split(".")[1])).userId;
