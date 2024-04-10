@@ -372,4 +372,38 @@ app.get("/ai", auth, (request, response) => {
     });
 });
 
+// delete account
+app.delete("/delete-account", auth, (request, response) => {
+    const userId = decodeToken(request.headers.authorization);
+
+    User.findByIdAndDelete(userId)
+      .then((deletedUser) => {
+        if (!deletedUser) {
+          return response.status(404).send({
+            message: "User not found",
+          });
+        }
+  
+        // Optionally, you can also delete associated tasks
+        Task.deleteMany({ userId: deletedUser._id })
+          .then(() => {
+            response.status(200).send({
+              message: "Account deleted successfully",
+            });
+          })
+          .catch((error) => {
+            response.status(500).send({
+              message: "Error deleting associated tasks",
+              error,
+            });
+          });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: "Error deleting account",
+          error,
+        });
+    });
+});
+
 module.exports = app;

@@ -10,6 +10,11 @@ import Footer from "./Footer";
 import { NavBar } from "./NavBar";
 import { LandingPage } from "./LandingPage";
 import { Register } from "./Register";
+import { DeleteAccount } from "./DeleteAccount";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+const token = cookies.get("TOKEN");
 
 function App() {
   return (
@@ -23,6 +28,14 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route 
+          path="/delete-account"
+          element={
+            <ProtectedRoutes>
+              <DeleteAccount token={token} />
+            </ProtectedRoutes>
+          }
+        />
         <Route
           path="/settings"
           element={
