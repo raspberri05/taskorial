@@ -6,7 +6,7 @@ import "./main.css";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
-export const NavBar: FC<{}> = (props) => {
+export const NavBar: FC<object> = (props) => {
   const logout = () => {
     cookies.remove("TOKEN", { path: "/" });
     window.location.href = "/";
