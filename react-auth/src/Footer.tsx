@@ -14,7 +14,7 @@ export default function Footer() {
                 <a href="/">About</a>
               </li>
               <li className="mb-2">
-                <a href="/sitemap.xml" target="_blank">
+                <a href="/sitemap.xml" target="_blank" rel="noreferrer">
                   Sitemap
                 </a>
               </li>
@@ -24,12 +24,12 @@ export default function Footer() {
             <h5 className="fs-5">Legal</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="/terms" target="_blank" rel="noopener">
+                <a href="/terms" target="_blank" rel="noopener noreferrer">
                   Terms of Use
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/privacy" target="_blank" rel="noopener">
+                <a href="/privacy" target="_blank" rel="noopener noreferrer">
                   Privacy Policy
                 </a>
               </li>
@@ -42,7 +42,7 @@ export default function Footer() {
                 <a
                   href="https://github.com/raspberri05/taskorial"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Github
                 </a>
@@ -51,7 +51,7 @@ export default function Footer() {
                 <a
                   href="https://www.producthunt.com/posts/taskorial?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-taskorial"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Product Hunt
                 </a>
@@ -62,7 +62,11 @@ export default function Footer() {
             <h5 className="fs-5">Contact Us</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="mailto:support@taskorial.com" target="_blank">
+                <a
+                  href="mailto:support@taskorial.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   support@taskorial.com
                 </a>
               </li>
@@ -84,7 +88,11 @@ export default function Footer() {
               <li className="mb-2">Copyright 2024 Taskorial</li>
               <li className="mb-2">
                 Created by{" "}
-                <a href="https://vedantsinghania.com" target="_blank">
+                <a
+                  href="https://vedantsinghania.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Vedant Singhania
                 </a>
               </li>
