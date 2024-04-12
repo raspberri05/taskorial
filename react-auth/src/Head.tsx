@@ -8,10 +8,7 @@ export const Head: FC<{
   return (
     <Helmet>
       <title>{props.title}</title>
-      <meta
-        name="description"
-        content={`https://taskorial.com/${props.slug}`}
-      />
+      <link rel="canonical" href={`https://taskorial.com/${props.slug}`} />
     </Helmet>
   );
 };

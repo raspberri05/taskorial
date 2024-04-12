@@ -1,7 +1,5 @@
 # Taskorial
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c8259237-c256-4e92-8398-034a756df002/deploy-status)](https://app.netlify.com/sites/taskorial/deploys)
-
 ## About
 
 Taskorial is an open source task management web application that was created using the MERN Stack (MongoDB, Express, React, Node). The production frontend is hosted on Netlify and the production backend is hosted on Render. This project is an active development, and is open to contributions. If you are interested in contributing, please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md)
@@ -23,3 +21,7 @@ This project is licensed under the GNU General Public License v3.0. You can view
 You can find this project's complete documentation on our [wiki](https://github.com/raspberri05/taskorial/wiki). This wiki is new and in development, and some information may not be there yet. 
 
 If you would like to make any changes to the wiki that you feel may be helpful to this project, please feel free to open a issue with suggested changes (as to my knowledge there is currently not a way to create a pull request for a wiki)
+
+## Sponsoring
+
+You can learn more about sponsoring this project and my development efforts [here](https://github.com/sponsors/raspberri05)
