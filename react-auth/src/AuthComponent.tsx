@@ -9,12 +9,12 @@ const token = cookies.get("TOKEN");
 export default function AuthComponent() {
   return (
     <Container>
-      <Head title="Home" slug="/home" desc="Below you will see your tasks"/>
+      <Head title="Home" slug="/home" desc="Below you will see your tasks" />
       <h2>Welcome back!</h2>
       &nbsp;
       <Row>
         <Col xs={12} sm={12} md={6} lg={6}>
-          <TaskCard token={token}/>
+          <TaskCard token={token} />
         </Col>
       </Row>
     </Container>

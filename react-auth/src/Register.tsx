@@ -94,9 +94,15 @@ export const Register: FC<{ type: string }> = (props) => {
     <Container>
       {props.type === "register" && (
         <>
-          <h2 className="text-center">Please fill out the below fields to create an account</h2>
+          <h2 className="text-center">
+            Please fill out the below fields to create an account
+          </h2>
           &nbsp;
-          <Head title="Register" slug="register" desc="Register for a new account"/>
+          <Head
+            title="Register"
+            slug="register"
+            desc="Register for a new account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -158,7 +164,11 @@ export const Register: FC<{ type: string }> = (props) => {
         <>
           <h2 className="text-center">Welcome back! Please log in below</h2>
           &nbsp;
-          <Head title="Login" slug="login" desc="Log in to an existing account"/>
+          <Head
+            title="Login"
+            slug="login"
+            desc="Log in to an existing account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -194,7 +204,6 @@ export const Register: FC<{ type: string }> = (props) => {
               </Form.Text>
             </Form.Group>
           </Form>
-
           {error2.show && (
             <AlertCard
               variant="danger"

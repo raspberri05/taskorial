@@ -5,10 +5,14 @@ import { Head } from "./Head";
 export const Settings = () => {
   return (
     <Container className="text-center">
-      <Head title="Settings" slug="/settings" desc="Settings for your Taskorial account"/>
+      <Head
+        title="Settings"
+        slug="/settings"
+        desc="Settings for your Taskorial account"
+      />
       <h2 className="text-center">Account settings</h2>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Button>
         <a className="button_link" href="/reset">
           Change Password
