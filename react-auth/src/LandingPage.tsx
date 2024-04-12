@@ -6,14 +6,17 @@ const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
 export const LandingPage = () => {
+  /**
+   * Function to redirect to specified page
+   * @param loc The location to be redirected to
+   * @returns No return value
+   */
   const redir = (loc: string) => {
     window.location.href = `/${loc}`;
-    if (loc == "") {
+    if (loc === "") {
       cookies.remove("TOKEN", { path: "/" });
     }
   };
-
-  const logout = () => {};
 
   return (
     <Container>
