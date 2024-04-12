@@ -4,7 +4,7 @@ import { Head } from "./Head";
 export const Terms = () => {
   return (
     <Container>
-      <Head title="Terms of Use" slug="terms" />
+      <Head title="Terms of Use" slug="terms" desc="Taskorial Terms of Use" />
       <p>
         These terms and conditions (&#8220;Agreement&#8221;) set forth the
         general terms and conditions of your use of the{" "}
