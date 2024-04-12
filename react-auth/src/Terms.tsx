@@ -1,8 +1,10 @@
 import { Container } from "react-bootstrap";
+import { Head } from "./Head";
 
 export const Terms = () => {
   return (
     <Container>
+      <Head title="Terms of Use" slug="terms" />
       <p>
         These terms and conditions (&#8220;Agreement&#8221;) set forth the
         general terms and conditions of your use of the{" "}
