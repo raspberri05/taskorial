@@ -3,10 +3,11 @@ import { Card, Form, Table, Button } from "react-bootstrap";
 import axios from "axios";
 
 import "./main.css";
+import { TaskModel } from "./models/TaskModel";
 
 export const TaskCard: FC<{ token: string }> = (props) => {
   const [task, setTask] = useState<string>("");
-  const [taskList, setTaskList] = useState<Array<any>>([]);
+  const [taskList, setTaskList] = useState<Array<TaskModel>>([]);
   const [ai, setAi] = useState<boolean>(true);
   const token = props.token;
 
@@ -51,9 +52,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     // eslint-disable-next-line
   }, []);
 
-  const makeTask = (e: any) => {
+  const makeTask = (e: React.FormEvent) => {
     e.preventDefault();
-    e.target.reset();
+    (e.target as HTMLFormElement).reset();
 
     let obj = JSON.parse(atob(token.split(".")[1]));
     let name = task;
@@ -86,7 +87,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const completeTasks = (taskName: string) => {
     let name: string = taskName;
     let index: number = taskList.findIndex((x) => x.name === name);
-    let tasks: any = [...taskList];
+    let tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
     setTaskList(tasks);
     const configuration = {
@@ -109,11 +110,11 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
-  const deleteTasks = (taskName: string, e: any) => {
+  const deleteTasks = (taskName: string, e: React.FormEvent) => {
     e.stopPropagation();
     let name: string = taskName;
     let index: number = taskList.findIndex((x) => x.name === name);
-    let tasks: any = [...taskList];
+    let tasks: TaskModel[] = [...taskList];
     tasks.splice(index, 1);
     setTaskList(tasks);
     const configuration = {
