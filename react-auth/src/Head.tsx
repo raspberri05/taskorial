@@ -12,7 +12,7 @@ export const Head: FC<{
       <link rel="canonical" href={`https://taskorial.com/${props.slug}`}/>
       <meta name="description" content={props.desc}/>
 
-      <meta property="og:title" content={"Taskorial |" + props.title}/>
+      <meta property="og:title" content={"Taskorial | " + props.title}/>
       <meta property="og:url" content={`https://taskorial.com/${props.slug}`}/>
       <meta property="og:description" content={props.desc}/>
 

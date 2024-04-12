@@ -24,12 +24,12 @@ export default function Footer() {
             <h5 className="fs-5">Legal</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="/terms" target="_blank" rel="noopener noreferrer">
+                <a href="/terms">
                   Terms of Use
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                <a href="/privacy">
                   Privacy Policy
                 </a>
               </li>
