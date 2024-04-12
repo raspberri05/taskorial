@@ -48,8 +48,12 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <iframe src="https://github.com/sponsors/raspberri05/button" title="Sponsor raspberri05" height="32"
-                        width="114"></iframe>
+                <iframe
+                  src="https://github.com/sponsors/raspberri05/button"
+                  title="Sponsor raspberri05"
+                  height="32"
+                  width="114"
+                ></iframe>
               </li>
             </ul>
           </div>
