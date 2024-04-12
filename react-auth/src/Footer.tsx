@@ -48,13 +48,8 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <a
-                  href="https://www.producthunt.com/posts/taskorial?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-taskorial"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Product Hunt
-                </a>
+                <iframe src="https://github.com/sponsors/raspberri05/button" title="Sponsor raspberri05" height="32"
+                        width="114"></iframe>
               </li>
             </ul>
           </div>
