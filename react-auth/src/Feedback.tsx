@@ -6,7 +6,7 @@ export const Feedback = () => {
     <Container>
       <Head
         title="Feedback"
-        slug="/feedback"
+        slug="feedback"
         desc="Give us feedback about Taskorial"
       />
       <h2 className="text-center">
