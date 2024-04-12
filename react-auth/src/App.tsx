@@ -10,10 +10,11 @@ import Footer from "./Footer";
 import { NavBar } from "./NavBar";
 import { LandingPage } from "./LandingPage";
 import { Register } from "./Register";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   return (
-    <>
+    <HelmetProvider>
       <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -41,7 +42,7 @@ function App() {
         />
       </Routes>
       <Footer />
-    </>
+    </HelmetProvider>
   );
 }
 

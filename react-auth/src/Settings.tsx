@@ -1,9 +1,11 @@
 import { Button, Container } from "react-bootstrap";
 import "./main.css";
+import { Head } from "./Head";
 
 export const Settings = () => {
   return (
     <Container className="text-center">
+      <Head title="Settings" slug="/settings" />
       <Button>
         <a className="button_link" href="/reset">
           Change Password

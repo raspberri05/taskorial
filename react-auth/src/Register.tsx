@@ -3,6 +3,7 @@ import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
+import { Head } from "./Head";
 
 const cookies = new Cookies();
 
@@ -93,6 +94,7 @@ export const Register: FC<{ type: string }> = (props) => {
     <Container>
       {props.type === "register" && (
         <>
+          <Head title="Register" slug="register" />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -152,6 +154,7 @@ export const Register: FC<{ type: string }> = (props) => {
 
       {props.type === "login" && (
         <>
+          <Head title="Login" slug="login" />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
