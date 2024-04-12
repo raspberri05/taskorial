@@ -94,7 +94,7 @@ export const Register: FC<{ type: string }> = (props) => {
     <Container>
       {props.type === "register" && (
         <>
-          <Head title="Register" slug="register" />
+          <Head title="Register" slug="register" desc="Register for a new account"/>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -154,7 +154,7 @@ export const Register: FC<{ type: string }> = (props) => {
 
       {props.type === "login" && (
         <>
-          <Head title="Login" slug="login" />
+          <Head title="Login" slug="login" desc="Log in to an existing account"/>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
