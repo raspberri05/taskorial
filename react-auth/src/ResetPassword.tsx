@@ -54,7 +54,7 @@ export const ResetPassword = () => {
 
   return (
     <Container>
-      <Head title="Reset Password" slug="/reset" desc="Reset your password" />
+      <Head title="Reset Password" slug="reset" desc="Reset your password" />
       <Form>
         {!emailSent && !resetSuccess && (
           <>

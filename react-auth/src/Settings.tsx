@@ -7,7 +7,7 @@ export const Settings = () => {
     <Container className="text-center">
       <Head
         title="Settings"
-        slug="/settings"
+        slug="settings"
         desc="Settings for your Taskorial account"
       />
       <h2 className="text-center">Account settings</h2>
