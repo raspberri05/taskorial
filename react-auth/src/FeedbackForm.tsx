@@ -59,6 +59,7 @@ export const FeedbackForm: FC = () => {
         type="submit"
         disabled={isSubmitting}
         data-testid="form-submit-btn"
+        aria-label="Submit Feedback"
       >
         {isSubmitting ? (
           <Spinner animation="border" role="status" size="sm">
