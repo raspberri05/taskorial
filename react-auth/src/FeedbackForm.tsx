@@ -10,6 +10,7 @@ export const FeedbackForm: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    // TODO Add code to submit feedback
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -39,7 +40,7 @@ export const FeedbackForm: FC = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="formFeedback">
         <Form.Label>Feedback</Form.Label>
         <Form.Control
           type="text"
