@@ -10,7 +10,7 @@ const auth = require("./auth");
 const rateLimit = require("express-rate-limit");
 const crypto = require("crypto");
 const { test, predictTime } = require("./gemini");
-const { resetMail } = require("./mail");
+const { resetMail } = require("./lib/mail");
 
 require("dotenv").config();
 
