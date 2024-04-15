@@ -10,6 +10,11 @@ const token = cookies.get("TOKEN");
 export default function AuthComponent() {
   const [name, setName] = useState<string>("Placeholder name");
 
+  /**
+   * Function decode a jwt token
+   * @param t the token
+   * @returns the decoded json of the token
+   */
   function decodeToken(t: string) {
     return JSON.parse(atob(t.split(".")[1]));
   }

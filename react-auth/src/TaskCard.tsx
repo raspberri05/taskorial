@@ -11,6 +11,10 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [ai, setAi] = useState<boolean>(true);
   const token = props.token;
 
+  /**
+   * Function to get toggle state
+   * @returns user's toggle state
+   */
   const getToggle = () => {
     const configuration = {
       method: "get",
@@ -32,6 +36,11 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     return false;
   };
 
+
+  /**
+   * Function to toggle the toggle between true and false
+   * @returns user's toggle state
+   */
   const toggleAi = () => {
     setAi(!ai);
     const configuration = {
