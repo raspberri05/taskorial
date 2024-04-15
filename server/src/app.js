@@ -65,6 +65,8 @@ app.post("/register", (request, response) => {
           email: request.body.email,
           password: hashedPassword,
           resetToken: "empty",
+          toggle: true,
+          displayName: request.body.displayName,
         });
 
         user
@@ -112,6 +114,7 @@ app.post("/login", (request, response) => {
             {
               userId: user._id,
               userEmail: user.email,
+              displayName: user.displayName,
             },
             process.env.RANDOM_TOKEN,
             { expiresIn: "24h" },
@@ -372,6 +375,52 @@ app.get("/ai", auth, (request, response) => {
     .catch((error) => {
       response.status(500).send({
         message: "Task fetching failed",
+        error,
+      });
+    });
+});
+
+app.put("/toggle", auth, (request, response) => {
+  const id = decodeToken(request.headers.authorization);
+  User.findOne({ _id: { $eq: id } })
+    .then((user) => {
+      let yes = false;
+      user.toggle ? (yes = false) : (yes = true);
+
+      User.updateOne({ _id: { $eq: id } }, { $set: { toggle: yes } })
+        .then((result) => {
+          response.status(200).send({
+            message: "Toggle updated successfully",
+            result,
+          });
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Toggle updating failed",
+            error,
+          });
+        });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Toggle fetching failed",
+        error,
+      });
+    });
+});
+
+app.get("/toggle", auth, (request, response) => {
+  const id = decodeToken(request.headers.authorization);
+  User.findOne({ _id: { $eq: id } })
+    .then((result) => {
+      response.status(200).send({
+        message: "Toggle fetched successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Toggle fetching failed",
         error,
       });
     });

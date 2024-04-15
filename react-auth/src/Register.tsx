@@ -10,6 +10,7 @@ const cookies = new Cookies();
 export const Register: FC<{ type: string }> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     show: false,
@@ -63,6 +64,7 @@ export const Register: FC<{ type: string }> = (props) => {
       data: {
         email,
         password,
+        displayName,
       },
     };
 
@@ -112,6 +114,17 @@ export const Register: FC<{ type: string }> = (props) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Display Name</Form.Label>
+              <Form.Control
+                type="displayName"
+                name="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Enter display name"
               />
             </Form.Group>
 
