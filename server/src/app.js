@@ -1,5 +1,3 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -11,7 +9,7 @@ const rateLimit = require("express-rate-limit");
 const crypto = require("crypto");
 const { test, predictTime } = require("./lib/gemini");
 const { resetMail } = require("./lib/mail");
-
+const authRoute = require("./routes/authRoutes");
 require("dotenv").config();
 
 dbConnect();
@@ -55,93 +53,8 @@ app.get("/", (request, response, next) => {
   next();
 });
 
-// register
-app.post("/register", (request, response) => {
-  if (request.body.password.length >= 8) {
-    bcrypt
-      .hash(request.body.password, 10)
-      .then((hashedPassword) => {
-        const user = new User({
-          email: request.body.email,
-          password: hashedPassword,
-          resetToken: "empty",
-          toggle: true,
-          displayName: request.body.displayName,
-        });
+app.use(authRoute);
 
-        user
-          .save()
-          .then((result) => {
-            response.status(201).send({
-              message: "User creation successful",
-              result,
-            });
-          })
-          .catch((error) => {
-            response.status(500).send({
-              message: "User sign up failed",
-              error,
-            });
-          });
-      })
-      .catch((e) => {
-        response.status(500).send({
-          message: "Password encryption failed",
-          e,
-        });
-      });
-  } else {
-    response.status(400).send({
-      message: "Password too short",
-    });
-  }
-});
-
-// login
-app.post("/login", (request, response) => {
-  User.findOne({ email: { $eq: request.body.email } })
-    .then((user) => {
-      bcrypt
-        .compare(request.body.password, user.password)
-        .then((passwordCheck) => {
-          if (!passwordCheck) {
-            return response.status(400).send({
-              message: "Password comparison failed",
-            });
-          }
-
-          const token = jwt.sign(
-            {
-              userId: user._id,
-              userEmail: user.email,
-              displayName: user.displayName,
-            },
-            process.env.RANDOM_TOKEN,
-            { expiresIn: "24h" },
-          );
-
-          return response.status(200).send({
-            message: "Login successful",
-            email: user.email,
-            token,
-          });
-        })
-        .catch((error) => {
-          response.status(400).send({
-            message: "Password comparison failed",
-            error,
-          });
-        });
-    })
-    .catch((e) => {
-      response.status(404).send({
-        message: "Email not found",
-        e,
-      });
-    });
-});
-
-// make task
 app.post("/tasks", auth, (request, response) => {
   predictTime(request.body.name)
     .then((value) => {

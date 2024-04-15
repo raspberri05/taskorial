@@ -10,6 +10,8 @@ const register = (request, response) => {
           email: request.body.email,
           password: hashedPassword,
           resetToken: "empty",
+          toggle: true,
+          displayName: request.body.displayName,
         });
 
         user
@@ -56,6 +58,7 @@ const login = (request, response) => {
             {
               userId: user._id,
               userEmail: user.email,
+              displayName: user.displayName,
             },
             process.env.RANDOM_TOKEN,
             { expiresIn: "24h" },
