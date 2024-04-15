@@ -36,7 +36,6 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     return false;
   };
 
-
   /**
    * Function to toggle the toggle between true and false
    * @returns user's toggle state
@@ -90,6 +89,21 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     axios(configuration)
       .then((result) => {
         let res = result.data.result;
+        res.sort((a: any, b: any) => {
+          if (a.completed === b.completed) {
+            // If completed status is the same, compare by createdAt
+            if (a.createdAt < b.createdAt) {
+              return -1; // a comes before b
+            } else if (a.createdAt > b.createdAt) {
+              return 1; // b comes before a
+            } else {
+              return 0; // createdAt values are equal
+            }
+          } else {
+            // If completed status is different, sort by completed status
+            return a.completed ? -1 : 1; // true comes before false
+          }
+        });
         setTaskList([...res].reverse());
       })
       .catch((error) => {
@@ -140,7 +154,22 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     let index: number = taskList.findIndex((x) => x.name === name);
     let tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
-    setTaskList(tasks);
+    tasks.sort((a: any, b: any) => {
+      if (a.completed === b.completed) {
+        // If completed status is the same, compare by createdAt
+        if (a.createdAt < b.createdAt) {
+          return -1; // a comes before b
+        } else if (a.createdAt > b.createdAt) {
+          return 1; // b comes before a
+        } else {
+          return 0; // createdAt values are equal
+        }
+      } else {
+        // If completed status is different, sort by completed status
+        return a.completed ? -1 : 1; // true comes before false
+      }
+    });
+    setTaskList(tasks.reverse());
     const configuration = {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}tasks`,
@@ -215,10 +244,14 @@ export const TaskCard: FC<{ token: string }> = (props) => {
           )}
           {!ai && <p>manual task creation coming soon</p>}
           <Form.Switch
-            className="align-middle toggle" // prettier-ignore
+            className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
             type="switch"
             id="custom-switch"
-            label={ai ? "Disable AI Mode" : "Enable AI Mode"}
+            label={
+              <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
+                {ai ? "Disable AI Mode" : "Enable AI Mode"}
+              </span>
+            }
             checked={ai}
             onChange={() => toggleAi()}
           />
@@ -228,7 +261,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
           <tbody>
             {taskList.map((t) => (
               <tr key={t._id}>
-                <td className="align-middle">
+                <td style={{ width: "50px" }} className="align-middle">
                   <input
                     type="checkbox"
                     checked={t.completed}
@@ -240,11 +273,8 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                 <td className="align-middle">
                   {t.completed ? <s>{t.name}</s> : t.name}
                 </td>
-                {t.completed === false && (
-                  <td className="align-middle">{t.time}</td>
-                )}
-                {t.completed === true && (
-                  <td>
+                <td style={{ width: "100px" }} className="align-middle">
+                  {t.completed ? (
                     <Button
                       onClick={(e) => deleteTasks(t.name, e)}
                       className="delete"
@@ -262,8 +292,10 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                       </svg>
                     </Button>
-                  </td>
-                )}
+                  ) : (
+                    t.time
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
