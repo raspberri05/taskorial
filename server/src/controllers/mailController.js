@@ -77,19 +77,18 @@ const performReset = (request, response) => {
   User.findOne({ email: { $eq: request.body.sentEmail } })
     .then((result) => {
       if (result) {
-        bcrypt
+        return bcrypt
           .compare(request.body.code, result.resetToken)
-
           .then((passwordCheck) => {
             if (!passwordCheck) {
               return response.status(400).send({
                 message: "Code comparison failed",
               });
             }
-            bcrypt
+            return bcrypt
               .hash(request.body.password, 10)
               .then((hashedPass) => {
-                User.updateOne(
+                return User.updateOne(
                   { email: { $eq: request.body.sentEmail } },
                   { $set: { resetToken: "empty", password: hashedPass } },
                 )
@@ -112,28 +111,25 @@ const performReset = (request, response) => {
                   error,
                 });
               });
-            return;
           })
-
           .catch((error) => {
-            response.status(400).send({
+            return response.status(400).send({
               message: "Code comparison failed",
               error,
             });
           });
       } else {
-        response.status(404).send({
+        return response.status(404).send({
           message: "Email not found",
         });
       }
     })
     .catch((error) => {
-      response.status(500).send({
+      return response.status(500).send({
         message: "Email search failed",
         error,
       });
     });
 };
-
 
 module.exports = { sendResetMail , performReset }
