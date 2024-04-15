@@ -1,3 +1,5 @@
+const User = require("../models/userModel");
+const { decodeToken } = require("../lib/decodeToken");
 /**
  * Updates the toggle status for a user.
  * @param {Object} request - The request object.
