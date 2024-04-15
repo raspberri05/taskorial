@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 export const Register: FC<{ type: string }> = (props) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
@@ -22,6 +22,12 @@ export const Register: FC<{ type: string }> = (props) => {
     message: "",
     header: "",
   });
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -130,13 +136,18 @@ export const Register: FC<{ type: string }> = (props) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="d-flex">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+                <Button variant="secondary" onClick={toggleShowPassword}>
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -196,13 +207,18 @@ export const Register: FC<{ type: string }> = (props) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="d-flex">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+                <Button variant="secondary" onClick={toggleShowPassword}>
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
