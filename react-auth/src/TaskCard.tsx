@@ -36,7 +36,6 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     return false;
   };
 
-
   /**
    * Function to toggle the toggle between true and false
    * @returns user's toggle state
@@ -90,6 +89,15 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     axios(configuration)
       .then((result) => {
         let res = result.data.result;
+        res.sort((a: any, b: any) => {
+          if (a.completed === b.completed) {
+            return 0;
+          } else if (a.completed === false) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
         setTaskList([...res].reverse());
       })
       .catch((error) => {
@@ -140,7 +148,16 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     let index: number = taskList.findIndex((x) => x.name === name);
     let tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
-    setTaskList(tasks);
+    tasks.sort((a: any, b: any) => {
+      if (a.completed === b.completed) {
+        return 0;
+      } else if (a.completed === false) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    setTaskList(tasks.reverse());
     const configuration = {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}tasks`,
