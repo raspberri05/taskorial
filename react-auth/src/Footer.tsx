@@ -4,8 +4,6 @@ export default function Footer() {
   return (
     <footer className="bd-footer py-4 py-md-5 mt-5 footer-link footer">
       <div className="container py-4 py-md-5 px-4 px-md-3 border-top">
-        {" "}
-        {/*delete "text-body-secondary class, make custom background but less thick*/}
         <div className="row">
           <div className="col-6 col-lg-2 mb-3">
             <h5 className="fs-5">Links</h5>
@@ -40,16 +38,17 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Github
+                  <i className="fab fa-github"></i> Github
                 </a>
               </li>
               <li className="mb-2">
-                <iframe
-                  src="https://github.com/sponsors/raspberri05/button"
-                  title="Sponsor raspberri05"
-                  height="32"
-                  width="114"
-                ></iframe>
+                <a
+                  href="https://github.com/sponsors/raspberri05"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fas fa-hand-holding-usd"></i> Sponsor
+                </a>
               </li>
             </ul>
           </div>
@@ -62,11 +61,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  support@taskorial.com
+                  <i className="fas fa-envelope"></i> support@taskorial.com
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/feedback">Feedback Form</a>
+                <a href="/feedback">
+                  <i className="fas fa-comment-dots"></i> Feedback Form
+                </a>
               </li>
             </ul>
           </div>
