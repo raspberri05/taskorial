@@ -184,20 +184,27 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       <Card.Body>
         <Card.Title className="text-center">My Tasks</Card.Title>
         <br />
-        <Button onClick={getAi}>
-          Gemini Test (check console devtools for output)
-        </Button>
-        <br />
-        <br />
+        {ai && (
+          <Button onClick={getAi}>
+            Gemini Test (check console devtools for output)
+          </Button>
+        )}
+        {ai && <br />}
+        {ai && <br />}
         <Form onSubmit={makeTask}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              onChange={(e) => setTask(e.target.value)}
-              placeholder={
-                taskList.length > 0 ? "Enter Task Name" : "Add your first task"
-              }
-            />
-          </Form.Group>
+          {ai && (
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                onChange={(e) => setTask(e.target.value)}
+                placeholder={
+                  taskList.length > 0
+                    ? "Enter Task Name"
+                    : "Add your first task"
+                }
+              />
+            </Form.Group>
+          )}
+          {!ai && <p>manual task creation coming soon</p>}
           <Form.Switch
             className="align-middle toggle" // prettier-ignore
             type="switch"
