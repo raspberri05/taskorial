@@ -30,6 +30,15 @@ fi
 echo "Enter your commit message:"
 read commit_message
 
+# Ask user if they want to skip CI
+echo "Do you want to skip CI? (y/n)"
+read skip_ci
+
+# Append "[skip ci]" to the commit message if the user chooses to skip CI
+if [[ $skip_ci == "y" || $skip_ci == "Y" ]]; then
+  commit_message="$commit_message [skip ci]"
+fi
+
 # Git add, commit, and push
 git add .
 git commit -m "$commit_message"
