@@ -85,4 +85,8 @@ const login = (request, response) => {
     });
 };
 
-module.exports = { login, register };
+const testEndPoint = (request, response, next) => {
+  response.json({ message: "Hey! This is your server response!" });
+  next();
+};
+module.exports = { login, register , testEndPoint };

@@ -1,4 +1,4 @@
-const { test, predictTime } = require(".,/lib/gemini");
+const { test } = require("../lib/gemini");
 const fetchWithAI = (request, response) => {
   test()
     .then((result) => {
@@ -14,3 +14,5 @@ const fetchWithAI = (request, response) => {
       });
     });
 };
+
+module.exports = { fetchWithAI };

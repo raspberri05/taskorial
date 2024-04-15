@@ -1,6 +1,6 @@
 const Task = require("../models/taskModel");
 const { decodeToken } = require("../lib/decodeToken");
-const { predictTime } = require(".,/lib/gemini");
+const { predictTime } = require("../lib/gemini");
 
 const createTask = (request, response) => {
   predictTime(request.body.name)
@@ -96,3 +96,6 @@ const deleteTask = (request, response) => {
       });
     });
 };
+
+
+module.exports = { createTask , getTask , deleteTask , completTask }

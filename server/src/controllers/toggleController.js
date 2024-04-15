@@ -46,3 +46,6 @@ const fetchToggle = (request, response) => {
       });
     });
 };
+
+
+module.exports = { fetchToggle , updateToggle }

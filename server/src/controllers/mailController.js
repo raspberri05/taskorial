@@ -123,3 +123,6 @@ const performReset = (request, response) => {
       });
     });
 };
+
+
+module.exports = { sendResetMail , performReset }
