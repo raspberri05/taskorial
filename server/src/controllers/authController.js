@@ -1,6 +1,11 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+/**
+ * Registers a new user with encrypted password.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const register = (request, response) => {
   if (request.body.password.length >= 8) {
     bcrypt
@@ -42,6 +47,11 @@ const register = (request, response) => {
   }
 };
 
+/**
+ * Logs in a user with email and password.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const login = (request, response) => {
   User.findOne({ email: { $eq: request.body.email } })
     .then((user) => {
@@ -85,8 +95,15 @@ const login = (request, response) => {
     });
 };
 
+/**
+ * A test endpoint to check if the server is running.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ * @param {Function} next - The next middleware function.
+ */
 const testEndPoint = (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
   next();
 };
-module.exports = { login, register , testEndPoint };
+
+module.exports = { login, register, testEndPoint };

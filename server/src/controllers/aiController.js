@@ -1,4 +1,10 @@
 const { test } = require("../lib/gemini");
+
+/**
+ * Fetches a task using the Gemini library.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const fetchWithAI = (request, response) => {
   test()
     .then((result) => {

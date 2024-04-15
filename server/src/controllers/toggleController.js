@@ -1,6 +1,8 @@
-const User = require("../models/userModel");
-const { decodeToken } = require("../lib/decodeToken");
-
+/**
+ * Updates the toggle status for a user.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const updateToggle = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.findOne({ _id: { $eq: id } })
@@ -30,6 +32,11 @@ const updateToggle = (request, response) => {
     });
 };
 
+/**
+ * Fetches the toggle status for a user.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const fetchToggle = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.findOne({ _id: { $eq: id } })
@@ -47,5 +54,4 @@ const fetchToggle = (request, response) => {
     });
 };
 
-
-module.exports = { fetchToggle , updateToggle }
+module.exports = { fetchToggle, updateToggle };

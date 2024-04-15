@@ -3,6 +3,11 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const { resetMail } = require("../lib/mail");
 
+/**
+ * Sends a reset email with a code to the user's email address.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const sendResetMail = (request, response) => {
   const email = request.body.email;
 
@@ -62,6 +67,12 @@ const sendResetMail = (request, response) => {
     });
 };
 
+
+/**
+ * Performs the password reset for a user.
+ * @param {Object} request - The request object.
+ * @param {Object} response - The response object.
+ */
 const performReset = (request, response) => {
   User.findOne({ email: { $eq: request.body.sentEmail } })
     .then((result) => {
