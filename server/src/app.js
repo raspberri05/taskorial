@@ -145,7 +145,6 @@ app.post("/login", (request, response) => {
 app.post("/tasks", auth, (request, response) => {
   predictTime(request.body.name)
     .then((value) => {
-      console.log(value.response.candidates[0].content.parts[0].text);
       const task = new Task({
         name: request.body.name,
         completed: request.body.completed,

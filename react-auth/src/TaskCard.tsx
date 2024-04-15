@@ -91,11 +91,17 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         let res = result.data.result;
         res.sort((a: any, b: any) => {
           if (a.completed === b.completed) {
-            return 0;
-          } else if (a.completed === false) {
-            return 1;
+            // If completed status is the same, compare by createdAt
+            if (a.createdAt < b.createdAt) {
+              return -1; // a comes before b
+            } else if (a.createdAt > b.createdAt) {
+              return 1; // b comes before a
+            } else {
+              return 0; // createdAt values are equal
+            }
           } else {
-            return -1;
+            // If completed status is different, sort by completed status
+            return a.completed ? -1 : 1; // true comes before false
           }
         });
         setTaskList([...res].reverse());
@@ -150,11 +156,17 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     tasks[index].completed = !tasks[index].completed;
     tasks.sort((a: any, b: any) => {
       if (a.completed === b.completed) {
-        return 0;
-      } else if (a.completed === false) {
-        return 1;
+        // If completed status is the same, compare by createdAt
+        if (a.createdAt < b.createdAt) {
+          return -1; // a comes before b
+        } else if (a.createdAt > b.createdAt) {
+          return 1; // b comes before a
+        } else {
+          return 0; // createdAt values are equal
+        }
       } else {
-        return -1;
+        // If completed status is different, sort by completed status
+        return a.completed ? -1 : 1; // true comes before false
       }
     });
     setTaskList(tasks.reverse());
