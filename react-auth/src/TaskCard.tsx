@@ -11,6 +11,56 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [ai, setAi] = useState<boolean>(true);
   const token = props.token;
 
+  /**
+   * Function to get toggle state
+   * @returns user's toggle state
+   */
+  const getToggle = () => {
+    const configuration = {
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}toggle`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        console.log(result);
+        setAi(result.data.result.toggle);
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+    return false;
+  };
+
+
+  /**
+   * Function to toggle the toggle between true and false
+   * @returns user's toggle state
+   */
+  const toggleAi = () => {
+    setAi(!ai);
+    const configuration = {
+      method: "put",
+      url: `${process.env.REACT_APP_API_URL}toggle`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((success) => {
+        console.log(success);
+        return;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const getAi = () => {
     const configuration = {
       method: "get",
@@ -48,6 +98,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   };
 
   useEffect(() => {
+    getToggle();
     getTasks();
     // eslint-disable-next-line
   }, []);
@@ -154,27 +205,34 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       <Card.Body>
         <Card.Title className="text-center">My Tasks</Card.Title>
         <br />
-        <Button onClick={getAi}>
-          Gemini Test (check console devtools for output)
-        </Button>
-        <br />
-        <br />
+        {ai && (
+          <Button onClick={getAi}>
+            Gemini Test (check console devtools for output)
+          </Button>
+        )}
+        {ai && <br />}
+        {ai && <br />}
         <Form onSubmit={makeTask}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              onChange={(e) => setTask(e.target.value)}
-              placeholder={
-                taskList.length > 0 ? "Enter Task Name" : "Add your first task"
-              }
-            />
-          </Form.Group>
+          {ai && (
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                onChange={(e) => setTask(e.target.value)}
+                placeholder={
+                  taskList.length > 0
+                    ? "Enter Task Name"
+                    : "Add your first task"
+                }
+              />
+            </Form.Group>
+          )}
+          {!ai && <p>manual task creation coming soon</p>}
           <Form.Switch
             className="align-middle toggle" // prettier-ignore
             type="switch"
             id="custom-switch"
             label={ai ? "Disable AI Mode" : "Enable AI Mode"}
             checked={ai}
-            onChange={() => setAi(!ai)}
+            onChange={() => toggleAi()}
           />
         </Form>
         &nbsp;

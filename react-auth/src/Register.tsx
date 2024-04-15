@@ -3,12 +3,14 @@ import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
+import { Head } from "./Head";
 
 const cookies = new Cookies();
 
 export const Register: FC<{ type: string }> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     show: false,
@@ -62,6 +64,7 @@ export const Register: FC<{ type: string }> = (props) => {
       data: {
         email,
         password,
+        displayName,
       },
     };
 
@@ -93,6 +96,15 @@ export const Register: FC<{ type: string }> = (props) => {
     <Container>
       {props.type === "register" && (
         <>
+          <h2 className="text-center">
+            Please fill out the below fields to create an account
+          </h2>
+          &nbsp;
+          <Head
+            title="Register"
+            slug="register"
+            desc="Register for a new account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -102,6 +114,17 @@ export const Register: FC<{ type: string }> = (props) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Display Name</Form.Label>
+              <Form.Control
+                type="displayName"
+                name="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Enter display name"
               />
             </Form.Group>
 
@@ -152,6 +175,13 @@ export const Register: FC<{ type: string }> = (props) => {
 
       {props.type === "login" && (
         <>
+          <h2 className="text-center">Welcome back! Please log in below</h2>
+          &nbsp;
+          <Head
+            title="Login"
+            slug="login"
+            desc="Log in to an existing account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -187,7 +217,6 @@ export const Register: FC<{ type: string }> = (props) => {
               </Form.Text>
             </Form.Group>
           </Form>
-
           {error2.show && (
             <AlertCard
               variant="danger"

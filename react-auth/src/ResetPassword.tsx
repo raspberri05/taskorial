@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
+import { Head } from "./Head";
 
 export const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -53,6 +54,7 @@ export const ResetPassword = () => {
 
   return (
     <Container>
+      <Head title="Reset Password" slug="reset" desc="Reset your password" />
       <Form>
         {!emailSent && !resetSuccess && (
           <>
