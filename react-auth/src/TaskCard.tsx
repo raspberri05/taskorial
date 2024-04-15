@@ -11,6 +11,47 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [ai, setAi] = useState<boolean>(true);
   const token = props.token;
 
+  const getToggle = () => {
+    const configuration = {
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}toggle`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        console.log(result);
+        setAi(result.data.result.toggle);
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+    return false;
+  };
+
+  const toggleAi = () => {
+    setAi(!ai);
+    const configuration = {
+      method: "put",
+      url: `${process.env.REACT_APP_API_URL}toggle`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((success) => {
+        console.log(success);
+        return;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const getAi = () => {
     const configuration = {
       method: "get",
@@ -48,6 +89,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   };
 
   useEffect(() => {
+    getToggle();
     getTasks();
     // eslint-disable-next-line
   }, []);
@@ -162,7 +204,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
             id="custom-switch"
             label={ai ? "Disable AI Mode" : "Enable AI Mode"}
             checked={ai}
-            onChange={() => setAi(!ai)}
+            onChange={() => toggleAi()}
           />
         </Form>
         &nbsp;
