@@ -1,4 +1,4 @@
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import { Head } from "./Head";
 import Cookies from "universal-cookie";
 
@@ -23,30 +23,37 @@ export const LandingPage = () => {
       <Head
         title="Taskorial"
         slug=""
-        desc="Welcome to Taskorial, an open source AI-powered task app"
+        desc="Welcome to Taskorial, an open-source AI-powered task app"
       />
-      <h1 className="text-center">Welcome to Taskorial</h1>
-      <h2 className="text-center">An open source, AI powered task app</h2>
-      &nbsp;
-      <Container>
-        <div className="d-grid gap-2">
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={() => redir(token ? "home" : "login")}
-          >
-            {token ? "Go To Dashboard" : "Log In"}
-          </Button>
-          <br />
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={() => redir(token ? "" : "register")}
-          >
-            {token ? "Log Out" : "Create An Account"}
-          </Button>
-        </div>
-      </Container>
+      <Row className="justify-content-center">
+        <Col md={8} className="text-center">
+          <h1>Welcome to Taskorial</h1>
+          <p className="lead">An open-source, AI-powered task app</p>
+          <p>
+            Taskorial helps you organize your tasks effortlessly with the power
+            of artificial intelligence. Whether you're a student, professional,
+            or just someone managing daily chores, Taskorial is here to make
+            your life easier.
+          </p>
+          <div>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => redir(token ? "home" : "login")}
+              className="me-3"
+            >
+              {token ? "Go To Dashboard" : "Log In"}
+            </Button>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => redir(token ? "" : "register")}
+            >
+              {token ? "Log Out" : "Create An Account"}
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };
