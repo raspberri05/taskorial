@@ -10,6 +10,7 @@ const crypto = require("crypto");
 const { test, predictTime } = require("./lib/gemini");
 const { resetMail } = require("./lib/mail");
 const authRoute = require("./routes/authRoutes");
+const { decodeToken } = require('./lib/decodeToken');
 require("dotenv").config();
 
 dbConnect();
@@ -25,10 +26,6 @@ const limiter = rateLimit({
  * @param {string} t - The JWT string.
  * @returns {string} The user ID extracted from the JWT.
  */
-function decodeToken(t) {
-  const token = t.split(" ")[1];
-  return JSON.parse(atob(token.split(".")[1])).userId;
-}
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
