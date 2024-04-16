@@ -3,10 +3,19 @@ import { Button, Container } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
+/**
+ * Function to add two numbers
+ * @returns rendered react html
+ */
 export const Delete: FC<{ token: string }> = (props) => {
   const token = props.token;
   const [message, setMessage] = useState<string>("");
 
+
+  /**
+   * Function to delete Account
+   * @returns does not return anythin
+   */
   const deleteAccount = () => {
     if (!token) {
       setMessage("Token not found. Please login again.");
@@ -22,8 +31,8 @@ export const Delete: FC<{ token: string }> = (props) => {
     };
 
     axios(configuration)
-      .then((response) => {
-        setMessage(response.data.message + " - Logging out...");
+      .then(() => {
+        setMessage("Logging Out");
         setTimeout(() => {
           window.location.href = "/";
         }, 1000); // Redirect to login page after 3 seconds
