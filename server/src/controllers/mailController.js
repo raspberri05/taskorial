@@ -102,7 +102,6 @@ const checkEmail = (request, response) => {
                   error,
                 });
               });
-            return;
           })
 
           .catch((error) => {

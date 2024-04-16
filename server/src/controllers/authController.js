@@ -93,7 +93,7 @@ const getLogin = (request, response) => {
 const deleteAccount = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.deleteOne({ _id: new ObjectId(id) })
-    .then((result) => {
+    .then(() => {
       // Optionally, you can also delete associated tasks
       Task.deleteMany({ userId: id })
         .then(() => {
