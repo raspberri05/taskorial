@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+/**
+ * Attempts to connect to a MongoDB database using mongoose, logs error in case of failure
+ * @async
+ * @returns {Promise<void>}
+ */
 async function dbConnect() {
   await mongoose
     .connect(process.env.DB_URL)

@@ -1,8 +1,15 @@
 import { Container } from "react-bootstrap";
+import { Head } from "./Head";
 
 export const Privacy = () => {
   return (
     <Container>
+      <Head
+        title="Privacy Policy"
+        slug="privacy"
+        desc="Taskorial Privacy Policy"
+      />
+
       <p>Last updated: January 22, 2024</p>
       <p>
         This Privacy Policy describes Our policies and procedures on the

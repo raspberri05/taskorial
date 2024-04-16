@@ -9,13 +9,22 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
   },
-
   password: {
     type: String,
     required: true,
     minLength: 8,
   },
   resetToken: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  toggle: {
+    type: Boolean,
+    required: true,
+    unique: false,
+  },
+  displayName: {
     type: String,
     required: true,
     unique: false,

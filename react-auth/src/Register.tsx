@@ -3,6 +3,7 @@ import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
+import { Head } from "./Head";
 import { useNavigate } from 'react-router-dom';
 
 const cookies = new Cookies();
@@ -10,7 +11,8 @@ const cookies = new Cookies();
 export const Register: FC<{ type: string; email?: string }> = (props) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState(props.email || "");
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     show: false,
@@ -22,6 +24,12 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
     message: "",
     header: "",
   });
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleNavigateToOppositePage = () => {
     setPassword("");
@@ -69,6 +77,7 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
       data: {
         email,
         password,
+        displayName,
       },
     };
 
@@ -100,6 +109,15 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
     <Container>
       {props.type === "register" && (
         <>
+          <h2 className="text-center">
+            Please fill out the below fields to create an account
+          </h2>
+          &nbsp;
+          <Head
+            title="Register"
+            slug="register"
+            desc="Register for a new account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -112,21 +130,37 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
               />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Display Name</Form.Label>
+              <Form.Control
+                type="displayName"
+                name="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Enter display name"
+              />
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="d-flex">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+                <Button variant="secondary" onClick={toggleShowPassword}>
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
                 By creating an account, you are agreeing to our{" "}
-                <a href="/terms" target="_blank">
+                <a href="/terms" target="_blank" rel="noreferrer">
                   Terms and Conditions
                 </a>{" "}
                 and certifying that you are at least 13 years of age
@@ -162,6 +196,13 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
 
       {props.type === "login" && (
         <>
+          <h2 className="text-center">Welcome back! Please log in below</h2>
+          &nbsp;
+          <Head
+            title="Login"
+            slug="login"
+            desc="Log in to an existing account"
+          />
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -176,13 +217,18 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="d-flex">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+                <Button variant="secondary" onClick={toggleShowPassword}>
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -192,11 +238,11 @@ export const Register: FC<{ type: string; email?: string }> = (props) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
-                Don't have an account? <a href="/register">Create one now</a>
+                Don&apos;t have an account?{" "}
+                <a href="/register">Create one now</a>
               </Form.Text>
             </Form.Group>
           </Form>
-
           {error2.show && (
             <AlertCard
               variant="danger"
