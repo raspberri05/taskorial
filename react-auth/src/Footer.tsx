@@ -38,7 +38,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fab fa-github"></i> Github
+                  <i className="fab fa-github" /> Github
                 </a>
               </li>
               <li className="mb-2">
@@ -47,7 +47,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fas fa-hand-holding-usd"></i> Sponsor
+                  <i className="fas fa-hand-holding-usd" /> Sponsor
                 </a>
               </li>
             </ul>
@@ -61,12 +61,12 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <i className="fas fa-envelope"></i> support@taskorial.com
+                  <i className="fas fa-envelope" /> support@taskorial.com
                 </a>
               </li>
               <li className="mb-2">
                 <a href="/feedback">
-                  <i className="fas fa-comment-dots"></i> Feedback Form
+                  <i className="fas fa-comment-dots" /> Feedback Form
                 </a>
               </li>
             </ul>
