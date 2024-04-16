@@ -7,7 +7,7 @@ export const Delete: FC<{ token: string }> = (props) => {
   const token = props.token;
   const [message, setMessage] = useState<string>("");
 
-  const deleteAccount = async () => {
+  const deleteAccount = () => {
     if (!token) {
       setMessage("Token not found. Please login again.");
       return;
