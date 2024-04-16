@@ -7,8 +7,7 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-router.use(auth);
-router.get("/", fetchToggle);
-router.put("/", updateToggle);
+router.get("/",auth, fetchToggle);
+router.put("/",auth, updateToggle);
 
 module.exports = router;

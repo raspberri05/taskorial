@@ -73,7 +73,7 @@ const login = (request, response) => {
             process.env.RANDOM_TOKEN,
             { expiresIn: "24h" },
           );
-
+          console.log(user._id);
           return response.status(200).send({
             message: "Login successful",
             email: user.email,

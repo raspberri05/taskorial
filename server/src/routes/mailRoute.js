@@ -4,8 +4,8 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-router.use(auth);
-router.post("/check", performReset);
-router.post("/reset", sendResetMail);
+
+router.post("/check", auth,performReset);
+router.post("/reset",auth, sendResetMail);
 
 module.exports = router;

@@ -30,8 +30,11 @@ const createTask = (request, response) => {
           });
         });
     })
-    .catch(() => {
-      console.log("error");
+    .catch((error) => {
+      response.status(500).send({
+        message: "Prediction failed",
+        error,
+      });
     });
 };
 
