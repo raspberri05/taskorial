@@ -51,7 +51,7 @@ export const Delete: FC<{ token: string }> = (props) => {
         Are you sure you want to delete your account? This will delete all
         account data forever!
       </p>
-      <Button variant="danger" onClick={deleteAccount}>
+      <Button variant="danger" onClick={() => deleteAccount()}>
         Delete Account
       </Button>
       <p>{message}</p>
