@@ -27,8 +27,8 @@ export const Settings = () => {
       </Button>
       <br />
       <br />
-      <Button disabled>
-        <a className="button_link" href="/reset">
+      <Button variant="danger">
+        <a className="button_link" href="/delete">
           Delete account
         </a>
       </Button>
