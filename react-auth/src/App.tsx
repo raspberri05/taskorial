@@ -11,6 +11,11 @@ import { NavBar } from "./NavBar";
 import { LandingPage } from "./LandingPage";
 import { Register } from "./Register";
 import { HelmetProvider } from "react-helmet-async";
+import { Delete } from "./Delete";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+const token = cookies.get("TOKEN");
 
 function App() {
   return (
@@ -37,6 +42,14 @@ function App() {
           element={
             <ProtectedRoutes>
               <AuthComponent />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/delete"
+          element={
+            <ProtectedRoutes>
+              <Delete token={token} />
             </ProtectedRoutes>
           }
         />
