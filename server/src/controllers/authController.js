@@ -95,7 +95,7 @@ const deleteAccount = (request, response) => {
   User.deleteOne({ _id: new ObjectId(id) })
     .then(() => {
       // Optionally, you can also delete associated tasks
-      Task.deleteMany({ userId: id })
+      Task.deleteMany({ userId: { $eq: id } })
         .then(() => {
           response.status(200).send({
             message: "Account deleted successfully",
