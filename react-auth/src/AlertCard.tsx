@@ -1,21 +1,41 @@
 import { FC } from "react";
 import { Alert } from "react-bootstrap";
 
-export const AlertCard: FC<{
+interface AlertCardProps {
   variant: string;
   message: string;
   header: string;
-  callback: any;
-}> = (props) => {
+  callback: () => void;
+  onHeaderClick?: () => void;
+}
+
+export const AlertCard: FC<AlertCardProps> = ({
+  variant,
+  message,
+  header,
+  callback,
+  onHeaderClick,
+}) => {
   const hideAlert = () => {
-    props.callback();
+    callback();
+  };
+
+  const handleHeaderClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.preventDefault();
+    onHeaderClick?.();
   };
 
   return (
-    <Alert variant={props.variant} onClose={() => hideAlert()} dismissible>
-      {props.header}
+    <Alert variant={variant} onClose={hideAlert} dismissible>
+      {onHeaderClick ? (
+        <a href="#" onClick={handleHeaderClick}>
+          {header}
+        </a>
+      ) : (
+        header
+      )}
       <hr />
-      {props.message}
+      {message}
     </Alert>
   );
 };

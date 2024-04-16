@@ -3,11 +3,13 @@ import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "./AlertCard";
+import { useNavigate } from 'react-router-dom';
 
 const cookies = new Cookies();
 
-export const Register: FC<{ type: string }> = (props) => {
-  const [email, setEmail] = useState("");
+export const Register: FC<{ type: string; email?: string }> = (props) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
@@ -20,6 +22,11 @@ export const Register: FC<{ type: string }> = (props) => {
     message: "",
     header: "",
   });
+
+  const handleNavigateToOppositePage = () => {
+    setPassword("");
+    navigate(props.type === 'register' ? '/login' : '/register');
+  };
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -99,7 +106,7 @@ export const Register: FC<{ type: string }> = (props) => {
               <Form.Control
                 type="email"
                 name="email"
-                value={email}
+                value={props.email || email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
               />
@@ -131,7 +138,10 @@ export const Register: FC<{ type: string }> = (props) => {
               variant="danger"
               message={error.message}
               callback={handleCallback}
-              header={error.header}
+              header={
+                error.header + " Click here to go to the " + (props.type === "register" ? "login" : "sign-up") + " page."
+              }
+              onHeaderClick={handleNavigateToOppositePage}
             />
           )}
           <Button
@@ -158,7 +168,7 @@ export const Register: FC<{ type: string }> = (props) => {
               <Form.Control
                 type="email"
                 name="email"
-                value={email}
+                value={props.email || email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
               />
@@ -192,7 +202,10 @@ export const Register: FC<{ type: string }> = (props) => {
               variant="danger"
               message={error2.message}
               callback={handleCallback2}
-              header={error2.header}
+              header={
+                error2.header + " Click here to go to the " + (props.type === "login" ? "sign-up" : "login") + " page."
+              }
+              onHeaderClick={handleNavigateToOppositePage}
             />
           )}
           <Button
