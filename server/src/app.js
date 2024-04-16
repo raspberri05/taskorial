@@ -22,6 +22,11 @@ const limiter = rateLimit({
   message: "Too many requests",
 });
 
+/**
+ * Decode a JSON Web Token (JWT) and extract the user ID.
+ * @param {string} t - The JWT string.
+ * @returns {string} The user ID extracted from the JWT.
+ */
 function decodeToken(t) {
   const token = t.split(" ")[1];
   return JSON.parse(atob(token.split(".")[1])).userId;
@@ -60,6 +65,8 @@ app.post("/register", (request, response) => {
           email: request.body.email,
           password: hashedPassword,
           resetToken: "empty",
+          toggle: true,
+          displayName: request.body.displayName,
         });
 
         user
@@ -107,6 +114,7 @@ app.post("/login", (request, response) => {
             {
               userId: user._id,
               userEmail: user.email,
+              displayName: user.displayName,
             },
             process.env.RANDOM_TOKEN,
             { expiresIn: "24h" },
@@ -137,7 +145,6 @@ app.post("/login", (request, response) => {
 app.post("/tasks", auth, (request, response) => {
   predictTime(request.body.name)
     .then((value) => {
-      console.log(value.response.candidates[0].content.parts[0].text);
       const task = new Task({
         name: request.body.name,
         completed: request.body.completed,
@@ -403,6 +410,50 @@ app.delete("/delete-account", auth, (request, response) => {
           message: "Error deleting account",
           error,
         });
+
+app.put("/toggle", auth, (request, response) => {
+  const id = decodeToken(request.headers.authorization);
+  User.findOne({ _id: { $eq: id } })
+    .then((user) => {
+      let yes = false;
+      user.toggle ? (yes = false) : (yes = true);
+
+      User.updateOne({ _id: { $eq: id } }, { $set: { toggle: yes } })
+        .then((result) => {
+          response.status(200).send({
+            message: "Toggle updated successfully",
+            result,
+          });
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Toggle updating failed",
+            error,
+          });
+        });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Toggle fetching failed",
+        error,
+      });
+    });
+});
+
+app.get("/toggle", auth, (request, response) => {
+  const id = decodeToken(request.headers.authorization);
+  User.findOne({ _id: { $eq: id } })
+    .then((result) => {
+      response.status(200).send({
+        message: "Toggle fetched successfully",
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Toggle fetching failed",
+        error,
+      });
     });
 });
 
