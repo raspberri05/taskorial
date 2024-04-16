@@ -6,6 +6,3 @@ name = "javascript"
   [analyzers.meta]
   plugins = ["react"]
   environment = ["browser"]
-
-[[transformers]]
-name = "prettier"

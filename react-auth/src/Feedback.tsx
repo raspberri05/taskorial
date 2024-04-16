@@ -1,9 +1,16 @@
 import { Container } from "react-bootstrap";
+import { FeedbackForm } from "./FeedbackForm";
+import { Head } from "./Head";
 
 export const Feedback = () => {
   return (
     <Container>
-      <h2 className="text-center">Coming Soon</h2>
+      <Head
+        title="Feedback"
+        slug="feedback"
+        desc="Give us feedback about Taskorial"
+      />
+      <FeedbackForm />
     </Container>
   );
 };
