@@ -1,8 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { TaskCard } from "./TaskCard";
-import { Head } from "./Head";
+import { TaskCard } from "../components/TaskCard";
+import { Head } from "../components/Head";
 
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");

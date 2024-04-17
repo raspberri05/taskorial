@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
-import { Head } from "./Head";
+import { Head } from "../components/Head";
 
 export const ResetPassword = () => {
   const [email, setEmail] = useState("");

@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from "react";
 import { Card, Form, Table, Button } from "react-bootstrap";
 import axios from "axios";
 
-import "./main.css";
-import { TaskModel } from "./models/TaskModel";
+import "../main.css";
+import { TaskModel } from "../models/TaskModel";
 
 export const TaskCard: FC<{ token: string }> = (props) => {
   const [task, setTask] = useState<string>("");
