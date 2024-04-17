@@ -1,6 +1,6 @@
 import { Button, Container } from "react-bootstrap";
-import "./main.css";
-import { Head } from "./Head";
+import "../main.css";
+import { Head } from "../components/Head";
 
 export const Settings = () => {
   return (

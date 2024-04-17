@@ -1,4 +1,5 @@
-import "./main.css";
+import { Link } from "react-router-dom";
+import "../../main.css";
 
 export default function Footer() {
   return (
@@ -22,10 +23,10 @@ export default function Footer() {
             <h5 className="fs-5">Legal</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="/terms">Terms of Use</a>
+                <Link to="/terms">Terms of Use</Link>
               </li>
               <li className="mb-2">
-                <a href="/privacy">Privacy Policy</a>
+                <Link to="/privacy">Privacy Policy</Link>
               </li>
             </ul>
           </div>
@@ -65,9 +66,9 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/feedback">
+                <Link to="/feedback">
                   <i className="fas fa-comment-dots" /> Feedback Form
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
