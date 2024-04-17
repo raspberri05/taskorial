@@ -9,7 +9,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Array<TaskModel>>([]);
   const [ai, setAi] = useState<boolean>(true);
-  const [dev, setDev] = useState<boolean>(false);
+  const [dev, setDev] = useState<boolean>(false); //change to true if you don't want to keep toggling on every page load
   const token = props.token;
 
   /**
@@ -235,14 +235,14 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         )}
         {dev && ai && <br />}
         {dev && ai && <br />}
-        <Form onSubmit={makeTask}>
+        <Form onSubmit={(e) => makeTask(e)}>
           <Form.Switch
             className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
             type="switch"
             id="custom-switch"
             label={
               <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
-                {ai ? "Disable Developer Mode" : "Enable Developer Mode Mode"}
+                {dev ? "Disable Developer Mode" : "Enable Developer Mode"}
               </span>
             }
             checked={dev}
