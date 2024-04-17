@@ -1,15 +1,17 @@
 const Task = require("../models/taskModel");
-const { predictTime } = require("../lib/gemini");
+const { predictTime, placeholder } = require("../lib/gemini");
 const { decodeToken } = require("../lib/decodeToken");
 
 const createTask = (request, response) => {
-  predictTime(request.body.name)
+  (request.body.dev ? predictTime(request.body.name) : placeholder())
     .then((value) => {
       const task = new Task({
         name: request.body.name,
         completed: request.body.completed,
         userId: request.body.userId,
-        time: value.response.candidates[0].content.parts[0].text,
+        time: request.body.dev
+          ? value.response.candidates[0].content.parts[0].text
+          : 0,
       });
       task
         .save()
