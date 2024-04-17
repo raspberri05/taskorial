@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import { Head } from "./Head";
 
 /**
  * Function to add two numbers
@@ -10,7 +11,6 @@ import axios from "axios";
 export const Delete: FC<{ token: string }> = (props) => {
   const token = props.token;
   const [message, setMessage] = useState<string>("");
-
 
   /**
    * Function to delete Account
@@ -47,6 +47,11 @@ export const Delete: FC<{ token: string }> = (props) => {
 
   return (
     <Container>
+      <Head
+        title="Delete Account"
+        slug="delete"
+        desc="Delete your Taskorial account here"
+      />
       <p>
         Are you sure you want to delete your account? This will delete all
         account data forever!

@@ -8,7 +8,7 @@ const rootElement = document.getElementById("root");
 
 // Check if the root element exists before rendering
 if (!rootElement) {
-  throw new Error('Root element not found');
+  throw new Error("Root element not found");
 }
 
 const root = ReactDOM.createRoot(rootElement);
