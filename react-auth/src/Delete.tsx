@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import {Head} from "./Head";
+import { Head } from "./Head";
 
 /**
  * Function to add two numbers
@@ -11,7 +11,6 @@ import {Head} from "./Head";
 export const Delete: FC<{ token: string }> = (props) => {
   const token = props.token;
   const [message, setMessage] = useState<string>("");
-
 
   /**
    * Function to delete Account
