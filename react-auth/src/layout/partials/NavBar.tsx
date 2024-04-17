@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Nav, Navbar, Container, NavbarToggle } from "react-bootstrap";
 import Cookies from "universal-cookie";
-import "./main.css";
+import "../../main.css";
+import { Link } from "react-router-dom";
 
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
@@ -21,7 +22,7 @@ export const NavBar: FC<object> = () => {
         className="bg-body-tertiary"
       >
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand as={Link} to="/">
             <img
               src="../assets/originals/ORIGINAL_LOGO_IMG.png"
               height="30px"
@@ -46,18 +47,18 @@ export const NavBar: FC<object> = () => {
           </NavbarToggle>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              {token !== undefined && <Nav.Link href="/home">Home</Nav.Link>}
+              {token !== undefined && <Nav.Link as={Link} to="/home">Home</Nav.Link>}
             </Nav>
             <Nav>
               {token !== undefined && (
-                <Nav.Link href="/settings">Settings</Nav.Link>
+                <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               )}
               {token !== undefined && (
                 <Nav.Link onClick={() => logout()}>Sign Out</Nav.Link>
               )}
-              {token === undefined && <Nav.Link href="/login">Log In</Nav.Link>}
+              {token === undefined && <Nav.Link as={Link} to="/login">Log In</Nav.Link>}
               {token === undefined && (
-                <Nav.Link href="/register">Sign Up</Nav.Link>
+                <Nav.Link as={Link} to="/register">Sign Up</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
