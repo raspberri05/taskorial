@@ -9,6 +9,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Array<TaskModel>>([]);
   const [ai, setAi] = useState<boolean>(true);
+  const [dev, setDev] = useState<boolean>(false);
   const token = props.token;
 
   /**
@@ -136,6 +137,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         name,
         completed,
         userId,
+        dev,
       },
     };
 
@@ -217,19 +219,36 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
+  const toggleDev = () => {
+    setDev(!dev);
+  };
+
   return (
     <Card>
       <Card.Body>
         <Card.Title className="text-center">My Tasks</Card.Title>
         <br />
-        {ai && (
+        {dev && ai && (
           <Button onClick={getAi}>
             Gemini Test (check console devtools for output)
           </Button>
         )}
-        {ai && <br />}
-        {ai && <br />}
+        {dev && ai && <br />}
+        {dev && ai && <br />}
         <Form onSubmit={makeTask}>
+          <Form.Switch
+            className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
+            type="switch"
+            id="custom-switch"
+            label={
+              <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
+                {ai ? "Disable Developer Mode" : "Enable Developer Mode Mode"}
+              </span>
+            }
+            checked={dev}
+            onChange={() => toggleDev()}
+          />
+          &nbsp;
           {ai && (
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
@@ -243,20 +262,21 @@ export const TaskCard: FC<{ token: string }> = (props) => {
             </Form.Group>
           )}
           {!ai && <p>manual task creation coming soon</p>}
-          <Form.Switch
-            className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
-            type="switch"
-            id="custom-switch"
-            label={
-              <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
-                {ai ? "Disable AI Mode" : "Enable AI Mode"}
-              </span>
-            }
-            checked={ai}
-            onChange={() => toggleAi()}
-          />
+          {dev && (
+            <Form.Switch
+              className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
+              type="switch"
+              id="custom-switch"
+              label={
+                <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
+                  {ai ? "Disable AI Mode" : "Enable AI Mode"}
+                </span>
+              }
+              checked={ai}
+              onChange={() => toggleAi()}
+            />
+          )}
         </Form>
-        &nbsp;
         <Table>
           <tbody>
             {taskList.map((t) => (
@@ -293,7 +313,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                       </svg>
                     </Button>
                   ) : (
-                    t.time
+                    dev && t.time
                   )}
                 </td>
               </tr>
