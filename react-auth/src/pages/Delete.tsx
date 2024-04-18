@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import { Head } from "./Head";
+import { Head } from "../components/Head";
 
 /**
  * Function to add two numbers

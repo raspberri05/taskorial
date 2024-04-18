@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
-import { FeedbackForm } from "./FeedbackForm";
-import { Head } from "./Head";
+import { FeedbackForm } from "../components/FeedbackForm";
+import { Head } from "../components/Head";
 
 export const Feedback = () => {
   return (

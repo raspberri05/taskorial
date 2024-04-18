@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { Head } from "./Head";
+import { Head } from "../components/Head";
 
 export const Privacy = () => {
   return (

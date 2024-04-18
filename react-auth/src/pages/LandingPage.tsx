@@ -1,18 +1,20 @@
 import { Container, Button, Row, Col } from "react-bootstrap";
-import { Head } from "./Head";
+import { Head } from "../components/Head";
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
 export const LandingPage = () => {
+  const navigateTo = useNavigate() 
   /**
    * Function to redirect to specified page
    * @param loc The location to be redirected to
    * @returns No return value
    */
   const redir = (loc: string) => {
-    window.location.href = `/${loc}`;
+    navigateTo(`/${loc}`)
     if (loc === "") {
       cookies.remove("TOKEN", { path: "/" });
     }
