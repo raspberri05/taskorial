@@ -13,31 +13,23 @@ export const Settings = () => {
       <h2 className="text-center">Account settings</h2>
       <br />
       <br />
-      <Button>
-        <a className="button_link" href="/reset">
-          Change Password
-        </a>
+      <Button className="button_link" href="/reset">
+        Change Password
       </Button>
       <br />
       <br />
-      <Button disabled>
-        <a className="button_link" href="/reset">
-          Change email
-        </a>
+      <Button disabled className="button_link" href="/reset">
+        Change email
       </Button>
       <br />
       <br />
-      <Button variant="danger">
-        <a className="button_link" href="/delete">
-          Delete account
-        </a>
+      <Button variant="danger" className="button_link" href="/delete">
+        Delete account
       </Button>
       <br />
       <br />
-      <Button disabled>
-        <a className="button_link" href="/reset">
-          Request your data
-        </a>
+      <Button disabled className="button_link" href="/reset">
+        Request your data
       </Button>
       <div className="text-center" />
     </Container>
