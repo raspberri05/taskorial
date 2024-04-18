@@ -236,18 +236,17 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         {dev && ai && <br />}
         {dev && ai && <br />}
         <Form onSubmit={(e) => makeTask(e)}>
-          <Form.Switch
-            className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
-            type="switch"
-            id="custom-switch"
-            label={
-              <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
-                {dev ? "Disable Developer Mode" : "Enable Developer Mode"}
-              </span>
-            }
-            checked={dev}
-            onChange={() => toggleDev()}
-          />
+          <div className="d-flex align-items-end">
+            <Form.Switch
+              type="switch"
+              id="custom-switch"
+              checked={dev}
+              onChange={() => toggleDev()}
+            />
+            <Form.Label className="text-center m-0">
+              {dev ? "Disable Developer Mode" : "Enable Developer Mode"}
+            </Form.Label>
+          </div>
           &nbsp;
           {ai && (
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -263,18 +262,17 @@ export const TaskCard: FC<{ token: string }> = (props) => {
           )}
           {!ai && <p>manual task creation coming soon</p>}
           {dev && (
-            <Form.Switch
-              className="d-flex align-items-center toggle" // Add d-flex and align-items-center classes
-              type="switch"
-              id="custom-switch"
-              label={
-                <span style={{ marginRight: "10px", paddingLeft: "5px" }}>
-                  {ai ? "Disable AI Mode" : "Enable AI Mode"}
-                </span>
-              }
-              checked={ai}
-              onChange={() => toggleAi()}
-            />
+            <div className="d-flex align-items-end">
+              <Form.Switch
+                type="switch"
+                id="custom-switch"
+                checked={ai}
+                onChange={() => toggleAi()}
+              />
+              <Form.Label className="text-center m-0">
+                {ai ? "Disable AI Mode" : "Enable AI Mode"}
+              </Form.Label>
+            </div>
           )}
         </Form>
         <Table>
