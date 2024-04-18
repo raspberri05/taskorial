@@ -31,9 +31,9 @@ export const LandingPage = () => {
           <p className="lead">An open-source, (almost) AI-powered task app</p>
           <p>
             Taskorial helps you organize your tasks effortlessly, with the power
-            of artificial intelligence coming soon. Whether you&apos;re a student,
-            professional, or just someone managing daily chores, Taskorial is
-            here to make your life easier.
+            of artificial intelligence coming soon. Whether you&apos;re a
+            student, professional, or just someone managing daily chores,
+            Taskorial is here to make your life easier.
           </p>
           <div>
             <Button
