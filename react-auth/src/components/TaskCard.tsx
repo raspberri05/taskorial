@@ -150,6 +150,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
