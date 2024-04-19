@@ -11,6 +11,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [ai, setAi] = useState<boolean>(true);
   const [dev, setDev] = useState<boolean>(false); //change to true if you don't want to keep toggling on every page load
   const token = props.token;
+  const [isLoading, setIsLoading] = useState(false);
 
   /**
    * Function to get toggle state
@@ -120,8 +121,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
   const makeTask = (e: React.FormEvent) => {
     e.preventDefault();
-    (e.target as HTMLFormElement).reset();
-
+    setIsLoading(true);
     let obj = JSON.parse(atob(token.split(".")[1]));
     let name = task;
     let completed = false;
@@ -144,6 +144,8 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     axios(configuration)
       .then((result) => {
         console.log(result);
+        setTask("");
+        setIsLoading(false);
         getTasks();
       })
       .catch((error) => {
@@ -251,7 +253,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
           {ai && (
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
+                disabled={isLoading}
                 onChange={(e) => setTask(e.target.value)}
+                value={task}
                 placeholder={
                   taskList.length > 0
                     ? "Enter Task Name"
