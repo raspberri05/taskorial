@@ -120,7 +120,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
   const makeTask = (e: React.FormEvent) => {
     e.preventDefault();
-    (e.target as HTMLFormElement).reset();
+    const form = e.target as HTMLFormElement;
+    const input = form.elements.namedItem('formBasicEmail') as HTMLInputElement;
+    input.value = '';
 
     let obj = JSON.parse(atob(token.split(".")[1]));
     let name = task;
