@@ -6,7 +6,7 @@
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.7.0",
+    "@google/generative-ai": "^0.7.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
