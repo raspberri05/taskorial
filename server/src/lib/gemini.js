@@ -42,12 +42,12 @@ const chat = model.startChat({
   history: [],
 });
 
-module.exports.test = async () => {
-  return await chat.sendMessage("who are you");
+module.exports.test =  () => {
+  return  chat.sendMessage("who are you");
 };
 
 module.exports.predictTime = async (task) => {
-  return await chat.sendMessage(
+  return  chat.sendMessage(
     `I am going to tell you the name of a task that I have to do. Based on the name of the task, you will tell me how many minutes it will take to complete this task: Your response should only have a number and nothing else. The task is: ${task}`,
   );
 };
