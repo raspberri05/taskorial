@@ -64,7 +64,6 @@ module.exports.predictTime = async (task) => {
   }
 };
 
-module.exports.placeholder = async () => {
-
+module.exports.placeholder =  async() => {
   return;
 };
