@@ -10,7 +10,7 @@ Check out the [Getting Started](https://github.com/raspberri05/taskorial/wiki/Ge
 
 ## Contributing
 
-We welcome and encourage any types of contributions to this project. Please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md) prior to making any contributions.
+We welcome and encourage any types of contributions to this project. Please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md) prior to making any contributions. Pull requests that do not follow contributing guidelines will not be approved and you will be asked to make changes to your pull request.
 
 ## License
 
