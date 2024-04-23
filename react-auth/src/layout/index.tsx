@@ -8,10 +8,16 @@ export default function Layout() {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
+    const htmlElement = document.querySelector("html");
+
     if (theme == "light") {
-      document.querySelector("html").setAttribute("data-bs-theme", "light");
+      if (htmlElement !== null) {
+        htmlElement.setAttribute("data-bs-theme", "light");
+      }
     } else {
-      document.querySelector("html").setAttribute("data-bs-theme", "dark");
+      if (htmlElement !== null) {
+        htmlElement.setAttribute("data-bs-theme", "dark");
+      }
     }
   }, [theme]);
 
