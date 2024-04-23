@@ -2,6 +2,10 @@
 
 You can help contribute to Taskorial via issues and pull requests.
 
+**Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
+
+Learn more about how to report security vulnerabilities at https://github.com/raspberri05/taskorial?tab=security-ov-file
+
 ## Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
 (Hint: Look at the issues to find things that need to be worked on)
