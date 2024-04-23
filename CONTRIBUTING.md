@@ -1,18 +1,10 @@
 # Contributing to Taskorial
 
-We want to make contributing to this project as easy and transparent as possible, whether it's:
-
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
-
-## We Develop with Github
-
-We use Github to host code, to track issues and feature requests, as well as accept pull requests.
+You can help contribute to Taskorial via issues and pull requests.
 
 ## Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
+
+(Hint: Look at the issues to find things that need to be worked on)
 
 1. Fork the repo and create your branch from `main`.
 2. Please ensure proper functionality of your changes before you create a pull request via manual testing. We hope to eventually build in some unit testing.
@@ -31,12 +23,7 @@ In short, when you submit code changes, your submissions are understood to be un
 
 We use GitHub issues to track public bugs. Report a bug by opening a new issue
 
-## Write bug reports with detail, background, and sample code
-
 ## Use a Consistent Coding Style
 
 - This project uses prettier
-
-## License
-
-By contributing, you agree that your contributions will be licensed under its GNU GPLv3 License.
+- Please use prettier in its default configuration to format your files before opening a pull request
