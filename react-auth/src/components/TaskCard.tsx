@@ -299,7 +299,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                 <td className="align-middle">
                   {t.completed ? <s>{t.name}</s> : t.name}
                 </td>
-                <td style={{ width: "100px" }} className="align-middle">
+                <td style={{ width: "100px", padding:"5px" }} className="align-middle">
                   {t.completed ? (
                     <Button
                       onClick={(e) => deleteTasks(t.name, e)}
