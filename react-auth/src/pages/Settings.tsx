@@ -1,6 +1,7 @@
 import { Button, Container } from "react-bootstrap";
 import "../main.css";
 import { Head } from "../components/Head";
+import { ThemeToggle } from '../ThemeToggle'; // Updated import statement
 
 export const Settings = () => {
   return (
@@ -31,6 +32,9 @@ export const Settings = () => {
       <Button disabled className="button_link" href="/reset">
         Request your data
       </Button>
+      <br />
+      <br />
+      <ThemeToggle />
       <div className="text-center" />
     </Container>
   );

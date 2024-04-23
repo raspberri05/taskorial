@@ -1,3 +1,22 @@
+
+
+:root {
+  --primary-color: #000;
+  --background-color: #fff;
+  --text-color: #000;
+}
+
+.dark-mode {
+  --primary-color: #fff;
+  --background-color: #272b2f;
+  --text-color: #fff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 .hamburger {
   background-color: #2b3035 !important;
   border-color: #5a5a5a !important;
