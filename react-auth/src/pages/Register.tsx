@@ -1,16 +1,19 @@
-import React, { FC, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { AlertCard } from "../components/AlertCard";
 import { Head } from "../components/Head";
+import { Link } from "react-router-dom";
 
 const cookies = new Cookies();
 
 export const Register: FC<{ type: string }> = (props) => {
-  const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const displayNameRef = useRef<HTMLInputElement>(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     show: false,
@@ -22,22 +25,24 @@ export const Register: FC<{ type: string }> = (props) => {
     message: "",
     header: "",
   });
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if(!emailRef.current?.value) return emailRef.current?.focus();
+
+    if(!passwordRef.current?.value) return passwordRef.current?.focus()
+
     setIsLoading(true);
     const configuration = {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}login`,
       data: {
-        email,
-        password,
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value
       },
     };
 
@@ -60,17 +65,23 @@ export const Register: FC<{ type: string }> = (props) => {
       });
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    setIsLoading(true);
 
+    if(!emailRef.current?.value) return emailRef.current?.focus();
+  
+    if(!displayNameRef.current?.value) return displayNameRef.current?.focus();
+
+    if(!passwordRef.current?.value) return passwordRef.current?.focus()
+    
+    setIsLoading(true);
     const configuration = {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}register`,
       data: {
-        email,
-        password,
-        displayName,
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value,
+        displayName: displayNameRef.current?.value
       },
     };
 
@@ -111,14 +122,13 @@ export const Register: FC<{ type: string }> = (props) => {
             slug="register"
             desc="Register for a new account"
           />
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                ref={emailRef}
                 placeholder="Enter email"
               />
             </Form.Group>
@@ -128,8 +138,7 @@ export const Register: FC<{ type: string }> = (props) => {
               <Form.Control
                 type="displayName"
                 name="displayName"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
+                ref={displayNameRef}
                 placeholder="Enter display name"
               />
             </Form.Group>
@@ -140,8 +149,7 @@ export const Register: FC<{ type: string }> = (props) => {
                 <Form.Control
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  ref={passwordRef}
                   placeholder="Password"
                 />
                 <Button variant="secondary" onClick={toggleShowPassword}>
@@ -159,28 +167,28 @@ export const Register: FC<{ type: string }> = (props) => {
                 and certifying that you are at least 13 years of age
               </Form.Text>
             </Form.Group>
-          </Form>
-          {error.show && (
-            <AlertCard
-              variant="danger"
-              message={error.message}
-              callback={handleCallback}
-              header={error.header}
-            />
-          )}
-          <Button
-            variant="primary"
-            onClick={(e) => handleSubmit(e)}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <Spinner animation="border" role="status" size="sm">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            ) : (
-              <>Sign Up</>
+            {error.show && (
+              <AlertCard
+                variant="danger"
+                message={error.message}
+                callback={handleCallback}
+                header={error.header}
+              />
             )}
-          </Button>{" "}
+            <Button
+              type="submit"
+              variant="primary"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Spinner animation="border" role="status" size="sm">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                <>Sign Up</>
+              )}
+            </Button>{" "}
+          </Form>
         </>
       )}
 
@@ -193,14 +201,13 @@ export const Register: FC<{ type: string }> = (props) => {
             slug="login"
             desc="Log in to an existing account"
           />
-          <Form>
+          <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                ref={emailRef}
                 placeholder="Enter email"
               />
             </Form.Group>
@@ -211,8 +218,7 @@ export const Register: FC<{ type: string }> = (props) => {
                 <Form.Control
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  ref={passwordRef}
                   placeholder="Password"
                 />
                 <Button variant="secondary" onClick={toggleShowPassword}>
@@ -223,37 +229,37 @@ export const Register: FC<{ type: string }> = (props) => {
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
-                <a href="/reset">Forgot password?</a>
+                <Link to="/reset">Forgot password?</Link>
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Text>
                 Don&apos;t have an account?{" "}
-                <a href="/register">Create one now</a>
+                <Link to="/register">Create one now</Link>
               </Form.Text>
             </Form.Group>
-          </Form>
-          {error2.show && (
-            <AlertCard
-              variant="danger"
-              message={error2.message}
-              callback={handleCallback2}
-              header={error2.header}
-            />
-          )}
-          <Button
-            variant="primary"
-            onClick={(e) => handleLogin(e)}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <Spinner animation="border" role="status" size="sm">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            ) : (
-              <>Login</>
+            {error2.show && (
+              <AlertCard
+                variant="danger"
+                message={error2.message}
+                callback={handleCallback2}
+                header={error2.header}
+              />
             )}
-          </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Spinner animation="border" role="status" size="sm">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                <>Login</>
+              )}
+            </Button>
+          </Form>
         </>
       )}
     </Container>
