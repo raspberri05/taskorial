@@ -1,8 +1,18 @@
 import { Button, Container } from "react-bootstrap";
 import "../main.css";
 import { Head } from "../components/Head";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../contexts/theme-context";
 
 export const Settings = () => {
+
+  const { theme, setTheme } = useContext(ThemeContext);
+  const [themeType, setThemeType] = useState("");
+
+  useEffect(() => {
+    theme == "dark" ? setThemeType("Light") : setThemeType("Dark");
+  }, [theme]);
+
   return (
     <Container className="text-center">
       <Head
@@ -11,6 +21,17 @@ export const Settings = () => {
         desc="Settings for your Taskorial account"
       />
       <h2 className="text-center">Account settings</h2>
+      <br />
+      <br />
+      <Button
+        variant="secondary"
+        className="button_link"
+        onClick={() => {
+          theme === "dark" ? setTheme("light") : setTheme("dark");
+        }}
+      >
+        {themeType} Mode
+      </Button>
       <br />
       <br />
       <Button className="button_link" href="/reset">

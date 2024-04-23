@@ -34,12 +34,12 @@ input[type="checkbox"]:hover {
 }
 
 .footer-link a {
-  color: white !important;
+  color: var(--bs-body-color) !important;
   text-decoration: none !important;
 }
 
 .footer-link a:hover {
-  color: white !important;
+  color: var(--bs-body-color) !important;
   text-decoration: underline !important;
 }
 
