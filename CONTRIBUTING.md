@@ -15,11 +15,11 @@ We use Github to host code, to track issues and feature requests, as well as acc
 ## Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
 1. Fork the repo and create your branch from `main`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
-6. Issue that pull request!
+2. Please ensure proper functionality of your changes before you create a pull request via manual testing. We hope to eventually build in some unit testing.
+3. Once you have opened a pull request, please ensure that all checks pass
+- The first set of checks you will see are from Netlify. These check the deployability of your changes. You can view a deploy preview of your pull request by clicking on `details` to the right of the deploy preview check
+- The second set of checks you will see are from Deepsource. These check for coding best practices and possible performance issues. If you click on the details of these, you will be presented with a dashboard that shows issues from your pull requests, if any.
+- If any of the checks fail, please resolve them accordingly. Send a message to me in the pull request if you run into any issues
 
 ## You may also use Gihub issues to propose changes to the codebase
 
