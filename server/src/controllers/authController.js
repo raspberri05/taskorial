@@ -16,7 +16,6 @@ const getRegister = (request, response) => {
           resetToken: "empty",
           toggle: true,
           displayName: request.body.displayName,
-          theme: "dark"
         });
 
         user
