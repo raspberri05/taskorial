@@ -1,13 +1,10 @@
-import { HelmetProvider } from 'react-helmet-async';
-import { RoutesProvider } from './routes';
-import { ThemeProvider } from './ThemeContext';
+import { HelmetProvider } from "react-helmet-async";
+import { RoutesProvider } from "./routes";
 
 function App() {
   return (
     <HelmetProvider>
-      <ThemeProvider>
-        <RoutesProvider />
-      </ThemeProvider>
+      <RoutesProvider/>
     </HelmetProvider>
   );
 }
