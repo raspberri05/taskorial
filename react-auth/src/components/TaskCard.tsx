@@ -157,9 +157,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
-  const completeTasks = (taskName: string) => {
-    const name: string = taskName;
-    const index: number = taskList.findIndex((x) => x.name === name);
+  const completeTasks = (taskId: string) => {
+    const id: string = taskId;
+    const index: number = taskList.findIndex((x) => x._id === id);
     const tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
     tasks.sort((a: any, b: any) => {
@@ -185,7 +185,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        name,
+        name:tasks[index].name,
       },
     };
 
@@ -198,11 +198,12 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
-  const deleteTasks = (taskName: string, e: React.FormEvent) => {
+  const deleteTasks = (taskId: string, e: React.FormEvent) => {
     e.stopPropagation();
-    const name: string = taskName;
-    const index: number = taskList.findIndex((x) => x.name === name);
+    const id: string = taskId;
+    const index: number = taskList.findIndex((x) => x._id === id);
     const tasks: TaskModel[] = [...taskList];
+    const name = tasks[index].name;
     tasks.splice(index, 1);
     setTaskList(tasks);
     const configuration = {
@@ -293,7 +294,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                     checked={t.completed}
                     readOnly
                     className="form-check-input"
-                    onClick={() => completeTasks(t.name)}
+                    onClick={() => completeTasks(t._id)}
                   />
                 </td>
                 <td className="align-middle">
@@ -302,7 +303,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                 <td style={{ width: "100px", padding:"5px" }} className="align-middle">
                   {t.completed ? (
                     <Button
-                      onClick={(e) => deleteTasks(t.name, e)}
+                      onClick={(e) => deleteTasks(t._id, e)}
                       className="delete"
                       variant="danger"
                     >
