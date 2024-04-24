@@ -11,6 +11,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
   const [ai, setAi] = useState<boolean>(true);
   const [dev, setDev] = useState<boolean>(false); //change to true if you don't want to keep toggling on every page load
   const token = props.token;
+  const [isLoading, setIsLoading] = useState(false);
 
   /**
    * Function to get toggle state
@@ -89,7 +90,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
     axios(configuration)
       .then((result) => {
-        let res = result.data.result;
+        const res = result.data.result;
         res.sort((a: any, b: any) => {
           if (a.completed === b.completed) {
             // If completed status is the same, compare by createdAt
@@ -122,10 +123,12 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     e.preventDefault();
     (e.target as HTMLFormElement).reset();
 
-    let obj = JSON.parse(atob(token.split(".")[1]));
-    let name = task;
-    let completed = false;
-    let userId = obj.userId;
+    const obj = JSON.parse(atob(token.split(".")[1]));
+    const name = task;
+    const completed = false;
+    const userId = obj.userId;
+    setIsLoading(true);
+    
 
     const configuration = {
       method: "post",
@@ -144,17 +147,20 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     axios(configuration)
       .then((result) => {
         console.log(result);
+        setTask("");
+        setIsLoading(false);
         getTasks();
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
   const completeTasks = (taskName: string) => {
-    let name: string = taskName;
-    let index: number = taskList.findIndex((x) => x.name === name);
-    let tasks: TaskModel[] = [...taskList];
+    const name: string = taskName;
+    const index: number = taskList.findIndex((x) => x.name === name);
+    const tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
     tasks.sort((a: any, b: any) => {
       if (a.completed === b.completed) {
@@ -194,9 +200,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
 
   const deleteTasks = (taskName: string, e: React.FormEvent) => {
     e.stopPropagation();
-    let name: string = taskName;
-    let index: number = taskList.findIndex((x) => x.name === name);
-    let tasks: TaskModel[] = [...taskList];
+    const name: string = taskName;
+    const index: number = taskList.findIndex((x) => x.name === name);
+    const tasks: TaskModel[] = [...taskList];
     tasks.splice(index, 1);
     setTaskList(tasks);
     const configuration = {
@@ -251,7 +257,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
           {ai && (
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
+                disabled={isLoading}
                 onChange={(e) => setTask(e.target.value)}
+                value={task}
                 placeholder={
                   taskList.length > 0
                     ? "Enter Task Name"
@@ -291,7 +299,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                 <td className="align-middle">
                   {t.completed ? <s>{t.name}</s> : t.name}
                 </td>
-                <td style={{ width: "100px" }} className="align-middle">
+                <td style={{ width: "100px", padding:"5px" }} className="align-middle">
                   {t.completed ? (
                     <Button
                       onClick={(e) => deleteTasks(t.name, e)}
