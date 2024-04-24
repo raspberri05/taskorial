@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ChangeEmail from '../components/ChangeEmail';
 import { LandingPage } from '../pages/LandingPage'
 import { ProtectedRoutes } from '../components/ProtectedRoutes'
 import AuthComponent from '../pages/AuthComponent'
@@ -13,6 +14,7 @@ import Layout from '../layout'
 import { Feedback } from '../pages/Feedback'
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
+
 
 export const RoutesProvider = () => {
   return (
@@ -47,6 +49,7 @@ export const RoutesProvider = () => {
                     </ProtectedRoutes>
                 }
                 />
+                <Route path="/change-email" element={<ChangeEmail />} />
             </Route>
         </Routes>
     </BrowserRouter>

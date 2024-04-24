@@ -19,8 +19,8 @@ export const Settings = () => {
       </Button>
       <br />
       <br />
-      <Button disabled className="button_link" href="/reset">
-        Change email
+      <Button className="button_link" href="/change-email">
+          Change Email
       </Button>
       <br />
       <br />
