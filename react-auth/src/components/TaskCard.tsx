@@ -156,8 +156,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         setIsLoading(false);
       });
   };
-
-  const completeTasks = (taskId: string) => {
+  const completeTasks = (taskId: string) =>()=>{
     const id: string = taskId;
     const index: number = taskList.findIndex((x) => x._id === id);
     const tasks: TaskModel[] = [...taskList];
@@ -198,7 +197,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
-  const deleteTasks = (taskId: string, e: React.FormEvent) => {
+  const deleteTasks = (taskId: string) =>(e: React.FormEvent)=> {
     e.stopPropagation();
     const id: string = taskId;
     const index: number = taskList.findIndex((x) => x._id === id);
@@ -294,7 +293,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                     checked={t.completed}
                     readOnly
                     className="form-check-input"
-                    onClick={() => completeTasks(t._id)}
+                    onClick={completeTasks(t._id)}
                   />
                 </td>
                 <td className="align-middle">
@@ -303,7 +302,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
                 <td style={{ width: "100px", padding:"5px" }} className="align-middle">
                   {t.completed ? (
                     <Button
-                      onClick={(e) => deleteTasks(t._id, e)}
+                      onClick={deleteTasks(t._id)}
                       className="delete"
                       variant="danger"
                     >
