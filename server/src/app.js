@@ -33,6 +33,9 @@ app.use((req, res, next) => {
   next();
 });
 
+const themeRoutes = require("./routes/themeRoutes");
+const userRoutes = require('./routes/userRoutes');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
@@ -42,6 +45,8 @@ app.use("/", authRoutes);
 app.use("/ai", aiRoutes);
 app.use("/toggle", toggleRoutes);
 app.use("/", mailRoutes);
+app.use("/theme", themeRoutes);
+app.use('/api', userRoutes);
 
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });

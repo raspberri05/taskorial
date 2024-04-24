@@ -29,6 +29,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
+  theme: {
+     type: String, default: "dark"
+  },
 });
 
 module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);
