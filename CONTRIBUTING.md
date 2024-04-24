@@ -1,21 +1,25 @@
 # Contributing to Taskorial
 
-You can help contribute to Taskorial via issues and pull requests.
+We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-**Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
-Learn more about how to report security vulnerabilities at https://github.com/raspberri05/taskorial?tab=security-ov-file
+## We Develop with Github
+
+We use Github to host code, to track issues and feature requests, as well as accept pull requests.
 
 ## Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
-(Hint: Look at the issues to find things that need to be worked on)
-
 1. Fork the repo and create your branch from `main`.
-2. Please ensure proper functionality of your changes before you create a pull request via manual testing. We hope to eventually build in some unit testing.
-3. Once you have opened a pull request, please ensure that all checks pass
-- The first set of checks you will see are from Netlify. These check the deployability of your changes. You can view a deploy preview of your pull request by clicking on `details` to the right of the deploy preview check
-- The second set of checks you will see are from Deepsource. These check for coding best practices and possible performance issues. If you click on the details of these, you will be presented with a dashboard that shows issues from your pull requests, if any.
-- If any of the checks fail, please resolve them accordingly. Send a message to me in the pull request if you run into any issues
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
 
 ## You may also use Gihub issues to propose changes to the codebase
 
@@ -27,7 +31,12 @@ In short, when you submit code changes, your submissions are understood to be un
 
 We use GitHub issues to track public bugs. Report a bug by opening a new issue
 
+## Write bug reports with detail, background, and sample code
+
 ## Use a Consistent Coding Style
 
 - This project uses prettier
-- Please use prettier in its default configuration to format your files before opening a pull request
+
+## License
+
+By contributing, you agree that your contributions will be licensed under its GNU GPLv3 License.
