@@ -4,8 +4,8 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-export const ProtectedRoutes: FC<any> = ({ children }) => {
+export const ProtectedRoutes: FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = cookies.get("TOKEN");
-  if (token) return children;
+  if (token) return (children as React.ReactElement);
   else return <Navigate to="/login" />;
 };

@@ -11,7 +11,7 @@ export const ResetPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
 
-  const sendCode = (e: any) => {
+  const sendCode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const configuration = {
       method: "post",
@@ -31,7 +31,7 @@ export const ResetPassword = () => {
       });
   };
 
-  const checkCode = (e: any) => {
+  const checkCode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const config = {
       method: "post",
