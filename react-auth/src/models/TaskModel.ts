@@ -4,6 +4,6 @@ export interface TaskModel {
   completed?: boolean;
   userId?: string;
   time?: number;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
