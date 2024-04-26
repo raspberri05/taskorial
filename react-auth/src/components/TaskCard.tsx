@@ -79,6 +79,29 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         console.log(error);
       });
   };
+
+    /**
+   * Function to sort the list of tasks
+   * @returns the sorted list of tasks
+   */
+  const sortTasks = (tasks: TaskModel[]) => {
+    return tasks.sort((a: TaskModel, b: TaskModel) => {
+      if (a.completed === b.completed) {
+        // If completed status is the same, compare by createdAt
+        if (a.createdAt < b.createdAt) {
+          return -1; // a comes before b
+        } else if (a.createdAt > b.createdAt) {
+          return 1; // b comes before a
+        } else {
+          return 0; // createdAt values are equal
+        }
+      } else {
+        // If completed status is different, sort by completed status
+        return a.completed ? -1 : 1; // true comes before false
+      }
+    });
+  }
+
   const getTasks = () => {
     const configuration = {
       method: "get",
@@ -91,21 +114,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     axios(configuration)
       .then((result) => {
         const res = result.data.result;
-        res.sort((a: any, b: any) => {
-          if (a.completed === b.completed) {
-            // If completed status is the same, compare by createdAt
-            if (a.createdAt < b.createdAt) {
-              return -1; // a comes before b
-            } else if (a.createdAt > b.createdAt) {
-              return 1; // b comes before a
-            } else {
-              return 0; // createdAt values are equal
-            }
-          } else {
-            // If completed status is different, sort by completed status
-            return a.completed ? -1 : 1; // true comes before false
-          }
-        });
+        sortTasks(res);
         setTaskList([...res].reverse());
       })
       .catch((error) => {
@@ -149,7 +158,9 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         console.log(result);
         setTask("");
         setIsLoading(false);
-        getTasks();
+        const createdTask: TaskModel = result.data.result;
+        const newTaskList: TaskModel[] = sortTasks([...taskList, createdTask]);
+        setTaskList(newTaskList.reverse());
       })
       .catch((error) => {
         console.log(error);
@@ -162,21 +173,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
     const index: number = taskList.findIndex((x) => x.name === name);
     const tasks: TaskModel[] = [...taskList];
     tasks[index].completed = !tasks[index].completed;
-    tasks.sort((a: any, b: any) => {
-      if (a.completed === b.completed) {
-        // If completed status is the same, compare by createdAt
-        if (a.createdAt < b.createdAt) {
-          return -1; // a comes before b
-        } else if (a.createdAt > b.createdAt) {
-          return 1; // b comes before a
-        } else {
-          return 0; // createdAt values are equal
-        }
-      } else {
-        // If completed status is different, sort by completed status
-        return a.completed ? -1 : 1; // true comes before false
-      }
-    });
+    sortTasks(tasks);
     setTaskList(tasks.reverse());
     const configuration = {
       method: "put",
