@@ -5,7 +5,7 @@ export const AlertCard: FC<{
   variant: string;
   message: string;
   header: string;
-  callback: any;
+  callback: () => void;
 }> = (props) => {
   const hideAlert = () => {
     props.callback();
