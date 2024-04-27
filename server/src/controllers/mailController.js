@@ -3,6 +3,11 @@ const User = require("../models/userModel");
 const crypto = require("crypto");
 const { resetMail } = require("../lib/mail");
 
+/**
+ * Function to send a email to provided email address and update the reset token in the database
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const sendEmail = (request, response) => {
   const email = request.body.email;
 
@@ -62,7 +67,11 @@ const sendEmail = (request, response) => {
     });
 };
 
-// perform reset
+/**
+ * Function to perform reset: checks provided email and code for password reset and updates the password in the database
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const checkEmail = (request, response) => {
   User.findOne({ email: { $eq: request.body.sentEmail } })
     .then((result) => {

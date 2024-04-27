@@ -1,6 +1,11 @@
 const User = require("../models/userModel");
 const { decodeToken } = require("../lib/decodeToken");
 
+/**
+ * Function to update the toggle value of the user and a return an appropriate response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const updateToggle = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.findOne({ _id: { $eq: id } })
@@ -30,6 +35,11 @@ const updateToggle = (request, response) => {
     });
 };
 
+/**
+ * Function to get the user's toggle value and return an appropriate response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const getToggle = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.findOne({ _id: { $eq: id } })
