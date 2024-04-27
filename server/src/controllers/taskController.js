@@ -2,6 +2,11 @@ const Task = require("../models/taskModel");
 const { predictTime, placeholder } = require("../lib/gemini");
 const { decodeToken } = require("../lib/decodeToken");
 
+/**
+ * Function to create a task based off request parameters and return a response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const createTask = (request, response) => {
   (request.body.dev ? predictTime(request.body.name) : placeholder())
     .then((value) => {
@@ -33,6 +38,11 @@ const createTask = (request, response) => {
     });
 };
 
+/**
+ * Function to get a task belonging to the user and return a response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const getTasks = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   Task.find({ userId: { $eq: id } })
@@ -50,6 +60,11 @@ const getTasks = (request, response) => {
     });
 };
 
+/**
+ * Function to update a task based off request parameters and return a response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const updateTask = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   Task.findOne({ name: { $eq: request.body.name }, userId: { $eq: id } })
@@ -82,6 +97,11 @@ const updateTask = (request, response) => {
     });
 };
 
+/**
+ * Function to delete a task based off request parameters and return a response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const deleteTask = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   Task.deleteOne({ name: { $eq: request.body.name }, userId: { $eq: id } })

@@ -4,7 +4,12 @@ const User = require("../models/userModel");
 const { decodeToken } = require("../lib/decodeToken");
 const { ObjectId } = require("mongodb");
 const Task = require("../models/taskModel");
-// register
+
+/**
+ * Function to register a user with provided email address, password and display name
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const getRegister = (request, response) => {
   if (request.body.password.length >= 8) {
     bcrypt
@@ -46,7 +51,11 @@ const getRegister = (request, response) => {
   }
 };
 
-// login
+/**
+ * Function to login the user with provided email address and password
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const getLogin = (request, response) => {
   User.findOne({ email: { $eq: request.body.email } })
     .then((user) => {
@@ -90,6 +99,11 @@ const getLogin = (request, response) => {
     });
 };
 
+/**
+ * Function to delete an account and perform associated tasks and provide an appropriate response based off success or failure
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const deleteAccount = (request, response) => {
   const id = decodeToken(request.headers.authorization);
   User.deleteOne({ _id: new ObjectId(id) })
