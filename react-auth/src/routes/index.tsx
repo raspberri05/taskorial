@@ -11,9 +11,15 @@ import { Terms } from '../pages/Terms'
 import Cookies from "universal-cookie";
 import Layout from '../layout'
 import { Feedback } from '../pages/Feedback'
+
+// Create a new instance of cookies and retireve tokens from them
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
+/**
+ * Compoonent to provide routes for the app using React Router
+ * @returns JSX element containing routes
+ */
 export const RoutesProvider = () => {
   return (
     <BrowserRouter>

@@ -1,6 +1,10 @@
 import { Container } from "react-bootstrap";
 import { Head } from "../components/Head";
 
+/**
+ * Function to display Privacy Page
+ * @returns JSX element containing rendered privacy page
+ */
 export const Privacy = () => {
   return (
     <Container>
