@@ -111,6 +111,10 @@ const checkEmail = (request, response) => {
                   error,
                 });
               });
+            return response.status(500).send({
+                  message: "Password hashing failed",
+                  error,
+                });
           })
 
           .catch((error) => {
