@@ -3,9 +3,14 @@ import { Head } from "../components/Head";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 
+// Create a new instance of cookies and retireve tokens from them
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
+/**
+ * Function to display landing page of app
+ * @returns JSX element containing rendered landing page
+ */
 export const LandingPage = () => {
   const navigateTo = useNavigate() 
   /**
@@ -20,6 +25,7 @@ export const LandingPage = () => {
     }
   };
 
+  // Return JSX for landing page
   return (
     <Container>
       <Head

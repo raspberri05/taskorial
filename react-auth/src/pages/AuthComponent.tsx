@@ -4,9 +4,14 @@ import Cookies from "universal-cookie";
 import { TaskCard } from "../components/TaskCard";
 import { Head } from "../components/Head";
 
+// Create a new instance of cookies and retireve tokens from them
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
+/**
+ * Functional component to render the authenticated user's home page
+ * @returns JSX element containing the authenticated user's home page
+ */
 export default function AuthComponent() {
   const [name, setName] = useState<string>("Placeholder name");
 
