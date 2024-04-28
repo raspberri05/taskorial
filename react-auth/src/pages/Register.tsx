@@ -83,6 +83,7 @@ export const Register: FC<{ type: string }> = (props) => {
         // Set loading state to false after request completes
         setIsLoading(false);
       });
+    return;
   };
 
   /**
@@ -129,6 +130,7 @@ export const Register: FC<{ type: string }> = (props) => {
         // Set loading state to false after request completes
         setIsLoading(false);
       });
+    return;
   };
 
   /**
