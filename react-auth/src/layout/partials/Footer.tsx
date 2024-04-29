@@ -58,11 +58,11 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li className="mb-2">
                 <a
-                  href="mailto:support@taskorial.com"
+                  href="mailto:vedant.singhania@gmail.com"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <i className="fas fa-envelope" /> support@taskorial.com
+                  <i className="fas fa-envelope" /> vedant.singhania@gmail.com
                 </a>
               </li>
               <li className="mb-2">
