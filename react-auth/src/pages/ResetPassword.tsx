@@ -3,7 +3,13 @@ import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Head } from "../components/Head";
 
+/*
+ * Component for password reset:
+ *  - manages email, password and code states 
+ *  - handles sending and analysing code to reset password
+ */
 export const ResetPassword = () => {
+  // Declare variables for email, code, password, sentEmail, emailSent and resetSuccess
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
@@ -11,8 +17,14 @@ export const ResetPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
 
-  const sendCode = (e: any) => {
+  /** 
+   * Function to send code to reset password
+   * Sends a code to the provided email address to initiare the password reset process
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} -e The click event object
+   */ 
+  const sendCode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    // Configuration for sending code request
     const configuration = {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}reset`,
@@ -21,8 +33,10 @@ export const ResetPassword = () => {
       },
     };
 
+    // Send request to server to send code
     axios(configuration)
       .then((result) => {
+        // Update state (of app's UI) with sent email and set emailSent to true
         setSentEmail(result.data.email);
         setEmailSent(true);
       })
@@ -31,8 +45,13 @@ export const ResetPassword = () => {
       });
   };
 
-  const checkCode = (e: any) => {
+  /**
+   * Function to check code and reset password
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} e - The click event object
+   */
+  const checkCode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    // Configuration for checking code request
     const config = {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}check`,
@@ -43,8 +62,10 @@ export const ResetPassword = () => {
       },
     };
 
+    // Send request to server to check code and reset password
     axios(config)
       .then(() => {
+        // If successful password reset, resetSuccess set to true
         setResetSuccess(true);
       })
       .catch(() => {

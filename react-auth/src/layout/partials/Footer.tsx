@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import "../../main.css";
 
+/** 
+ * Functional component representing footer of app
+ * @returns JSX Element containing footer
+ */
 export default function Footer() {
   return (
     <footer className="bd-footer py-4 py-md-5 mt-5 footer-link footer">

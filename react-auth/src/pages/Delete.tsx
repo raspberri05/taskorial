@@ -6,6 +6,7 @@ import { Head } from "../components/Head";
 
 /**
  * Function to add two numbers
+ * @param token - authentication token
  * @returns rendered react html
  */
 export const Delete: FC<{ token: string }> = (props) => {
@@ -14,14 +15,17 @@ export const Delete: FC<{ token: string }> = (props) => {
 
   /**
    * Function to delete Account
-   * @returns does not return anythin
+   * @returns no return value
    */
   const deleteAccount = () => {
+    // Check if token exists
     if (!token) {
+      // Display error message if token is missing
       setMessage("Token not found. Please login again.");
       return;
     }
 
+    // Configuration for the axios request
     const configuration = {
       method: "delete",
       url: `${process.env.REACT_APP_API_URL}delete`,
@@ -30,16 +34,21 @@ export const Delete: FC<{ token: string }> = (props) => {
       },
     };
 
+    // Send request to delete user account
     axios(configuration)
       .then(() => {
+        // Display success message 
         setMessage("Logging Out");
+        // Redirect to login page after 3 seconds
         setTimeout(() => {
           window.location.href = "/";
-        }, 1000); // Redirect to login page after 3 seconds
+        }, 1000); 
+        // Remove token cookie
         const cookies = new Cookies();
         cookies.remove("TOKEN", { path: "/" });
       })
       .catch((error) => {
+        // Display error message if deletion fails
         setMessage("Error deleting account");
         console.log(error);
       });

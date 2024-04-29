@@ -1,6 +1,10 @@
 import { Container } from "react-bootstrap";
 import { Head } from "../components/Head";
 
+/**
+ * Function to display the Terms of Use page
+ * @returns JSX element containing rendered Terms of Use Page
+ */
 export const Terms = () => {
   return (
     <Container>

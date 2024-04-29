@@ -1,16 +1,24 @@
 import { FC, FormEvent, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 
+/**
+ * Functional component representing a feedback form
+ * @returns JSX element containing feedback form
+ */
 export const FeedbackForm: FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /**
+   * Function to handle form submission
+   * @param e the form event
+   */
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO Add code to submit feedback
+    // BACKEND NOT IMPLEMENTED YET
   };
   return (
     <Form onSubmit={handleSubmit}>

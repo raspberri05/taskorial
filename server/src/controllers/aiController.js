@@ -1,5 +1,10 @@
 const { test } = require("../lib/gemini");
 
+/**
+ * Function to fetch AI data and return an appropriate response
+ * @param {*} request The HTTP request object
+ * @param {*} response The HTTP response object
+ */
 const getAi = (request, response) => {
   test()
     .then((result) => {

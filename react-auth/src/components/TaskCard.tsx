@@ -5,7 +5,15 @@ import axios from "axios";
 import "../main.css";
 import { TaskModel } from "../models/TaskModel";
 
+/**
+ * TaskCard component for displaying and managing tasks
+ * Accepts props (properties): token
+ * @param token - authentication token for API requests
+ * @returns JSX element representing a card containing tasks and form inputs
+ */
+
 export const TaskCard: FC<{ token: string }> = (props) => {
+  // Declare variables for managing tast-related data
   const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Array<TaskModel>>([]);
   const [ai, setAi] = useState<boolean>(true);
@@ -22,24 +30,29 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       method: "get",
       url: `${process.env.REACT_APP_API_URL}toggle`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Authorization token for API request
       },
     };
 
+    // Send GET request to server
     axios(configuration)
       .then((result) => {
+        // Update local state with retrieved toggle state
         console.log(result);
         setAi(result.data.result.toggle);
       })
       .catch((error) => {
+        // log any errors to the console
         console.log(error);
+        // return false by default if toggle state is not retrieved yet
         return false;
       });
+    // return false by default if toggle state is not retrieved yet
     return false;
   };
 
   /**
-   * Function to toggle the toggle between true and false
+   * Function to toggle the AI mode between true and false
    * @returns user's toggle state
    */
   const toggleAi = () => {
@@ -48,20 +61,27 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}toggle`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Authorization token for API request
       },
     };
 
+    // Send PUT request to server to update toggle state
     axios(configuration)
       .then((success) => {
+        // Log success message to the console
         console.log(success);
         return;
       })
       .catch((error) => {
+        // Log any errors to the console
         console.log(error);
       });
   };
 
+  /**
+   * Function to retrieve AI data from server
+   * logs result to console
+   */
   const getAi = () => {
     const configuration = {
       method: "get",
@@ -70,99 +90,26 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         Authorization: `Bearer ${token}`,
       },
     };
-
+    
+    // Send GET request to server
     axios(configuration)
       .then((result) => {
+        // log AI data to console
         console.log(result.data.result.response.candidates[0].content.parts[0]);
       })
       .catch((error) => {
-        console.log(error);
-      });
-  };
-  const getTasks = () => {
-    const configuration = {
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}tasks`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    axios(configuration)
-      .then((result) => {
-        const res = result.data.result;
-        res.sort((a: any, b: any) => {
-          if (a.completed === b.completed) {
-            // If completed status is the same, compare by createdAt
-            if (a.createdAt < b.createdAt) {
-              return -1; // a comes before b
-            } else if (a.createdAt > b.createdAt) {
-              return 1; // b comes before a
-            } else {
-              return 0; // createdAt values are equal
-            }
-          } else {
-            // If completed status is different, sort by completed status
-            return a.completed ? -1 : 1; // true comes before false
-          }
-        });
-        setTaskList([...res].reverse());
-      })
-      .catch((error) => {
+        // log errors to console
         console.log(error);
       });
   };
 
-  useEffect(() => {
-    getToggle();
-    getTasks();
-    // eslint-disable-next-line
-  }, []);
-
-  const makeTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    (e.target as HTMLFormElement).reset();
-
-    const obj = JSON.parse(atob(token.split(".")[1]));
-    const name = task;
-    const completed = false;
-    const userId = obj.userId;
-    setIsLoading(true);
-    
-
-    const configuration = {
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}tasks`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        name,
-        completed,
-        userId,
-        dev,
-      },
-    };
-
-    axios(configuration)
-      .then((result) => {
-        console.log(result);
-        setTask("");
-        setIsLoading(false);
-        getTasks();
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-      });
-  };
-
-  const completeTasks = (taskName: string) => {
-    const name: string = taskName;
-    const index: number = taskList.findIndex((x) => x.name === name);
-    const tasks: TaskModel[] = [...taskList];
-    tasks[index].completed = !tasks[index].completed;
-    tasks.sort((a: any, b: any) => {
+  /**
+   * Function to sort list of tasks
+   * @param tasks - list of tasks to be sorted
+   * @returns sorted list of tasks
+   */
+  const sortTasks = (tasks: TaskModel[]) => {
+    return tasks.sort((a: TaskModel, b: TaskModel) => {
       if (a.completed === b.completed) {
         // If completed status is the same, compare by createdAt
         if (a.createdAt < b.createdAt) {
@@ -177,7 +124,116 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         return a.completed ? -1 : 1; // true comes before false
       }
     });
+  }
+
+  /**
+   * Function to retrieve tasks from the server
+   * API request to fetch tasks
+   * Sorts the fetched tasks and updates the 'taskList' state
+   */
+  const getTasks = () => {
+    // Configuration for GET request to fetch tasks from server
+    const configuration = {
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    // Send GET request
+    axios(configuration)
+      .then((result) => {
+        // Extract task data from response
+        const res = result.data.result;
+
+        // Sort tasks based on completetion status and creatio date
+        sortTasks(res);
+        
+        // Update task list state with fetched tasks
+        setTaskList([...res].reverse());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // Fetch initial data when the component is rendered
+  useEffect(() => {
+    getToggle();
+    getTasks();
+    // eslint-disable-next-line
+  }, []);
+
+  /**
+   * Function to create a new task
+   * Handles form submission to create a new task
+   * Sends a request to server to create a new task
+   * @param e - form event object
+   */
+  const makeTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    (e.target as HTMLFormElement).reset();
+
+    // Extract user ID from token
+    const obj = JSON.parse(atob(token.split(".")[1]));
+    const name = task;
+    const completed = false;
+    const userId = obj.userId;
+    setIsLoading(true);
+    
+    // Prepare configuration for API request
+    const configuration = {
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}tasks`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        name,
+        completed,
+        userId,
+        dev,
+      },
+    };
+
+    // Send POST request to create a new task
+    axios(configuration)
+      .then((result) => {
+        console.log(result);
+        setTask("");
+        setIsLoading(false);
+        const createdTask: TaskModel = result.data.result;
+        const newTaskList: TaskModel[] = sortTasks([...taskList, createdTask]);
+        setTaskList(newTaskList.reverse());
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  };
+
+  /**
+   * Function to toggle completed status of a task
+   * Toggles completed status of a specified task
+   * Sends a request to server to update task's completed status
+   * @param taskName - name of task to toggle
+   */
+  const completeTasks = (taskName: string) => {
+    const name: string = taskName;
+    const index: number = taskList.findIndex((x) => x.name === name);
+    const tasks: TaskModel[] = [...taskList];
+
+    // Toggle completion status of task
+    tasks[index].completed = !tasks[index].completed;
+
+    // Sort task list based on completion status and creation time
+    sortTasks(tasks);
+
+    // Update task list state with sorted list
     setTaskList(tasks.reverse());
+
+    // Prepare configuration for API request to update task
     const configuration = {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}tasks`,
@@ -189,6 +245,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       },
     };
 
+    // Send PUT request to task completion status
     axios(configuration)
       .then(() => {
         return;
@@ -198,13 +255,29 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       });
   };
 
+  /**
+   * Function to delete a task
+   * Deletes specified task from task list
+   * Sends a request to server to delete task
+   * @param taskName - name oftask to be deleted
+   * @param e - form event object
+   */
   const deleteTasks = (taskName: string, e: React.FormEvent) => {
+    // Prevent event from propagating further
     e.stopPropagation();
+
+    // Extracting task info
     const name: string = taskName;
     const index: number = taskList.findIndex((x) => x.name === name);
+    
+    // Create a copy of task list and remove specified task
     const tasks: TaskModel[] = [...taskList];
     tasks.splice(index, 1);
+
+    // Update task list state
     setTaskList(tasks);
+
+    // Configuration for DELETE request to delete task frm server
     const configuration = {
       method: "delete",
       url: `${process.env.REACT_APP_API_URL}tasks`,
@@ -216,6 +289,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
       },
     };
 
+    // Send DELETE request
     axios(configuration)
       .then(() => {
         return;
@@ -224,7 +298,10 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         console.log(error);
       });
   };
-
+  
+  /**
+  * Function to toggle developer toggle
+  */
   const toggleDev = () => {
     setDev(!dev);
   };

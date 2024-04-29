@@ -4,10 +4,18 @@ import Cookies from "universal-cookie";
 import "../../main.css";
 import { Link } from "react-router-dom";
 
+// Create a new instance of cookies and retireve tokens from them
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
+/**
+ * Functionaly component representing navigation bar of app
+ * @returns JSX element containing navigation bar content
+ */
 export const NavBar: FC<object> = () => {
+  /**
+   * Function to logout users
+   */
   const logout = () => {
     cookies.remove("TOKEN", { path: "/" });
     window.location.href = "/";

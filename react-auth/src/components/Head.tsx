@@ -1,6 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { FC } from "react";
 
+/**
+ * Functional component representing head section of webpage
+ * @param props - properties of component (title, slug and description of webpage)
+ * @returns JSX element containing head section
+ */
 export const Head: FC<{
   title: string;
   slug: string;
