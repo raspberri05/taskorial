@@ -43,23 +43,21 @@ export const LandingPage = () => {
             student, professional, or just someone managing daily chores,
             Taskorial is here to make your life easier.
           </p>
-          <div>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => redir(token ? "home" : "login")}
-              className="me-3"
-            >
-              {token ? "Go To Dashboard" : "Log In"}
-            </Button>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => redir(token ? "" : "register")}
-            >
-              {token ? "Log Out" : "Create An Account"}
-            </Button>
-          </div>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => redir(token ? "home" : "login")}
+            className="me-3"
+          >
+          {token ? "Go To Dashboard" : "Log In"}
+          </Button>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => redir(token ? "" : "register")}
+          >
+          {token ? "Log Out" : "Create An Account"}
+          </Button>
         </Col>
       </Row>
     </Container>
