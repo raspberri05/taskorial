@@ -34,41 +34,17 @@ export const Terms = () => {
       <div className="wpembed-toc">
         <h3>Table of contents</h3>
         <ol className="wpembed-toc">
-          <li>
-            <a href="#accounts-and-membership">Accounts and membership</a>
-          </li>
-          <li>
-            <a href="#user-content">User content</a>
-          </li>
-          <li>
-            <a href="#backups">Backups</a>
-          </li>
-          <li>
-            <a href="#links-to-other-resources">Links to other resources</a>
-          </li>
-          <li>
-            <a href="#prohibited-uses">Prohibited uses</a>
-          </li>
-          <li>
-            <a href="#intellectual-property-rights">
-              Intellectual property rights
-            </a>
-          </li>
-          <li>
-            <a href="#indemnification">Indemnification</a>
-          </li>
-          <li>
-            <a href="#severability">Severability</a>
-          </li>
-          <li>
-            <a href="#changes-and-amendments">Changes and amendments</a>
-          </li>
-          <li>
-            <a href="#acceptance-of-these-terms">Acceptance of these terms</a>
-          </li>
-          <li>
-            <a href="#contacting-us">Contacting us</a>
-          </li>
+          <li><a href="#accounts-and-membership">Accounts and membership</a></li>
+          <li><a href="#user-content">User content</a></li>
+          <li><a href="#backups">Backups</a></li>
+          <li><a href="#links-to-other-resources">Links to other resources</a></li>
+          <li><a href="#prohibited-uses">Prohibited uses</a></li>
+          <li><a href="#intellectual-property-rights">Intellectual property rights</a></li>
+          <li><a href="#indemnification">Indemnification</a></li>
+          <li><a href="#severability">Severability</a></li>
+          <li><a href="#changes-and-amendments">Changes and amendments</a></li>
+          <li><a href="#acceptance-of-these-terms">Acceptance of these terms</a></li>
+          <li><a href="#contacting-us">Contacting us</a></li>
         </ol>
       </div>
       <h2 id="accounts-and-membership">Accounts and membership</h2>
