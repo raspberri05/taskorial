@@ -33,19 +33,19 @@ export const Terms = () => {
       </p>
       <div className="wpembed-toc">
         <h3>Table of contents</h3>
-        <ol className="wpembed-toc">
-          <li><a href="#accounts-and-membership">Accounts and membership</a></li>
-          <li><a href="#user-content">User content</a></li>
-          <li><a href="#backups">Backups</a></li>
-          <li><a href="#links-to-other-resources">Links to other resources</a></li>
-          <li><a href="#prohibited-uses">Prohibited uses</a></li>
-          <li><a href="#intellectual-property-rights">Intellectual property rights</a></li>
-          <li><a href="#indemnification">Indemnification</a></li>
-          <li><a href="#severability">Severability</a></li>
-          <li><a href="#changes-and-amendments">Changes and amendments</a></li>
-          <li><a href="#acceptance-of-these-terms">Acceptance of these terms</a></li>
-          <li><a href="#contacting-us">Contacting us</a></li>
-        </ol>
+        <p>
+          1. <a href="#accounts-and-membership">Accounts and membership</a>
+          2. <a href="#user-content">User content</a>
+          3. <a href="#backups">Backups</a>
+          4. <a href="#links-to-other-resources">Links to other resources</a>
+          5. <a href="#prohibited-uses">Prohibited uses</a>
+          6. <a href="#intellectual-property-rights">Intellectual property rights</a>
+          7. <a href="#indemnification">Indemnification</a>
+          8. <a href="#severability">Severability</a>
+          9. <a href="#changes-and-amendments">Changes and amendments</a>
+          10. <a href="#acceptance-of-these-terms">Acceptance of these terms</a>
+          11. <a href="#contacting-us">Contacting us</a>
+        </p>
       </div>
       <h2 id="accounts-and-membership">Accounts and membership</h2>
       <p>
