@@ -46,12 +46,8 @@ export const Privacy = () => {
       <h3>Definitions</h3>
       <p>For the purposes of this Privacy Policy:</p>
       <ul>
-        <li>
-          <p>
-            <strong>Account</strong> means a unique account created for You to
-            access our Service or parts of our Service.
-          </p>
-        </li>
+        <li><strong>Account</strong> means a unique account created for You to
+            access our Service or parts of our Service.</li>
         <li>
           <p>
             <strong>Affiliate</strong> means an entity that controls, is
