@@ -9,6 +9,7 @@ Taskorial is an open source task management web application that was created usi
 Check out the [Getting Started](https://github.com/raspberri05/taskorial/wiki/Getting-Started) page of our wiki to set up your environment
 
 If you would like a more visual walkthrough, you can watch this short video created by one of our contributors [Frances Londale](https://github.com/franceslonsdale)
+
 https://www.youtube.com/watch?v=dwKfQmmdDPU
 
 ## Contributing

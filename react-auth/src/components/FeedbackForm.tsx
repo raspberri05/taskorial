@@ -18,7 +18,7 @@ export const FeedbackForm: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO Add code to submit feedback
+    // BACKEND NOT IMPLEMENTED YET
   };
   return (
     <Form onSubmit={handleSubmit}>
