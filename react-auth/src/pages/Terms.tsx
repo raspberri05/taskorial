@@ -31,22 +31,20 @@ export const Terms = () => {
         and the Operator, even though it is electronic and is not physically
         signed by you, and it governs your use of the Website and Services.
       </p>
-      <div className="wpembed-toc">
-        <h3>Table of contents</h3>
-        <p>
-          1. <a href="#accounts-and-membership">Accounts and membership</a>
-          2. <a href="#user-content">User content</a>
-          3. <a href="#backups">Backups</a>
-          4. <a href="#links-to-other-resources">Links to other resources</a>
-          5. <a href="#prohibited-uses">Prohibited uses</a>
-          6. <a href="#intellectual-property-rights">Intellectual property rights</a>
-          7. <a href="#indemnification">Indemnification</a>
-          8. <a href="#severability">Severability</a>
-          9. <a href="#changes-and-amendments">Changes and amendments</a>
-          10. <a href="#acceptance-of-these-terms">Acceptance of these terms</a>
-          11. <a href="#contacting-us">Contacting us</a>
-        </p>
-      </div>
+      <h3>Table of contents</h3>
+      <p>
+        1. <a href="#accounts-and-membership">Accounts and membership</a>
+        2. <a href="#user-content">User content</a>
+        3. <a href="#backups">Backups</a>
+        4. <a href="#links-to-other-resources">Links to other resources</a>
+        5. <a href="#prohibited-uses">Prohibited uses</a>
+        6. <a href="#intellectual-property-rights">Intellectual property rights</a>
+        7. <a href="#indemnification">Indemnification</a>
+        8. <a href="#severability">Severability</a>
+        9. <a href="#changes-and-amendments">Changes and amendments</a>
+        10. <a href="#acceptance-of-these-terms">Acceptance of these terms</a>
+        11. <a href="#contacting-us">Contacting us</a>
+      </p>
       <h2 id="accounts-and-membership">Accounts and membership</h2>
       <p>
         You must be at least 13 years of age to use the Website and Services. By
