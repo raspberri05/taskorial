@@ -33,17 +33,17 @@ export const Terms = () => {
       </p>
       <h3>Table of contents</h3>
       <p>
-        1. <a href="#accounts-and-membership">Accounts and membership</a>
-        2. <a href="#user-content">User content</a>
-        3. <a href="#backups">Backups</a>
-        4. <a href="#links-to-other-resources">Links to other resources</a>
-        5. <a href="#prohibited-uses">Prohibited uses</a>
-        6. <a href="#intellectual-property-rights">Intellectual property rights</a>
-        7. <a href="#indemnification">Indemnification</a>
-        8. <a href="#severability">Severability</a>
-        9. <a href="#changes-and-amendments">Changes and amendments</a>
-        10. <a href="#acceptance-of-these-terms">Acceptance of these terms</a>
-        11. <a href="#contacting-us">Contacting us</a>
+        1. <a href="#accounts-and-membership">Accounts and membership</a><br/>
+        2. <a href="#user-content">User content</a><br/>
+        3. <a href="#backups">Backups</a><br/>
+        4. <a href="#links-to-other-resources">Links to other resources</a><br/>
+        5. <a href="#prohibited-uses">Prohibited uses</a><br/>
+        6. <a href="#intellectual-property-rights">Intellectual property rights</a><br/>
+        7. <a href="#indemnification">Indemnification</a><br/>
+        8. <a href="#severability">Severability</a><br/>
+        9. <a href="#changes-and-amendments">Changes and amendments</a><br/>
+        10. <a href="#acceptance-of-these-terms">Acceptance of these terms</a><br/>
+        11. <a href="#contacting-us">Contacting us</a><br/>
       </p>
       <h2 id="accounts-and-membership">Accounts and membership</h2>
       <p>
