@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Head } from "../components/Head";
-import { STATUS_CODES } from "http";
 
 /*
  * Component for password reset:
