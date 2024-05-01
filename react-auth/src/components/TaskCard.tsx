@@ -298,6 +298,7 @@ export const TaskCard: FC<{ token: string }> = (props) => {
         console.log(error);
       });
   };
+  
   /**
   * Function to toggle developer toggle
   */
