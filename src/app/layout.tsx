@@ -15,10 +15,8 @@ export default function RootLayout({
       <body className="bg-dark text-bg-dark">
       <header>
         <TopBar />
-        <SignedOut>
-        </SignedOut>
-        <SignedIn>
-        </SignedIn>
+        <SignedOut />
+        <SignedIn />
       </header>
       <main>
         {children}
