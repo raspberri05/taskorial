@@ -50,7 +50,7 @@ export async function GET() {
 }
 
 export async function PUT(request: NextRequest) {
-const db = await dbConnect();
+  const db = await dbConnect();
   const formData = await request.formData();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("updateTask");
