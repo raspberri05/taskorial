@@ -16,7 +16,7 @@ export default async function Dashboard() {
       &nbsp;
       <Row>
         <Col xs={12} sm={12} md={6} lg={6}>
-          <TaskCard />
+          <TaskCard userId={user?.id}/>
         </Col>
       </Row>
     </Container>

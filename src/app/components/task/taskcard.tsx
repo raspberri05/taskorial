@@ -4,7 +4,7 @@ import { Card, Form, Button, Table, Spinner } from 'react-bootstrap';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-export default function TaskCard() {
+export default function TaskCard({userId}: {userId: string}) {
 
   const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Array<any>>([]);
@@ -20,6 +20,7 @@ export default function TaskCard() {
       url: `/api/tasks`,
       headers: {
         'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${userId}`
       },
       data: {
         name: task,
@@ -41,6 +42,9 @@ export default function TaskCard() {
     const config = {
       method: "get",
       url: `/api/tasks`,
+      headers: {
+        'Authorization': `Bearer ${userId}`
+      }
     }
 
     axios(config)
@@ -94,6 +98,8 @@ export default function TaskCard() {
       url: `/api/tasks?updateTask=true`,
       headers: {
         'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${userId}`
+
       },
       data: {
         taskId: taskId,
@@ -114,6 +120,9 @@ export default function TaskCard() {
     const config = {
       method: "delete",
       url: `/api/tasks?taskId=${taskId}`,
+      headers: {
+        'Authorization': `Bearer ${userId}`
+      }
     }
 
     axios(config)

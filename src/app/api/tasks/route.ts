@@ -1,17 +1,21 @@
 import { dbConnect } from "../db";
-import { currentUser}  from "@clerk/nextjs/server";
-import { type NextRequest } from 'next/server'
 import { ObjectId } from "mongodb";
 import { predictTime } from "../gemini";
-import { getUserId } from "../user";
+import { headers } from 'next/headers'
+import {NextRequest} from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const headersList = headers()
+  const referer: string | null = headersList.get('Authorization')
+  // @ts-ignore
+  const userId = referer.split(' ')[1]
+
   const db = await dbConnect();
   const formData = await request.formData()
   const time = await predictTime(formData.get('name'))
   const document = {
     name: formData.get('name'),
-    userId: await getUserId(),
+    userId: userId,
     completed: false,
     // @ts-ignore
     time: time.response.candidates[0].content.parts[0].text,
@@ -27,6 +31,11 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const headersList = headers()
+  const referer: string | null = headersList.get('Authorization')
+  // @ts-ignore
+  const userId = referer.split(' ')[1]
+
   const db = await dbConnect();
   const searchParams = request.nextUrl.searchParams
   const query = searchParams.get('taskId')
@@ -36,15 +45,24 @@ export async function DELETE(request: NextRequest) {
   return Response.json({ deletedCount: result.deletedCount });
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const headersList = headers()
+  const referer: string | null = headersList.get('Authorization')
+  // @ts-ignore
+  const userId = referer.split(' ')[1]
+
   const db = await dbConnect();
-  const userId = await getUserId();
   const result = await db.find({ userId: userId }).toArray();
   // @ts-ignore
   return Response.json(result);
 }
 
 export async function PUT(request: NextRequest) {
+  const headersList = headers()
+  const referer: string | null = headersList.get('Authorization')
+  // @ts-ignore
+  const userId = referer.split(' ')[1]
+
   const db = await dbConnect();
   const formData = await request.formData()
   const searchParams = request.nextUrl.searchParams
