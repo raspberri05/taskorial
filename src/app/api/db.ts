@@ -1,5 +1,5 @@
 // db.ts
-import { MongoClient, Collection } from 'mongodb';
+import { MongoClient, Collection } from "mongodb";
 
 let collection: Collection;
 
