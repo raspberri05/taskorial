@@ -1,10 +1,14 @@
-import {GoogleGenerativeAI, HarmCategory, HarmBlockThreshold} from "@google/generative-ai";
+import {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} from "@google/generative-ai";
 
 const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY: string | undefined = process.env.GEMINI_KEY;
 
 if (!API_KEY) {
-  throw new Error('The GEMINI_KEY environment variable is not set.');
+  throw new Error("The GEMINI_KEY environment variable is not set.");
 }
 
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -55,7 +59,7 @@ export async function test() {
 export async function predictTime(task: FormDataEntryValue | null) {
   try {
     const response = await chat.sendMessage(
-      `I am going to tell you the name of a task that I have to do. Based on the name of the task, you will tell me how many minutes it will take to complete this task: Your response should only have a number and nothing else. The task is: ${task}`
+      `I am going to tell you the name of a task that I have to do. Based on the name of the task, you will tell me how many minutes it will take to complete this task: Your response should only have a number and nothing else. The task is: ${task}`,
     );
     return response;
   } catch (error) {

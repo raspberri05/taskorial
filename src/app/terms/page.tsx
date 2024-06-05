@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap'
+import { Container } from "react-bootstrap";
 
 export default function Terms() {
   return (
@@ -243,5 +243,5 @@ export default function Terms() {
       </p>
       <p>This document was last updated on January 22, 2024</p>
     </Container>
-  )
+  );
 }

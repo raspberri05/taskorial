@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 
@@ -40,7 +40,7 @@ export default function BottomBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fab fa-github"/> Github
+                  <i className="fab fa-github" /> Github
                 </a>
               </li>
               <li className="mb-2">
@@ -49,7 +49,7 @@ export default function BottomBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fas fa-hand-holding-usd"/> Sponsor
+                  <i className="fas fa-hand-holding-usd" /> Sponsor
                 </a>
               </li>
             </ul>
@@ -63,12 +63,12 @@ export default function BottomBar() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <i className="fas fa-envelope"/> support@taskorial.com
+                  <i className="fas fa-envelope" /> support@taskorial.com
                 </a>
               </li>
               <li className="mb-2">
                 <Link href="#">
-                  <i className="fas fa-comment-dots"/> Feedback Form
+                  <i className="fas fa-comment-dots" /> Feedback Form
                 </Link>
               </li>
             </ul>
@@ -99,5 +99,5 @@ export default function BottomBar() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

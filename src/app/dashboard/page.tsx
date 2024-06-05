@@ -1,13 +1,12 @@
-import { Container, Row, Col } from "react-bootstrap"
-import { currentUser}  from "@clerk/nextjs/server";
-import { redirect } from 'next/navigation'
+import { Container, Row, Col } from "react-bootstrap";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import TaskCard from "@/app/components/task/taskcard";
 
 export default async function Dashboard() {
-
   const user = await currentUser();
   if (!user) {
-    redirect("/")
+    redirect("/");
   }
 
   return (
@@ -16,9 +15,9 @@ export default async function Dashboard() {
       &nbsp;
       <Row>
         <Col xs={12} sm={12} md={6} lg={6}>
-          <TaskCard userId={user?.id}/>
+          <TaskCard userId={user?.id} />
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

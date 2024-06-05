@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap"
+import { Container } from "react-bootstrap";
 
 export default function Privacy() {
   return (
@@ -504,5 +504,5 @@ export default function Privacy() {
         <li>By email: vedant.singhania@gmail.com</li>
       </ul>
     </Container>
-  )
+  );
 }
