@@ -26,26 +26,19 @@ export async function POST(request: NextRequest) {
   };
 
   const result = await db.insertOne(document);
-  // @ts-expect-error
   return Response.json(document);
 }
 
 export async function DELETE(request: NextRequest) {
-  const headersList = headers();
-  const referer: string | null = headersList.get("Authorization");
-  // @ts-expect-error
-  const userId = referer.split(" ")[1];
-
   const db = await dbConnect();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("taskId");
   // @ts-expect-error
   const result = await db.deleteOne({ _id: new ObjectId(query) });
-  // @ts-expect-error
   return Response.json({ deletedCount: result.deletedCount });
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const headersList = headers();
   const referer: string | null = headersList.get("Authorization");
   // @ts-expect-error
@@ -53,17 +46,11 @@ export async function GET(request: NextRequest) {
 
   const db = await dbConnect();
   const result = await db.find({ userId: userId }).toArray();
-  // @ts-expect-error
   return Response.json(result);
 }
 
 export async function PUT(request: NextRequest) {
-  const headersList = headers();
-  const referer: string | null = headersList.get("Authorization");
-  // @ts-expect-error
-  const userId = referer.split(" ")[1];
-
-  const db = await dbConnect();
+const db = await dbConnect();
   const formData = await request.formData();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("updateTask");
@@ -76,10 +63,8 @@ export async function PUT(request: NextRequest) {
     const update = { $set: { completed: completion } };
     const result = await db.updateOne(filter, update);
 
-    // @ts-expect-error
     return Response.json({ modifiedCount: result.modifiedCount });
   }
 
-  // @ts-expect-error
   return Response.json({});
 }
