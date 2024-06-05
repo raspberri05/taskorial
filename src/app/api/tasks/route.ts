@@ -3,11 +3,7 @@ import { currentUser}  from "@clerk/nextjs/server";
 import { type NextRequest } from 'next/server'
 import { ObjectId } from "mongodb";
 import { predictTime } from "../gemini";
-
-export async function getUserId() {
-  const user = await currentUser();
-  return user?.id
-}
+import { getUserId } from "../user";
 
 export async function POST(request: Request) {
   const db = await dbConnect();
