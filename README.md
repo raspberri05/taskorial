@@ -1,27 +1,36 @@
-# Taskorial
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## About
+## Getting Started
 
-Taskorial is an open source task management web application that was created using the MERN Stack (MongoDB, Express, React, Node). The production frontend is hosted on Netlify and the production backend is hosted on Render. This project is an active development, and is open to contributions. If you are interested in contributing, please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md)
+First, run the development server:
 
-## Setting up your environment for local development
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Check out the [Getting Started](https://github.com/raspberri05/taskorial/wiki/Getting-Started) page of our wiki to set up your environment
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contributing
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-We welcome and encourage any types of contributions to this project. Please consult our [contributing guide](https://github.com/raspberri05/todo-list/blob/main/CONTRIBUTING.md) prior to making any contributions.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## License
+## Learn More
 
-This project is licensed under the GNU General Public License v3.0. You can view more info about this license [here](https://github.com/raspberri05/taskorial/blob/main/LICENSE.md).
+To learn more about Next.js, take a look at the following resources:
 
-## Documentation
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can find this project's complete documentation on our [wiki](https://github.com/raspberri05/taskorial/wiki). This wiki is new and in development, and some information may not be there yet. 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-If you would like to make any changes to the wiki that you feel may be helpful to this project, please feel free to open a issue with suggested changes (as to my knowledge there is currently not a way to create a pull request for a wiki)
+## Deploy on Vercel
 
-## Sponsoring
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-You can learn more about sponsoring this project and my development efforts [here](https://github.com/sponsors/raspberri05)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
