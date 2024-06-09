@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className='flex justify-center'>
-      <SignUp/>
+    <div className="flex justify-center">
+      <SignUp />
     </div>
-  )
+  );
 }
