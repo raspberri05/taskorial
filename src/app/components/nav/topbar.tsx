@@ -48,7 +48,7 @@ export default function TopBar() {
           <SignInButton>Log In/Sign Up</SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton userProfileUrl="/profile" userProfileMode="navigation"/>
         </SignedIn>
       </div>
     </div>
