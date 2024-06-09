@@ -1,5 +1,3 @@
-"use client";
-
 import { SignInButton, SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 
 export default function TopBar() {

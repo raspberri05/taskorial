@@ -12,10 +12,10 @@ export async function POST(request: NextRequest) {
   const userId = referer.split(" ")[1];
 
   const db = await dbConnect();
-  const formData = await request.formData();
-  const time = await predictTime(formData.get("name"));
+  const body = await request.json();
+  const time = await predictTime(body["name"]);
   const document = new Task({
-    name: formData.get("name"),
+    name: body["name"],
     userId: userId,
     completed: false,
     // @ts-expect-error
@@ -55,16 +55,14 @@ export async function GET() {
 
 export async function PUT(request: NextRequest) {
   const db = await dbConnect();
-  const formData = await request.formData();
+  const formData = await request.json();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("updateTask");
-  const taskId = formData.get("taskId");
-  const completion = formData.get("completion") === "true";
-  // @ts-expect-error
+  const taskId = formData["taskId"];
+  const completion = formData["completion"];
   const filter = { _id: new mongoose.Types.ObjectId(taskId) };
-
   if (query === "true") {
-    const update = { $set: { completed: completion, updatedAt: new Date() } };
+    const update = { $set: { completed: !completion, updatedAt: new Date() } };
     const result = await Task.updateOne(filter, update);
 
     return Response.json({ modifiedCount: result.modifiedCount });

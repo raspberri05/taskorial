@@ -1,8 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import TaskCard from "@/app/components/task/taskcard";
+const TaskCard = dynamic(() => import("../../components/task/taskcard"));
 
 import { title } from "@/app/shared-metadata";
+import dynamic from "next/dynamic";
 
 export const metadata = {
   title: `${title} | Tasks`,

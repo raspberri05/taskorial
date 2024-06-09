@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Page() {
   return (
     <div className="flex justify-center">
       <div className="max-w-md min-w-sm text-center">

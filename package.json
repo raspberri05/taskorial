@@ -13,7 +13,6 @@
     "@clerk/themes": "^2.1.9",
     "@google/generative-ai": "^0.12.0",
     "@tailwindcss/forms": "^0.5.7",
-    "axios": "^1.7.2",
     "mongoose": "^8.4.1",
     "next": "14.2.3",
     "react": "^18",

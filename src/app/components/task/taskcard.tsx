@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function TaskCard({ userId }: { userId: string }) {
   const [task, setTask] = useState<string>("");
@@ -16,7 +15,7 @@ export default function TaskCard({ userId }: { userId: string }) {
     const url = `/api/tasks`;
     const data = JSON.stringify({
       name: task,
-    })
+    });
 
     fetch(url, {
       method: "POST",
@@ -94,8 +93,8 @@ export default function TaskCard({ userId }: { userId: string }) {
     const url = `/api/tasks?updateTask=true`;
     const data = JSON.stringify({
       taskId: taskId,
-      completion: !completion,
-    })
+      completion: completion,
+    });
 
     fetch(url, {
       method: "PUT",
