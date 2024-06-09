@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="flex justify-center">
-      <div className="max-w-md text-center">
+      <div className="max-w-md min-w-sm text-center">
         <h1 className="text-4xl">Welcome to Taskorial</h1>
         <br />
         <p className="lead">An open-source, (almost) AI-powered task app</p>

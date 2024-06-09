@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 .w-30-rem {
-  width: 30rem;
+  width: 26rem;
 }
 
-
+.trash-icon:hover {
+    cursor: pointer;
+}
 
 input[type="checkbox"] {
   background-color: transparent !important;
