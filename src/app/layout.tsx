@@ -1,7 +1,6 @@
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import TopBar from "./components/nav/topbar";
 import "./globals.css";
-import "bootstrap/dist/css/bootstrap.css";
 import BottomBar from "@/app/components/nav/bottombar";
 
 export default function RootLayout({
@@ -12,13 +11,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className="bg-dark text-bg-dark">
-          <header>
-            <TopBar />
-            <SignedOut />
-            <SignedIn />
-          </header>
-          <main>{children}</main>
+        <body>
+          <TopBar />
+          <main className="container mx-auto">{children}</main>
+          <br />
           <BottomBar />
         </body>
       </html>

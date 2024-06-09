@@ -1,68 +1,21 @@
-.nav {
-    background-color: #2b3035 !important;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.w-30-rem {
+  width: 30rem;
 }
 
-.hamburger {
-    background-color: #2b3035 !important;
-    border-color: #5a5a5a !important;
-}
 
-.hamburger:hover {
-    background-color: #272b2f !important;
-}
-
-.delete {
-    padding: 3px 7px 3px 7px !important;
-    background-color: #272b2f !important;
-    border: 1px solid #5a5a5a !important;
-}
-
-.delete:hover {
-    background-color: #5a5a5a !important;
-}
 
 input[type="checkbox"] {
-    border: 1px solid #5a5a5a !important;
-    background-color: transparent !important;
-    height: 25px;
-    width: 25px;
+  background-color: transparent !important;
+  height: 25px;
+  width: 25px;
 }
 
 input[type="checkbox"]:hover {
-    border: 1px solid #5a5a5a !important;
-    background-color: #5a5a5a !important;
-    height: 25px;
-    width: 25px;
-}
-
-.footer-link a {
-    color: white !important;
-    text-decoration: none !important;
-}
-
-.footer-link a:hover {
-    color: white !important;
-    text-decoration: underline !important;
-}
-
-.footer {
-    bottom: 0 !important;
-    width: 100% !important;
-}
-
-.toggle {
-    padding-left: 45px !important;
-}
-
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: lightgray !important;
-}
-::-moz-placeholder { /* Firefox 19+ */
-    color: lightgray !important;
-}
-:-ms-input-placeholder { /* IE 10+ */
-    color: lightgray !important;
-}
-:-moz-placeholder { /* Firefox 18- */
-    color: lightgray !important;
+  background-color: #5a5a5a !important;
+  height: 25px;
+  width: 25px;
 }
