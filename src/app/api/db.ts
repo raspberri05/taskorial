@@ -1,15 +1,6 @@
-// db.ts
-import { MongoClient, Collection } from "mongodb";
-
-let collection: Collection;
+import mongoose from "mongoose";
 
 export async function dbConnect() {
-  if (!collection) {
-    // @ts-expect-error
-    const client = new MongoClient(process.env.DB_URL);
-    await client.connect();
-    const db = client.db("tasks");
-    collection = db.collection("tasks");
-  }
-  return collection;
+  // @ts-ignore
+  await mongoose.connect(process.env.DB_URL);
 }

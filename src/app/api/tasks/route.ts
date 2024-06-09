@@ -1,8 +1,9 @@
 import { dbConnect } from "../db";
-import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 import { predictTime } from "../gemini";
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
+import Task from "../model/Task";
 
 export async function POST(request: NextRequest) {
   const headersList = headers();
@@ -13,19 +14,20 @@ export async function POST(request: NextRequest) {
   const db = await dbConnect();
   const formData = await request.formData();
   const time = await predictTime(formData.get("name"));
-  const document = {
+  const document = new Task({
     name: formData.get("name"),
     userId: userId,
     completed: false,
     // @ts-expect-error
     time: time.response.candidates[0].content.parts[0].text,
-    datetime: 0,
+    datetime: new Date(),
     priority: 0,
-    description: "",
+    description: "description",
     createdAt: new Date(),
-  };
+    updatedAt: new Date(),
+  });
 
-  const result = await db.insertOne(document);
+  const result = await document.save();
   return Response.json(document);
 }
 
@@ -33,8 +35,10 @@ export async function DELETE(request: NextRequest) {
   const db = await dbConnect();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("taskId");
-  // @ts-expect-error
-  const result = await db.deleteOne({ _id: new ObjectId(query) });
+  const result = await Task.deleteOne({
+    // @ts-expect-error
+    _id: new mongoose.Types.ObjectId(query),
+  });
   return Response.json({ deletedCount: result.deletedCount });
 }
 
@@ -45,7 +49,7 @@ export async function GET() {
   const userId = referer.split(" ")[1];
 
   const db = await dbConnect();
-  const result = await db.find({ userId: userId }).toArray();
+  const result = await Task.find({ userId: userId });
   return Response.json(result);
 }
 
@@ -57,11 +61,11 @@ export async function PUT(request: NextRequest) {
   const taskId = formData.get("taskId");
   const completion = formData.get("completion") === "true";
   // @ts-expect-error
-  const filter = { _id: new ObjectId(taskId) };
+  const filter = { _id: new mongoose.Types.ObjectId(taskId) };
 
   if (query === "true") {
-    const update = { $set: { completed: completion } };
-    const result = await db.updateOne(filter, update);
+    const update = { $set: { completed: completion, updatedAt: new Date() } };
+    const result = await Task.updateOne(filter, update);
 
     return Response.json({ modifiedCount: result.modifiedCount });
   }

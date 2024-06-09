@@ -1,7 +1,12 @@
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import TopBar from "./components/nav/topbar";
 import "./globals.css";
 import BottomBar from "@/app/components/nav/bottombar";
+import { title } from "@/app/shared-metadata";
+
+export const metadata = {
+  title: title,
+};
 
 export default function RootLayout({
   children,
