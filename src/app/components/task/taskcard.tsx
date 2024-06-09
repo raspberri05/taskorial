@@ -13,19 +13,19 @@ export default function TaskCard({ userId }: { userId: string }) {
     (e.target as HTMLFormElement).reset();
     setIsLoading(true);
 
-    const config = {
-      method: "post",
-      url: `/api/tasks`,
+    const url = `/api/tasks`;
+    const data = JSON.stringify({
+      name: task,
+    })
+
+    fetch(url, {
+      method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userId}`,
       },
-      data: {
-        name: task,
-      },
-    };
-
-    axios(config)
+      body: data,
+    })
       .then(() => {
         setTask("");
         getTasks();
@@ -37,17 +37,17 @@ export default function TaskCard({ userId }: { userId: string }) {
   }
 
   function getTasks() {
-    const config = {
-      method: "get",
-      url: `/api/tasks`,
+    const url = `/api/tasks`;
+
+    fetch(url, {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${userId}`,
       },
-    };
-
-    axios(config)
+    })
+      .then((response) => response.json())
       .then((result) => {
-        const res = result.data;
+        const res = result;
         res.sort((a: any, b: any) => {
           if (a.completed === b.completed) {
             // If completed status is the same, compare by createdAt
@@ -91,20 +91,20 @@ export default function TaskCard({ userId }: { userId: string }) {
       }
     });
     setTaskList(tasks.reverse());
-    const config = {
-      method: "put",
-      url: `/api/tasks?updateTask=true`,
+    const url = `/api/tasks?updateTask=true`;
+    const data = JSON.stringify({
+      taskId: taskId,
+      completion: !completion,
+    })
+
+    fetch(url, {
+      method: "PUT",
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userId}`,
       },
-      data: {
-        taskId: taskId,
-        completion: !completion,
-      },
-    };
-
-    axios(config)
+      body: data,
+    })
       .then(() => {
         getTasks();
       })
@@ -114,15 +114,14 @@ export default function TaskCard({ userId }: { userId: string }) {
   }
 
   function deleteTask(taskId: string) {
-    const config = {
-      method: "delete",
-      url: `/api/tasks?taskId=${taskId}`,
+    const url = `/api/tasks?taskId=${taskId}`;
+
+    fetch(url, {
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${userId}`,
       },
-    };
-
-    axios(config)
+    })
       .then(() => {
         getTasks();
       })
