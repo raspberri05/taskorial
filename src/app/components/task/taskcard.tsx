@@ -145,7 +145,11 @@ export default function TaskCard({ userId }: { userId: string }) {
               <div className="mt-2">
                 <input
                   disabled={isLoading}
-                  placeholder={taskList.length === 0 ? "Add your first task" : "Add a new task"}
+                  placeholder={
+                    taskList.length === 0
+                      ? "Add your first task"
+                      : "Add a new task"
+                  }
                   value={task}
                   onChange={(e) => setTask(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5"
