@@ -1,15 +1,14 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-const TaskCard = dynamic(() => import("../../components/task/taskcard"));
-
-import { title } from "@/app/shared-metadata";
 import dynamic from "next/dynamic";
+const TaskCard = dynamic(() => import("../../components/task/taskcard"));
+import { title } from "@/app/shared-metadata";
 
 export const metadata = {
   title: `${title} | Tasks`,
 };
 
-export default async function Dashboard() {
+export default async function Page() {
   const user = await currentUser();
   if (!user) {
     redirect("/");

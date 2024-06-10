@@ -1,4 +1,5 @@
 import { SignInButton, SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function TopBar() {
   return (
@@ -26,18 +27,22 @@ export default function TopBar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="/dashboard/tasks">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl" href="/">
-          Taskorial
+          <Image src="/images/originals/ORIGINAL_LOGO_IMG.png" alt="taskorial logo"
+                 width={25}
+                 height={25}>
+
+          </Image>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a href="/dashboard/tasks">Dashboard</a>
+            <a href="/dashboard">Dashboard</a>
           </li>
         </ul>
       </div>
@@ -46,7 +51,7 @@ export default function TopBar() {
           <SignInButton>Log In/Sign Up</SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton userProfileUrl="/profile" userProfileMode="navigation" />
+          <UserButton userProfileUrl="/user-profile" userProfileMode="navigation" />
         </SignedIn>
       </div>
     </div>

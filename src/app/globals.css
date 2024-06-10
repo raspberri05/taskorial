@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.w-30-rem {
-  width: 26rem;
+html, body {width: auto!important; overflow-x: hidden!important}
+
+.w-23-rem {
+  width: 27rem;
 }
 
 .trash-icon:hover {
@@ -12,12 +14,4 @@
 
 input[type="checkbox"] {
   background-color: transparent !important;
-  height: 25px;
-  width: 25px;
-}
-
-input[type="checkbox"]:hover {
-  background-color: #5a5a5a !important;
-  height: 25px;
-  width: 25px;
 }
