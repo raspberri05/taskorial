@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {width: auto!important; overflow-x: hidden!important}
+html,
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
 
 .w-23-rem {
   width: 27rem;

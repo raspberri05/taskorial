@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation";
 import { title } from "@/app/shared-metadata";
 
 export const metadata = {
@@ -16,10 +16,10 @@ export default async function Page() {
     <div className="flex justify-center">
       <div className="max-w-md min-w-sm text-center">
         <h1 className="text-4xl">Dashboard</h1>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <h1 className="text-3xl">Welcome back, {user?.firstName}!</h1>
-        <br/>
+        <br />
         <div className="columns-2">
           <a href="/dashboard/tasks">
             <div className="card bg-base-200">
@@ -36,7 +36,7 @@ export default async function Page() {
             </div>
           </a>
         </div>
-        <br/>
+        <br />
       </div>
     </div>
   );

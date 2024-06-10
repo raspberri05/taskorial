@@ -32,11 +32,12 @@ export default function TopBar() {
           </ul>
         </div>
         <a className="btn btn-ghost text-xl" href="/">
-          <Image src="/images/originals/ORIGINAL_LOGO_IMG.png" alt="taskorial logo"
-                 width={25}
-                 height={25}>
-
-          </Image>
+          <Image
+            src="/images/originals/ORIGINAL_LOGO_IMG.png"
+            alt="taskorial logo"
+            width={25}
+            height={25}
+          ></Image>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -51,7 +52,10 @@ export default function TopBar() {
           <SignInButton>Log In/Sign Up</SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton userProfileUrl="/user-profile" userProfileMode="navigation" />
+          <UserButton
+            userProfileUrl="/user-profile"
+            userProfileMode="navigation"
+          />
         </SignedIn>
       </div>
     </div>
