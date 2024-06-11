@@ -49,17 +49,15 @@ export default function TaskCard({ userId }: { userId: string }) {
         const res = result;
         res.sort((a: any, b: any) => {
           if (a.completed === b.completed) {
-            // If completed status is the same, compare by createdAt
             if (a.createdAt < b.createdAt) {
-              return -1; // a comes before b
+              return -1;
             } else if (a.createdAt > b.createdAt) {
-              return 1; // b comes before a
+              return 1;
             } else {
-              return 0; // createdAt values are equal
+              return 0;
             }
           } else {
-            // If completed status is different, sort by completed status
-            return a.completed ? -1 : 1; // true comes before false
+            return a.completed ? -1 : 1;
           }
         });
         setTaskList([...res].reverse());
@@ -76,24 +74,22 @@ export default function TaskCard({ userId }: { userId: string }) {
     tasks[index].completed = !tasks[index].completed;
     tasks.sort((a: any, b: any) => {
       if (a.completed === b.completed) {
-        // If completed status is the same, compare by createdAt
         if (a.createdAt < b.createdAt) {
-          return -1; // a comes before b
+          return -1;
         } else if (a.createdAt > b.createdAt) {
-          return 1; // b comes before a
+          return 1;
         } else {
-          return 0; // createdAt values are equal
+          return 0;
         }
       } else {
-        // If completed status is different, sort by completed status
-        return a.completed ? -1 : 1; // true comes before false
+        return a.completed ? -1 : 1;
       }
     });
     setTaskList(tasks.reverse());
     const url = "/api/tasks?updateTask=true";
     const data = JSON.stringify({
-      taskId: taskId,
-      completion: completion,
+      taskId,
+      completion,
     });
 
     fetch(url, {

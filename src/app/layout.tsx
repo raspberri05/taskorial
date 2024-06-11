@@ -10,7 +10,7 @@ import React from "react";
 const roboto = Roboto({ weight: "500", subsets: ["latin"] });
 
 export const metadata = {
-  title: title,
+  title,
 };
 
 export default function RootLayout({
