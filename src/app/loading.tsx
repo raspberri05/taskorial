@@ -3,7 +3,7 @@ export default function Loading() {
   return (
     <div className="text-center">
       <h1 className="text-3xl">Loading</h1>
-      <span className="loading loading-spinner loading-sm"></span>
+      <span className="loading loading-spinner loading-sm" />
     </div>
   );
 }

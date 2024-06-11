@@ -1,6 +1,6 @@
 "use client";
 
-import { UserProfile } from '@clerk/nextjs';
+import { UserProfile } from "@clerk/nextjs";
 
 const DotIcon = () => {
   return (
@@ -11,8 +11,8 @@ const DotIcon = () => {
     >
       <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
     </svg>
-  )
-}
+  );
+};
 
 const RequestData = () => {
   return (
@@ -31,7 +31,7 @@ const DangerZone = () => {
 };
 
 const UserProfilePage = () => (
-  <div className='flex justify-center'>
+  <div className="flex justify-center">
     <UserProfile path="/user-profile" routing="path">
       {/* You can pass the content as a component */}
       <UserProfile.Page
@@ -49,7 +49,6 @@ const UserProfilePage = () => (
       >
         <DangerZone />
       </UserProfile.Page>
-
     </UserProfile>
   </div>
 );

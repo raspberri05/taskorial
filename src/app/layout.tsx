@@ -4,10 +4,10 @@ import TopBar from "./components/nav/topbar";
 import "./globals.css";
 import BottomBar from "@/app/components/nav/bottombar";
 import { title } from "@/app/shared-metadata";
-import { Roboto } from 'next/font/google'
+import { Roboto } from "next/font/google";
 import React from "react";
 
-const roboto = Roboto( { weight: '500', subsets: ['latin'] })
+const roboto = Roboto({ weight: "500", subsets: ["latin"] });
 
 export const metadata = {
   title: title,

@@ -1,13 +1,13 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface ITask extends Document {
-  name: String;
-  userId: String;
-  completed: Boolean;
-  time: String;
-  datetime: Number;
-  priority: Number;
-  description: String;
+  name: string;
+  userId: string;
+  completed: boolean;
+  time: string;
+  datetime: number;
+  priority: number;
+  description: string;
   createdAt: Date;
   updatedAt: Date;
 }

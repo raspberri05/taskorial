@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
   // @ts-expect-error
   const userId = referer.split(" ")[1];
 
-  const db = await dbConnect();
   const body = await request.json();
   const time = await predictTime(body["name"]);
   const document = new Task({
@@ -28,11 +27,10 @@ export async function POST(request: NextRequest) {
   });
 
   const result = await document.save();
-  return Response.json(document);
+  return Response.json(result);
 }
 
 export async function DELETE(request: NextRequest) {
-  const db = await dbConnect();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("taskId");
   const result = await Task.deleteOne({
@@ -47,14 +45,11 @@ export async function GET() {
   const referer: string | null = headersList.get("Authorization");
   // @ts-expect-error
   const userId = referer.split(" ")[1];
-
-  const db = await dbConnect();
   const result = await Task.find({ userId: userId });
   return Response.json(result);
 }
 
 export async function PUT(request: NextRequest) {
-  const db = await dbConnect();
   const formData = await request.json();
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("updateTask");
