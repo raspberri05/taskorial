@@ -3,6 +3,7 @@ import { predictTime } from "../gemini";
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
 import Task from "../model/Task";
+import { dbConnect } from "../db";
 
 export async function POST(request: NextRequest) {
   const headersList = headers();
@@ -40,6 +41,7 @@ export async function DELETE(request: NextRequest) {
 }
 
 export async function GET() {
+  const db = await dbConnect();
   const headersList = headers();
   const referer: string | null = headersList.get("Authorization");
   // @ts-expect-error
