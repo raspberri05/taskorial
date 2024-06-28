@@ -38,15 +38,14 @@ If a maintainer asks you to "rebase" your PR, they're saying that a lot of code 
 
 # Getting started
 
-
 For something that is bigger than a one or two line fix:
 
 1. Create your own fork of the code
 2. Do the changes in your fork
 3. If you like the change and think the project could use it:
     * Be sure you have followed the code style for the project.
+    * Once you have created a pull request, please ensure that all DeepSource CI checks run successfully and edit the code to resolve DeepSource errors. If unable to resolve a DeepSource error please let me know.
 
-Small contributions such as fixing spelling errors, where the content is small enough to not be considered intellectual property, can be submitted by a contributor as a patch, without a CLA.
 
 As a rule of thumb, changes are obvious fixes if they do not introduce any new functionality or creative thinking. As long as the change does not affect functionality, some likely examples include the following:
 * Spelling / grammar fixes
