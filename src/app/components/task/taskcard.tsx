@@ -158,9 +158,7 @@ export default function TaskCard({ userId }: { userId: string }) {
                   <th style={{ width: "5px" }}></th>
                   <th style={{ width: "400px" }}>Task</th>
                   <th style={{ width: "5px" }}>
-                    <button
-                      className="btn btn-xs disabled"
-                    >
+                    <button className="btn btn-xs disabled">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="18"

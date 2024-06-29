@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const geminiResponse = await predictTime(body.name);
   // @ts-expect-error
-  const geminiResponseParsed = geminiResponse.response.candidates[0].content.parts[0].text;
+  const geminiResponseParsed =
+    geminiResponse.response.candidates[0].content.parts[0].text;
   console.log(geminiResponseParsed);
   const dateStr = geminiResponseParsed?.split(",")[1];
   const timeStr = geminiResponseParsed?.split(",")[2];
