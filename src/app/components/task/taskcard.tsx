@@ -155,7 +155,7 @@ export default function TaskCard({ userId }: { userId: string }) {
             <table className="table">
               <thead>
                 <tr>
-                  <th style={{ width: "5px" }}></th>
+                  <th style={{ width: "5px" }} />
                   <th style={{ width: "400px" }}>Task</th>
                   <th style={{ width: "5px" }}>
                     <button className="btn btn-xs disabled">
