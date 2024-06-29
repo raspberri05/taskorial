@@ -12,14 +12,20 @@ export async function POST(request: NextRequest) {
   const userId = referer.split(" ")[1];
 
   const body = await request.json();
-  const time = await predictTime(body.name);
+  const geminiResponse = await predictTime(body.name);
+  // @ts-expect-error
+  const geminiResponseParsed = geminiResponse.response.candidates[0].content.parts[0].text;
+  console.log(geminiResponseParsed);
+  const dateStr = geminiResponseParsed?.split(",")[1];
+  const timeStr = geminiResponseParsed?.split(",")[2];
+  const dateTimeStr = `${dateStr} ${timeStr}`;
+  console.log(dateTimeStr);
   const document = new Task({
-    name: body.name,
+    name: geminiResponseParsed?.split(",")[0],
     userId,
     completed: false,
-    // @ts-expect-error
-    time: time.response.candidates[0].content.parts[0].text,
-    datetime: new Date(),
+    time: geminiResponseParsed?.split(",")[3],
+    datetime: dateTimeStr,
     priority: 0,
     description: "description",
     createdAt: new Date(),

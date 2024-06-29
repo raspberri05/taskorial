@@ -142,14 +142,10 @@ export default function TaskCard({ userId }: { userId: string }) {
               <div className="mt-2">
                 <input
                   disabled={isLoading}
-                  placeholder={
-                    taskList.length === 0
-                      ? "Add your first task"
-                      : "Add a new task"
-                  }
+                  placeholder="do laundry tomorrow at 10am"
                   value={task}
                   onChange={(e) => setTask(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 text-gray-600"
                 />
               </div>
             </div>
@@ -157,6 +153,29 @@ export default function TaskCard({ userId }: { userId: string }) {
           {isLoading && <span className="loading loading-spinner loading-sm" />}
           <div>
             <table className="table">
+              <thead>
+                <tr>
+                  <th style={{ width: "5px" }}></th>
+                  <th style={{ width: "400px" }}>Task</th>
+                  <th style={{ width: "5px" }}>
+                    <button
+                      className="btn btn-xs disabled"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        fill="currentColor"
+                        className="bi bi-stopwatch"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                        <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                      </svg>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
               <tbody>
                 {taskList.map((t) => (
                   <tr key={t._id}>
@@ -175,6 +194,8 @@ export default function TaskCard({ userId }: { userId: string }) {
                     </td>
                     <td style={{ width: "400px" }}>
                       {t.completed ? <s>{t.name}</s> : t.name}
+                      <br />
+                      <p className="text-xs">{t.datetime}</p>
                     </td>
                     <td style={{ width: "5px" }} className="text-center">
                       {t.completed ? (
@@ -187,7 +208,7 @@ export default function TaskCard({ userId }: { userId: string }) {
                             width="18"
                             height="18"
                             fill="currentColor"
-                            className="trash-icon bi-trash"
+                            className="trash-icon bi bi-trash"
                             viewBox="0 0 16 16"
                           >
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />

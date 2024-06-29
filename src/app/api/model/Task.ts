@@ -5,7 +5,7 @@ interface ITask extends Document {
   userId: string;
   completed: boolean;
   time: string;
-  datetime: number;
+  datetime: string;
   priority: number;
   description: string;
   createdAt: Date;
@@ -30,7 +30,7 @@ const taskSchema: Schema = new Schema({
     required: true,
   },
   datetime: {
-    type: Date,
+    type: String,
     required: true,
   },
   priority: {
